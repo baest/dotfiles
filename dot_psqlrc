@@ -1,0 +1,35 @@
+\set QUIET 1
+\pset null '(NULL)'
+-- da_DK.utf8
+--\pset numericlocale on
+--\pset pager off
+\pset pager on
+\pset linestyle unicode
+\pset border 3
+
+\setenv PAGER 'pspg -bX --no-mouse --no-bars'
+--\setenv PAGER 'less -XF'
+\timing
+\set VERBOSITY verbose
+\set PG_COLOR always
+
+\set HISTSIZE 50000
+\set HISTCONTROL ignoreboth
+--\set HISTFILE ~/.psql_history/:HOST
+\set HISTFILE ~/.psql_history/ :DBNAME
+
+-- with hostname
+--\set PROMPT1 '%n %[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
+--\set PROMPT1 '%x %R[%m] %# '
+--\set PROMPT1 '%[%033[1m%]%/%[%033[0m%]%R[%`echo $SSH_REAL_HOST`]%[%033[1;31m%]%x%[%033[K%]%[%033[0m%]%# '
+
+-- set prompt2 (next line in command) to whitespace from PG13
+-- \set PROMPT2 '%w'
+
+--set search_path TO construct, public
+\set COMP_KEYWORD_CASE upper
+\set ON_ERROR_ROLLBACK interactive
+
+\unset QUIET
+
+-- \echo pspg is DISABLED for now

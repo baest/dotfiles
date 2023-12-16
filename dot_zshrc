@@ -1,0 +1,144 @@
+#zmodload zsh/zprof
+for file in $HOME/.zshrc.d/*.zsh; do
+    source "$file"
+done
+
+safe_source "$HOME/.profile" # Load the default .profile
+
+#NOBEEP
+#[[ ! -f ~/.zkbd/$TERM ]] && zkbd
+#source ~/.zkbd/$TERM
+#
+#stty status ^T
+
+# consider moving to zplugin:
+# http://zdharma.org/zplugin/wiki/INTRODUCTION/
+# https://dev.to/misterf/awesome-terminal-upgrades-part-three-manage-zsh-plugins-using-zplugin-1fba
+#source "${HOME}/.zgen/zgen.zsh"
+#
+#if ! zgen saved; then
+#	source "$HOME/.zgen_plugins.zsh"
+#	zgen save
+#fi
+#
+#source "$HOME/.zgen_plugins_conf.zsh"
+
+safe_source "/usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh"
+
+autoload colors zsh/terminfo
+if [[ "$terminfo[colors]" -ge 8 ]]; then
+	colors
+fi
+
+#eval `dircolors ~/ressources/dircolors-solarized/dircolors.ansi-light`
+## don't run inside tmux, tmux sets COLORFGBG
+#if [ -z "$TMUX" ]; then
+#    echo "xxxx"
+#    if [ "$COLORFGBG" = "11;15" ]; then
+#        echo "set background=light" > .vimrc.local
+#    echo "zzzz"
+#    else
+#        echo "set background=dark" > .vimrc.local
+#    echo "yyyy"
+#    fi
+#fi
+
+#  [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+#. /usr/share/autojump/autojump.sh
+
+#[ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
+
+#autoload -Uz add-zsh-hook
+#add-zsh-hook precmd  histdb-update-outcome
+
+#NPM
+PATH="$PATH:${HOME}/.npm-packages/bin"
+#TODO NPM manpath? see https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
+
+# for some reason somethims $ZPLUG_BIN doesn't get added
+export PATH=$HOME/bin/first:$ZPLUG_BIN:$HOME/.perl6/bin:$PATH
+
+#zprof
+
+# perlbrew
+safe_source "$HOME/perl5/perlbrew/etc/bashrc"
+
+export ONECOMID=fra
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+zstyle ':autocomplete:*' fzf-completion yes
+zstyle ':autocomplete:*' min-input 2
+
+typeset -g ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+#zinit wait lucid for \
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+
+zinit add-fpath /opt/homebrew/share/zsh/site-functions
+zinit add-fpath ~/.zsh_completions
+
+zinit load wfxr/forgit
+#zinit load marlonrichert/zsh-autocomplete
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+zinit ice as"program" pick"bin/git-fuzzy"
+zinit light bigH/git-fuzzy
+
+#zinit pack"default+keys" for fzf
+zinit wait \
+    atclone'mkdir -p $ZPFX/{bin,man/man1}' \
+    atpull'%atclone' \
+    dl'https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh -> _fzf_completion;
+      https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -> key-bindings.zsh;
+      https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf-tmux.1 -> $ZPFX/man/man1/fzf-tmux.1;
+      https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1 -> $ZPFX/man/man1/fzf.1' \
+    from'gh-r' \
+    id-as'junegunn/fzf' \
+    lucid \
+    nocompile \
+    pick'/dev/null' \
+    sbin'fzf' \
+    src'key-bindings.zsh' \
+  for @junegunn/fzf
+
+### End of Zinit's installer chunk
+
+#safe_source "$HOME/.py-systems/bin/activate"
+
+if [[ -x "$(command -v starship)" ]]; then
+  eval "$(starship init zsh)"
+fi
+
+if [[ ! -z "$ITERM_SESSION_ID" ]]; then
+    safe_source "$HOME/.iterm2_shell_integration.zsh"
+    #[[ ! -f ~/.zgen/.iterm2_shell_integration.zsh ]] || source ~/.zgen/.iterm2_shell_integration.zsh
+
+    #export PS1="$PS1%{$(iterm2_prompt_mark)%}"
+fi

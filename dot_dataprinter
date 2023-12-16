@@ -1,0 +1,6 @@
+caller_info = 1
+hash_separator = ' => '
+#filters = ClassFilter
+theme = Solarized
+sort_keys      = 1
+#max_depth = 3

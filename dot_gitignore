@@ -1,0 +1,10 @@
+*.sw[mnop]
+*.agignore
+nytprof*
+*.autoenv*
+.venv
+.ignore
+.watchmanconfig
+.before_push_wip.sh
+.pre-commit-config.yaml
+*__pycache__*

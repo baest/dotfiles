@@ -1,0 +1,79 @@
+
+add_newline = false
+
+[cmd_duration]
+min_time = 1
+
+[character]
+#error_symbol = "[✗](bold red) "
+error_symbol = "[❯](bold red)"
+success_symbol = "[❯](green)"
+
+[hostname]
+format =  "❮$hostname❯ "
+disabled = false
+
+[username]
+style_user = "bold dimmed blue"
+show_always = true
+
+[directory]
+truncation_length = 10
+truncate_to_repo = false
+
+[time]
+disabled = false
+time_format = "%T"
+
+[battery]
+disabled = false
+full_symbol = "🔋"
+charging_symbol = "⚡️"
+discharging_symbol = "💀"
+
+[[battery.display]]
+threshold = 30
+style = "bold red"
+
+[jobs]
+
+[memory_usage]
+threshold = 80
+style = "bold dimmed green"
+disabled = false
+format = "$symbol [${ram}( | ${swap})]($style) "
+
+[git_branch]
+style = "bold yellow"
+
+[git_status]
+conflicted = "⚔️ "
+#diverged = "🔱 "
+#untracked = "🛤️ "
+untracked = "[$count](green)🤷"
+stashed = "[$count](bold red)📦 "
+modified = "[$count](red)📝 "
+staged = "[$count](blue)🗃️ "
+renamed = "📛 "
+deleted = "🗑"
+style = "black"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+
+[git_commit]
+#commit_hash_length = 7
+only_detached = false
+format = "[\\($hash\\)]($style) "
+
+[git_state]
+format = "[\\($state( $progress_current of $progress_total)\\)]($style) "
+cherry_pick = "[🍒 PICKING](bold red)"
+
+[python]
+
+[perl]
+format = "[$symbol($version )]($style)"
+
+[status]
+disabled = false
+format = " [$symbol$status]($style) "
