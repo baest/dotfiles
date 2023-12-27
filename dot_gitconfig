@@ -1,0 +1,144 @@
+[user]
+    name = Martin Frausing
+    email = fra@one.com
+    signingkey = /Users/martinfrausing/.ssh/id_ed25519
+
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    d = -c diff.noprefix=true diff --relative
+    dc = -c diff.noprefix=true diff --relative --cached 
+    dws = -c diff.noprefix=true diff --relative --ignore-all-space
+    commitdiff = !git show --color --pretty=format:%b
+    stashed = stash list --stat --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
+    stat = log --stat
+    lasttag = !git tag -l 'release-*' --sort=-taggerdate | head -n 1
+    colasttag = !git co `git lasttag`
+    lg = log --decorate
+    patch = !git --no-pager diff --no-color
+    hardclear = !git reset --hard && git clean -fd
+    anw = !git diff -U0 -w --no-color -- \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero "#"
+    rollback = !git reset --soft HEAD~ && git status
+    ar = commit --amend --reuse-message HEAD # amend reuse
+    #alias = config --get-regexp ^alias\\.
+    cistat = shortlog -s -n --all --no-merges
+    current-branch = rev-parse --abbrev-ref HEAD
+    track = !git branch --set-upstream-to=origin/$(git current-branch)
+    #ignore changes to files
+    ignore = update-index --assume-unchanged
+    unignore = update-index --no-assume-unchanged
+    ignored = !git ls-files -v | grep "^[[:lower:]]"
+    main-branch = !git rev-parse --abbrev-ref origin/HEAD | perl -pE 's!.*?/!!'
+    cnt-commits = !git rev-list --count `git current-branch`...`git main-branch`
+    flog = log --pretty=format:'%h %aI (%ar) %s [%d] (%ae)' --decorate --graph --name-status -p .
+    # git push gilab, https://docs.gitlab.com/ee/user/project/push_options.html
+    pgl = push -o merge_request.create -o merge_request.remove_source_branch -o merge_request.assign="458" -o merge_request.label="DNS"
+    sw = switch
+    pm = !git pull origin `git main-branch`:main
+    alias-master-as-main = !git symbolic-ref refs/heads/main refs/heads/master && git symbolic-ref refs/remotes/origin/main refs/remotes/origin/master && git switch main
+
+
+[core]
+    excludesfile = ~/.gitignore
+    untrackedCache = true
+    commitGraph = true
+    preloadindex = true
+    fscache = true
+    #editor = /usr/bin/vim
+    #editor = giteditor.pl
+    # use --no-pager diff to avoid
+    #enable pager = diff-so-fancy | less --tabs=4 -RFX
+    #pager = diff-so-fancy | less --tabs=4 --pattern '^(Date|added|deleted|modified): ' -RFX
+
+[help]
+    autocorrect = 30
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[push]
+    # default = upstream
+    default = current
+    followTags = true
+    verbose = 
+
+[merge]
+    stat = true
+    conflictstyle = diff3
+
+[rebase]
+    stat = true
+    autoStash = true
+    abbreviateCommands = true
+    autosquash = true
+
+#[rerere]
+#       enabled = true
+[log]
+    abbrevCommit = true
+    follow = true
+    date = auto:human
+    # exclude gitlab tags for group.one 
+    excludeDecoration = refs/tags/*_systems-*
+
+[diff]
+    mnemonicprefix = true
+
+[stash]
+    showPatch = true
+
+[pull]
+    rebase = true
+
+[color]
+    ui = true
+
+[status]
+    relativePath = true
+
+[diff-so-fancy]
+    markEmptyLines = false
+
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = magenta bold
+    newHighlight = magenta bold 22
+
+[color "diff"]
+    meta = yellow
+    frag = magenta bold
+    commit = yellow bold
+    old = red bold
+    new = magenta bold
+    whitespace = red reverse
+
+[gc]
+    writeCommitGraph = true
+
+[fetch]
+    writeCommitGraph = true
+
+[url "git@gitlab.one.com:"]
+    insteadOf = https://gitlab.one.com/
+
+[include]
+    path = ~/.gitconfig.local
+
+[gpg]
+    format = ssh
+
+[checkout]
+    guess = true
+
+[commit]
+    gpgsign = true
