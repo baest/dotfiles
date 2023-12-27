@@ -43,7 +43,9 @@ else
 	alias damnit='nvim $(git grep -l "<<<< HEAD")'
 fi
 alias pbi=perlbrew_init
-eval $(thefuck --alias)
+if `which thefuck > /dev/null 2>&1`; then
+	eval $(thefuck --alias)
+fi
 
 alias bc="figlet 'use squiid' && sleep 2 && squiid"
 
