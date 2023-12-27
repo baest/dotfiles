@@ -164,3 +164,7 @@ function get_password() {
     LEN="${1:-36}"
     pwgen -y $LEN -1 -c -n
 }
+
+function sushi_ssh() {
+    sushi "$@" && ssh "$@"
+}
