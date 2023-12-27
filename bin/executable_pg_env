@@ -1,0 +1,49 @@
+#!/usr/bin/env perl
+
+use 5.024;
+use Config::IniFiles;
+use File::HomeDir;
+use Path::Tiny;
+use JSON::MaybeXS;
+
+my $service = shift;
+
+my $home = File::HomeDir->my_home;
+my $cfg = Config::IniFiles->new( -file => "$home/.pg_service.conf" );
+my $session_dir = path('/tmp/pg');
+
+die "Couldn't find service $service" unless $cfg->SectionExists($service);
+
+die "Couldn't create $session_dir: $!" unless $session_dir->is_dir;
+
+my $ssh_host = $cfg->val($service, 'host');
+
+my @files = $session_dir->children(qr/$ssh_host--\d+/);
+die "No session file could be found" unless @files;
+say "Multiple sessions files found for host, might be a problem. Found: " . join(', ', @files) if @files > 1;
+my $session_file = shift @files;
+die "No session file, create connection with pg $service" unless $session_file->is_file;
+my $data = decode_json($session_file->slurp);
+
+my %params = (
+	database => 'dbname',
+	map { $_ => $_ } qw/host port user/
+);
+
+for (keys %params) {
+	my $val;
+	if ($_ eq 'port') {
+		$val = $data->{local_port};
+	}
+	elsif ($_ eq 'host') {
+		$val = 'localhost';
+	}
+	else {
+		$val = $data->{$_};
+	}
+	#warn ("\UPG$_ = ", ($val // $cfg->val($service, $params{$_})));
+	$ENV{"\UPG$_"} = $val // $cfg->val($service, $params{$_});
+}
+
+#warn join(' ', @ARGV);
+exec(@ARGV);

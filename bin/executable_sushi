@@ -1,0 +1,59 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Invalid arguments"
+    exit 1
+fi
+
+#POD=$(echo $1 | sed -rn 's/^(.+\.[a-z]+\.)?(([a-z]+pod.+|tools|infra)-[a-z]+[0-9]+\.one\.com)$/\2/p')
+[[ $1 =~ ^(.+\.[a-z]+\.)?(([a-z0-9\-]+pod[0-9]*|tools|infra)-[a-z]+[0-9]+)\.(one\.com)$ ]]
+POD="${BASH_REMATCH[2]}"
+ZONE="${BASH_REMATCH[3]}"
+DOMAIN="${BASH_REMATCH[4]}"
+
+if [ -z "${POD}" ]; then
+    echo "Invalid pod: \"${POD}\""
+    exit 1
+fi
+
+# Is it a testpod?
+[[ $POD =~ .*-(testpod-[a-z0-9]+)$ ]]
+TESTPOD="${BASH_REMATCH[1]}"
+
+# echo $POD
+# echo $ZONE
+# echo $DOMAIN
+# echo $TESTPOD
+# exit 2
+
+if [ ! -z "${TESTPOD}" ]; then
+    if [ "${TESTPOD}" == "testpod-cph3" ]; then
+        #CHEF_SERVER="chef1.prv.h19-testpod-cph3.one.com"
+        NET=prv
+        COMMAND="sudo systemctl start running-sushi-${POD}.service"
+    else
+        echo "Unknown testpod: ${TESTPOD}"
+        exit 1
+    fi
+else
+    if [ "${ZONE}" == "tools" ] || [ "${ZONE}" == "infra" ]; then
+        NET=env
+    else
+        NET=prv
+    fi
+    #CHEF_SERVER="chef1.${NET}.${POD}.${DOMAIN}"
+    COMMAND="sudo running-sushi && sudo running-sushi && sudo running-sushi"
+fi
+
+for i in {1..1}; do
+    CHEF="chef$i"
+    CHEF_SERVER="${CHEF}.${NET}.${POD}.${DOMAIN}"
+    RES=$(ssh ${CHEF_SERVER} "${COMMAND} 2>&1; echo $?")
+
+    if [ "$RES" == "0" ]; then
+        echo "${CHEF}: OK"
+    else
+        echo "${CHEF}: Failed: ${RES}"
+        exit 1
+    fi
+done
