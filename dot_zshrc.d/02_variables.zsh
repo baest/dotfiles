@@ -1,7 +1,7 @@
 HOSTNAME=`hostname`
 HISTSIZE=100000
 SAVEHIST=100000
-HISTFILE=~/.zsh_history/$HOSTNAME
+HISTFILE=~/.zsh_history
 
 export BLOCKSIZE=K;
 export PAGER=less;
