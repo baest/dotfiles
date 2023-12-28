@@ -48,6 +48,7 @@ if `which thefuck > /dev/null 2>&1`; then
 fi
 
 alias bc="figlet 'use squiid' && sleep 2 && squiid"
+alias fend="figlet 'use squiid' && sleep 2 && squiid"
 
 alias unhex="xxd -r -p"
 alias hex="xxd -p -c0 -u"
@@ -69,3 +70,5 @@ alias o2b="perl -e 'printf qq|%b\n|, oct( shift )'"
 alias b2h="perl -e 'printf qq|%X\n|, oct( q|0b| . shift )'"
 alias b2d="perl -e 'printf qq|%d\n|, oct( q|0b| . shift )'"
 alias b2o="perl -e 'printf qq|%o\n|, oct( q|0b| . shift )'"
+
+alias cm=chezmoi
