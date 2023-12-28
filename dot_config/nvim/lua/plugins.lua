@@ -31,8 +31,6 @@ return require('packer').startup(function(use)
 	-- use 'foo2/bar2.nvim'
 	use({"wbthomason/packer.nvim"})
 
-	use({"lewis6991/impatient.nvim"})
-
 	use({"dstein64/vim-startuptime"}) -- :StartupTime
 
 	use {'nvim-lualine/lualine.nvim',

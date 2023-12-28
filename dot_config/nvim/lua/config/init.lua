@@ -8,8 +8,9 @@ vim.opt.shiftwidth = 4
 vim.g.mapleader = ","
 
 vim.cmd('source ' .. vim.fn.stdpath('config') .. '/lua/config/init.vim')
+vim.loader.enable()
+--require('impatient')
 
-require('impatient')
 require('config.lualine')
 --require("config.possession")
 require("config.sessions")
