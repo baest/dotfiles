@@ -79,6 +79,8 @@ ts.setup({
 })
 
 ts.load_extension("fzy_native")
+ts.load_extension('chezmoi')
+vim.keymap.set('n', '<leader>cz', ts.extensions.chezmoi.find_files, {})
 --ts.load_extension("ui-select")
 
 vim.keymap.set("n", "<Leader>a", function()

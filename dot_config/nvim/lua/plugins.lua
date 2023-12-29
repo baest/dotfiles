@@ -86,7 +86,6 @@ return require('packer').startup(function(use)
 
 	use("ziontee113/neo-minimap")
 
-	-- TODO not setup'ed
 	use("xvzc/chezmoi.nvim")
 
   use {
