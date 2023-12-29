@@ -20,6 +20,7 @@ require("config.treesitter")
 require("config.toggleterm")
 require("config.focus")
 require("config.neo-minimap")
+require("config.chezmoi")
 --require("config.leap")
 
 --require("shade").setup({
