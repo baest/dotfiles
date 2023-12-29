@@ -142,3 +142,21 @@
 
 [commit]
     gpgsign = true
+
+[core]
+    editor = {{ lookPath "nvim" }}
+    #editor = /Users/martinfrausing/bin/new_nv
+
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[delta]
+    line-numbers = true
+    side-by-side = true
+    wrap-max-lines = unlimited
+
+[interactive]
+    diffFilter = delta --color-only
