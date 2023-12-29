@@ -6,10 +6,10 @@ HISTFILE=~/.zsh_history
 export BLOCKSIZE=K;
 export PAGER=less;
 export LESS='-RQ'
+export DELTA_PAGER="less $LESS"
 
 export PS1="%*:%n@%m:%~%{${fg[red]}%}%B%(?..(%?%))%b%#";
 
-# Customize to your needs...
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/opt/make/libexec/gnubin:/opt/homebrew/opt/ruby/bin:/sbin:/usr/local/bin:/bin:/usr/sbin:/usr/bin:/opt/src:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/install_src/git-fuzzy/bin:/opt/homebrew/Cellar/perl/5.34.0/bin:/opt/homebrew/Library/Homebrew/shims/gems
 
 export SSH_REAL_HOST=`hostname`
@@ -32,8 +32,7 @@ export CLICOLOR=1
 
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
-if [[ $HOSTNAME == 'baestmode' || $HOSTNAME == 'FVFC40J6L413' ]]; then
-    #export PSQLRC="~/.psqlrc_skallesluger"
+if [[ $(which nvim > /dev/null) ]]; then
     export EDITOR=nvim
 else
     export EDITOR=vim
