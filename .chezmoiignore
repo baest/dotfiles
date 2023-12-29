@@ -1,4 +1,5 @@
 {{ if ne .chezmoi.os "linux" }}
 .config/waybar
 .config/hypr
+.config/foot
 {{ end }}
