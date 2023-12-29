@@ -45,3 +45,5 @@ fi
 PERL5LIB="~/local"
 
 unset TMOUT
+
+export BAT_THEME="Solarized (light)"
