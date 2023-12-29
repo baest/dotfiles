@@ -2,4 +2,5 @@
 .config/waybar
 .config/hypr
 .config/foot
+.config/wlogout
 {{ end }}
