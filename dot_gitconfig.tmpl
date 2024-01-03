@@ -1,7 +1,11 @@
 [user]
     name = Martin Frausing
     email = fra@one.com
+{{ if eq .chezmoi.os "darwin" }}
     signingkey = {{ .chezmoi.homeDir }}/.ssh/id_ed25519
+{{ else }}
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0ed8AIr8RjgpJM84WHKdAr66pRc7Vv7sHvbyHyQBqk
+{{ end }}
 
 [alias]
     st = status
@@ -137,6 +141,11 @@
 [gpg]
     format = ssh
 
+{{ if ne .chezmoi.os "darwin" }}
+[gpg "ssh"]
+    program = "/opt/1Password/op-ssh-sign"
+{{ end }}
+
 [checkout]
     guess = true
 
@@ -160,3 +169,5 @@
 
 [interactive]
     diffFilter = delta --color-only
+
+# vi:ft=gitconfig
