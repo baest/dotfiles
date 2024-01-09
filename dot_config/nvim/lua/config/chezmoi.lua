@@ -8,3 +8,5 @@
      on_apply = true, -- vim.notify on apply.
    },
  }
+
+vim.g['chezmoi#use_tmp_buffer'] = true

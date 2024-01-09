@@ -88,6 +88,8 @@ return require('packer').startup(function(use)
 
 	use("xvzc/chezmoi.nvim")
 
+	--use("alker0/chezmoi.vim")
+
   use {
   "folke/trouble.nvim",
   requires = "kyazdani42/nvim-web-devicons",
