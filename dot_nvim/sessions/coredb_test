@@ -1,0 +1,114 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/src/database-schema/coredb
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +31 test/451_dns_records_view.t
+badd +164 test/lib/CoreDBTestHelper.pm
+badd +139 ../dbcommon/lib/DBTestHelper.pm
+badd +32 test/350_zones.t
+badd +24 test/800_domain_add.t
+badd +2 test/480_dns_change_trigger.t
+badd +403 test/702_lookup_mail_cluster.t
+badd +73 test/704_lookup_domain_dkim.t
+badd +3 test/405_service_network.t
+badd +203 test/460_dns_get_cluster_records.t
+badd +48 test/470_dns_export_get_zone_records.t
+badd +356 test/450_dns_get_records.t
+badd +23 test/410_dns_get_service_zone.t
+badd +41 test/420_domain_dns_record_list.t
+argglobal
+%argdel
+$argadd test/451_dns_records_view.t
+edit test/470_dns_export_get_zone_records.t
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 205 + 182) / 364)
+exe 'vert 2resize ' . ((&columns * 158 + 182) / 364)
+argglobal
+balt test/420_domain_dns_record_list.t
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 48 - ((33 * winheight(0) + 44) / 88)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 48
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("test/420_domain_dns_record_list.t", ":p")) | buffer test/420_domain_dns_record_list.t | else | edit test/420_domain_dns_record_list.t | endif
+if &buftype ==# 'terminal'
+  silent file test/420_domain_dns_record_list.t
+endif
+balt test/470_dns_export_get_zone_records.t
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 155 - ((78 * winheight(0) + 44) / 88)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 155
+normal! 02|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 205 + 182) / 364)
+exe 'vert 2resize ' . ((&columns * 158 + 182) / 364)
+tabnext 1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=1
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

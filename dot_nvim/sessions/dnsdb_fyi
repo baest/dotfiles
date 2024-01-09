@@ -1,0 +1,149 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/src/database-schema/dnsdb
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +1 fyi/public/f_get_dns_records.sql
+badd +16 fyi/public/f_n_auth_get_all_domains.sql
+badd +9 fyi/public/f_update_soa_record.sql
+badd +1 fyi/public/t_domains.sql
+badd +1 fyi/public/type_n_all_domains_auth.sql
+badd +19 fyi/public/f_n_auth_basic_q.sql
+badd +2 fyi/public/f_nsec3_get_order_first_q.sql
+badd +5 fyi/public/type_domain_id_name.sql
+badd +10 test/200_get_domain_info_from_query.t
+badd +25 fyi/public/f_get_domain_info_from_query.sql
+badd +2 fyi/public/t_dns_record.sql
+badd +20 fyi/public/f_get_dns_suffix_record.sql
+badd +3 fyi/public/type_n_auth_info_zone.sql
+badd +17 fyi/public/f_n_auth_info_zone.sql
+badd +2 fyi/public/f_n_auth_list_q.sql
+badd +7 migration/0225_trigger_update_soa_serial_update.sql
+badd +2 fyi/public/f_n_auth_id_q.sql
+badd +35 fyi/public/f_get_legacy_suffix_records.sql
+badd +2 fyi/public/f_n_auth_any_id_q.sql
+badd +2 fyi/public/f_n_auth_any_q.sql
+badd +1 fyi/public/f_get_suffix_records.sql
+badd +2 fyi/public/f_get_prefix_from_suffix.sql
+badd +9 migration/0226_coredb_ref.sql
+badd +18 fyi/public/f_n_get_matching_wildcard_records.sql
+badd +37 fyi/public/f_get_wildcard_dns_records.sql
+badd +2 fyi/public/f_service_dns_get_ip.sql
+badd +1 fyi/public/f_get_suffix_record.sql
+badd +1 test/304_auth_any_q.t
+badd +4 dnsdb/test.sql
+badd +2 fyi/public/f_get_records.sql
+badd +25 fyi/public/f_get_matching_wildcard_records.sql
+badd +13 fyi/public/f_auth_q.sql
+badd +30 fixture/migration/100_service_service_and_friends.sql
+badd +2 fyi/public/f_get_wildcard_records.sql
+badd +40 fyi/public/f_get_fqdn_conflict_pattern.sql
+badd +1 fyi/public/f_get_suffix_record_is_non_terminal.sql
+badd +2 fyi/public/f_has_conflicting_record.sql
+badd +2 fyi/public/f_auth_list_q.sql
+badd +2 fyi/public/f_nsec3_get_order_last_q.sql
+badd +8 fyi/public/t_domain.sql
+badd +7 fyi/public/t_record.sql
+badd +26 fyi/public/t_record_coredb_ref.sql
+badd +12 fyi/public/f_record_change_trigger.sql
+badd +2 fyi/public/f_auth_info_zone.sql
+badd +1 fyi/public/type_auth_info_zone.sql
+badd +27 fyi/public/f_is_ent_record.sql
+badd +39 fyi/public/f_get_service_zone.sql
+badd +27 fyi/public/t_coredb_domain.sql
+argglobal
+%argdel
+$argadd fyi/public/f_get_dns_records.sql
+edit fyi/public/f_auth_info_zone.sql
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 22 + 182) / 364)
+exe 'vert 2resize ' . ((&columns * 341 + 182) / 364)
+argglobal
+balt fyi/public/t_domain.sql
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 2 - ((1 * winheight(0) + 43) / 87)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 2
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("fyi/public/t_record.sql", ":p")) | buffer fyi/public/t_record.sql | else | edit fyi/public/t_record.sql | endif
+if &buftype ==# 'terminal'
+  silent file fyi/public/t_record.sql
+endif
+balt fyi/public/f_get_dns_records.sql
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 7 - ((1 * winheight(0) + 43) / 87)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 7
+normal! 011|
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 22 + 182) / 364)
+exe 'vert 2resize ' . ((&columns * 341 + 182) / 364)
+tabnext 1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=1
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

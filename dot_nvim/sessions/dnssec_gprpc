@@ -1,0 +1,152 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/src/gprpc2-provisioning-dns
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +94 bin/gprpc2-provison-dns-dnssec.py
+badd +29 examples/dns_provision_test_v3.json
+badd +1 bin/gprpc2-provison-dns-axfr.py
+badd +1 examples/dns_provision_test_v2.json
+badd +1 debian/rules
+badd +1 debian/compat
+badd +7 debian/control
+badd +7 abe.py
+badd +1 \[Command\ Line]
+argglobal
+%argdel
+$argadd bin/gprpc2-provison-dns-dnssec.py
+edit abe.py
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe '1resize ' . ((&lines * 67 + 45) / 90)
+exe 'vert 1resize ' . ((&columns * 139 + 182) / 364)
+exe '2resize ' . ((&lines * 55 + 45) / 90)
+exe 'vert 2resize ' . ((&columns * 224 + 182) / 364)
+exe '3resize ' . ((&lines * 11 + 45) / 90)
+exe 'vert 3resize ' . ((&columns * 224 + 182) / 364)
+exe '4resize ' . ((&lines * 20 + 45) / 90)
+argglobal
+enew
+balt bin/gprpc2-provison-dns-dnssec.py
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+argglobal
+balt bin/gprpc2-provison-dns-dnssec.py
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 7 - ((6 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 7
+normal! 0
+wincmd w
+argglobal
+enew
+balt examples/dns_provision_test_v3.json
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+wincmd w
+argglobal
+if bufexists(fnamemodify("\[Command\ Line]", ":p")) | buffer \[Command\ Line] | else | edit \[Command\ Line] | endif
+if &buftype ==# 'terminal'
+  silent file \[Command\ Line]
+endif
+balt abe.py
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 10) / 20)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+3wincmd w
+exe '1resize ' . ((&lines * 67 + 45) / 90)
+exe 'vert 1resize ' . ((&columns * 139 + 182) / 364)
+exe '2resize ' . ((&lines * 55 + 45) / 90)
+exe 'vert 2resize ' . ((&columns * 224 + 182) / 364)
+exe '3resize ' . ((&lines * 11 + 45) / 90)
+exe 'vert 3resize ' . ((&columns * 224 + 182) / 364)
+exe '4resize ' . ((&lines * 20 + 45) / 90)
+tabnext 1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=55 winwidth=224
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

@@ -1,0 +1,152 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/src/dns-utilities
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +5 ~/src/database-schema/coredb/migration/0537_add_soa_serial_to_zone.sql
+badd +379 scripts/one.com-dns-exporter
+badd +424 test/lib/TestHelper.pm
+badd +357 test/020_cluster_records.t
+badd +456 test/010_old_domain_records.t
+badd +117 ~/src/database-schema/dnsdb/migration/0221_soa_in_coredb.sql
+badd +3 ~/src/database-schema/dnsdb/migration/0222_dns_record_uniq_index.sql
+badd +1 container/coredb/migration/0530_add_soa_serial.sql
+badd +1 ~/src/database-schema/dnsdb/migration/0223_no_soa_in_domain_id_name.sql
+badd +1 test/001_hello.t
+badd +41 ~/src/database-schema/dnsdb/migration/0226_coredb_ref.sql
+badd +43 abe.sql
+badd +1 test/005_check_suffix_to_prefix.t
+badd +25 ~/src/database-schema/dnsdb/test/210_get_prefix_from_suffix.t
+badd +4 container/dnsdb/fixture_migration/0001_core_domains.sql
+badd +44 /opt/homebrew/Cellar/perl/5.34.0/lib/perl5/5.34.0/warnings/register.pm
+badd +111 test/030_dnssec_keys.t
+badd +18 ~/src/database-schema/dnsdb/migration/0227_get_prefix_from_suffix.sql
+badd +114 test/050_old_integration.t
+badd +1 ~/src/database-schema/dnsdb/migration/0228_drop_special_suffix_handling.sql
+badd +3 container/dnsdb/fixture/migration/0001_core_domains.sql
+badd +33 test/040_failure.t
+badd +731 ../integration_test-dns-uil/scripts/one.com-dns-exporter
+badd +1 test/010_domain_dns_records.t
+badd +53 ../integration_test-dns-uil/test/010_domain_records.t
+badd +35 test/500_performance.t
+badd +32 container/pdns/pdns-one.com.conf
+badd +38 lib/DNSExporter/Helper.pm
+badd +3 test/100_old_clean_up_ent_records.t
+badd +32 /opt/homebrew/opt/perl/lib/perl5/5.34/Carp.pm
+badd +22 scripts/group.one-clean-up-ent-records
+badd +450 test/025_old_zone_records.t
+badd +1 container/dnsdb/fixture/migration/101_service_service_and_friends.sql
+badd +81 test/005_old_service_zone.t
+badd +29 test/003_brand.t
+badd +31 container/coredb/fixture/migration/101_service_service_and_friends.sql
+badd +4 .gitlab-ci.yml
+badd +24 container/test-runner/Dockerfile
+badd +1 docker-compose.yml
+badd +79 Makefile
+badd +90 test/020_old_cluster_records.t
+badd +381 test/025_zone_records.t
+badd +5 ../dns-utilities/test/005_service_zone.t
+badd +362 test/010_domain_records.t
+badd +32 test/050_integration.t
+badd +16 test/100_clean_up_ent_records.t
+argglobal
+%argdel
+$argadd scripts/one.com-dns-exporter
+$argadd container/coredb/migration/0530_add_soa_serial.sql
+edit test/lib/TestHelper.pm
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 103 + 136) / 272)
+exe 'vert 2resize ' . ((&columns * 168 + 136) / 272)
+argglobal
+if bufexists(fnamemodify("test/lib/TestHelper.pm", ":p")) | buffer test/lib/TestHelper.pm | else | edit test/lib/TestHelper.pm | endif
+if &buftype ==# 'terminal'
+  silent file test/lib/TestHelper.pm
+endif
+balt scripts/one.com-dns-exporter
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 431 - ((26 * winheight(0) + 32) / 64)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 431
+normal! 022|
+wincmd w
+argglobal
+if bufexists(fnamemodify("../dns-utilities/test/005_service_zone.t", ":p")) | buffer ../dns-utilities/test/005_service_zone.t | else | edit ../dns-utilities/test/005_service_zone.t | endif
+if &buftype ==# 'terminal'
+  silent file ../dns-utilities/test/005_service_zone.t
+endif
+balt test/lib/TestHelper.pm
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 5 - ((4 * winheight(0) + 32) / 64)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 5
+normal! 0
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 103 + 136) / 272)
+exe 'vert 2resize ' . ((&columns * 168 + 136) / 272)
+tabnext 1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=1
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

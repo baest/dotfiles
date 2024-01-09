@@ -1,0 +1,152 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/src/database-schema/coredb/fyi
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +10 public/v_dns_records_view.sql
+badd +3 public/v_dns_domain_service_records_view.sql
+badd +1 public/v_dns_cluster_service_records_view.sql
+badd +4 public/f_dns_export_get_magic_records.sql
+badd +8 public/v_service_dns_view.sql
+badd +10 public/v_domain_dns_active_records_view.sql
+badd +75 public/f_dns_export_get_records.sql
+badd +12 public/f_dns_get_web_records.sql
+badd +3 public/type_dns_record_list_entry.sql
+badd +1 public/f_dns_export_queue.sql
+badd +2 public/f_lookup_cluster_matching_mailaddress_v1.sql
+badd +180 dns_export/f_change_trigger.sql
+badd +40 public/f_domain_dns_record_list.sql
+badd +49 public/v_dns_cluster_mail_records.sql
+badd +38 public/f_dns_get_records_single_zone.sql
+badd +1 public/v_cluster_service_dns_record_view.sql
+badd +32 public/f_dns_export_get_zone_records.sql
+badd +1 public/t_zone_suspension.sql
+badd +1 public/f_dns_export_zone_suspension_info.sql
+badd +2 public/f_lookup_cluster_mailaddress_inbound_v5.sql
+badd +1 public/f_lookup_mailaddress_inbound.sql
+badd +22 public/f_lookup_domain_mailaddress_inbound_v5.sql
+badd +29 public/f_dns_export_get_cluster_records.sql
+badd +3 ../fixture/migration/0350_test_pods.sql
+badd +27 public/t_service_zone.sql
+badd +1 dns_export/f_get_magic_records.sql
+badd +42 public/f_cluster_service_get_new_service_shard.sql
+badd +13 dns_export/f_get_zone_records.sql
+badd +8 public/v_dns_zone_records_view.sql
+badd +3 public/v_dns_zone_cluster_service_records_view.sql
+badd +19 public/v_dns_zone_service_records_view.sql
+badd +14 dns_export/f_queue_zone.sql
+badd +13 dns_export/f_queue_cluster.sql
+badd +4 dns_export/f_queue_domain.sql
+badd +12 dns_export/f_queue_generic.sql
+badd +1 dns_export/f_get_cluster_records.sql
+badd +2 public/tg_zone_domain_mutual_exclusive_insert_tg.sql
+badd +2 public/tg_zone_domain_mutual_exclusive_update_tg.sql
+badd +1 public/tg_domain_zone_mutual_exclusive_tg.sql
+badd +14 public/v_dns_zone_mail_records.sql
+badd +52 dns_export/f_get_records_single_domain.sql
+badd +86 dns_export/f_get_domain_records.sql
+badd +1 dns_export/v_records_view.sql
+badd +39 public/f_dns_service_dns_get_ip.sql
+badd +18 dns_export/v_dns_zone_records_view.sql
+badd +1 dns_export/f_get_records_single_zone.sql
+badd +17 public/v_dns_zone_service_fqdn_records_view.sql
+badd +16 public/f_dns_get_zone_web_records.sql
+badd +3 dns_export/f_get_service_zone_records.sql
+badd +9 public/f_domain_dns_service_record_list.sql
+badd +22 public/f_domain_dns_service_record_modify.sql
+argglobal
+%argdel
+$argadd public/v_dns_records_view.sql
+edit dns_export/f_get_cluster_records.sql
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 139 + 182) / 364)
+exe 'vert 2resize ' . ((&columns * 224 + 182) / 364)
+argglobal
+balt public/f_domain_dns_service_record_modify.sql
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 9 - ((1 * winheight(0) + 44) / 88)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 9
+normal! 026|
+wincmd w
+argglobal
+if bufexists(fnamemodify("dns_export/f_get_records_single_zone.sql", ":p")) | buffer dns_export/f_get_records_single_zone.sql | else | edit dns_export/f_get_records_single_zone.sql | endif
+if &buftype ==# 'terminal'
+  silent file dns_export/f_get_records_single_zone.sql
+endif
+balt dns_export/f_get_zone_records.sql
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 33 - ((32 * winheight(0) + 44) / 88)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 33
+normal! 030|
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 139 + 182) / 364)
+exe 'vert 2resize ' . ((&columns * 224 + 182) / 364)
+tabnext 1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=1
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

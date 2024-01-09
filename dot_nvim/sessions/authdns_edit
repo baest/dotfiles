@@ -1,0 +1,221 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/src/authdns
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +1 octodns.yaml
+badd +5 config/10.10.185.in-addr.arpa.yaml
+badd +7 config/11.10.185.in-addr.arpa.yaml
+badd +38 config/wp-media.me.yaml
+badd +32 Makefile
+badd +19 docker-compose.yml
+badd +45 .gitlab-ci.yml
+badd +4 config/9.40.10.in-addr.arpa.yaml
+badd +6 config/as198810.net.yaml
+badd +6 hosts/cliche.no.hosts
+badd +22 config/cliche.no.yaml
+badd +12 scripts/hosts_export.sh
+badd +30 dump_ip_config.pl
+badd +10 ip_config/foreign.yaml
+badd +1 ip_config.yaml
+badd +40 ip_config/wip2-k8s-cph3.yaml
+badd +70 scripts/ipam.py
+badd +1 requirements.txt
+badd +21 container/ipam/Dockerfile
+badd +1 scripts/validate_ip_config_structure.py
+badd +3 test/test_validate_ip_config_structure.py
+badd +7 authdns.yaml
+badd +21 test/validate_ip_config/myvrf.yaml
+badd +3 test/validate_ip_config.yaml
+badd +8 container/test-runner/requirements.txt
+badd +10 scripts/validate_ip_config.bash
+badd +18 container/test-runner/Dockerfile
+badd +6 container/octodns/Dockerfile
+badd +1 container/ipam/requirements.txt
+badd +5 scripts/validate_ipam.bash
+badd +4 octo-sync.pre-commit
+badd +63 scripts/dump_zones.pl
+badd +1 patch_transient-one-com.json
+badd +8697 octodns/one.com.yaml
+badd +112 scripts/self-service/.add-authdns-entry.py
+badd +3 octodns/0.c.3.0.c.7.6.0.1.0.0.2.ip6.arpa.yaml
+badd +1 octodns/acme.webpod10-cph3.one.com.yaml
+badd +1436 ipam/dev-cph3.yaml
+badd +62 scripts/create_cnames.pl
+badd +10 test/validate_ipam/othervrf.yaml
+badd +3 test/test_ipam.py
+badd +1 test/test_validate_ipam_structure.py
+badd +20 test/validate_ipam/myvrf.yaml
+badd +1 octodns/testone.not.yaml
+badd +7 scripts/yaml_format.py
+badd +5 scripts/hooks/octo-sync.pre-commit
+badd +1 octodns/transient.one.com.yaml
+badd +0 octodns/default.wip1-k8s-cph3.one.com.yaml
+badd +337 ipam/allocations.yaml
+badd +1 ipam.yaml
+badd +110 README.md
+badd +1189 octodns/antagonist.nl.yaml
+argglobal
+%argdel
+$argadd octodns.yaml
+set stal=2
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
+edit octodns/default.wip1-k8s-cph3.one.com.yaml
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 138 + 181) / 363)
+exe 'vert 2resize ' . ((&columns * 224 + 181) / 363)
+argglobal
+balt octodns/transient.one.com.yaml
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 11 - ((10 * winheight(0) + 43) / 87)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 11
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("Makefile", ":p")) | buffer Makefile | else | edit Makefile | endif
+if &buftype ==# 'terminal'
+  silent file Makefile
+endif
+balt scripts/hooks/octo-sync.pre-commit
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 32 - ((31 * winheight(0) + 43) / 87)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 32
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 138 + 181) / 363)
+exe 'vert 2resize ' . ((&columns * 224 + 181) / 363)
+tabnext
+edit scripts/ipam.py
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 138 + 181) / 363)
+exe 'vert 2resize ' . ((&columns * 224 + 181) / 363)
+argglobal
+balt octodns.yaml
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 134 - ((85 * winheight(0) + 43) / 86)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 134
+normal! 045|
+wincmd w
+argglobal
+if bufexists(fnamemodify("test/test_ipam.py", ":p")) | buffer test/test_ipam.py | else | edit test/test_ipam.py | endif
+if &buftype ==# 'terminal'
+  silent file test/test_ipam.py
+endif
+balt octodns/antagonist.nl.yaml
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 3 - ((2 * winheight(0) + 43) / 86)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 3
+normal! 0
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 138 + 181) / 363)
+exe 'vert 2resize ' . ((&columns * 224 + 181) / 363)
+tabnext 2
+set stal=1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=55 winwidth=224
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

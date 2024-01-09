@@ -1,0 +1,163 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/src/chef/repo
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +192 nodes/corepod1-cph3/dns-db1.cst.corepod1-cph3.one.com.json
+badd +596 roles/onecom-dns-powerdns-authdns.json
+badd +184 roles_local/corepod1-cph3/pl-onecom-powerdns-config.json
+badd +11 roles_local/basesvc/pl-onecom-dns-powerdns-authdns.json
+badd +3 cookbooks/onecom-powerdns/attributes/default.rb
+badd +46 nodes/infra-cph3/vw-proxy.env.infra-cph3.one.com.json
+badd +10 roles/certificates/onecom-certificate-dns-db1-cst-corepod1-cph3-one-com.json
+badd +1 adminlist.txt
+badd +4 roles_local/testpod-cph3/cal1-testpod-cph3/pl-onecom-caldav-lookup.json
+badd +57 nodes/k8s-cph3/kubesvc-k8s-cph3/prometheus1.env.kubesvc-k8s-cph3.one.com.json
+badd +23 cookbooks/onecom-nginx/templates/default/generic-proxy.conf.erb
+badd +75 roles/onecom-firewall-corepod.json
+badd +148 nodes/corepod1-cph3/authdns-api1.cst.corepod1-cph3.one.com.json
+badd +197 roles/onecom-dns-dnsdist-authdns.json
+badd +23 nodes/basesvc/dns-router1-lon1.env.basesvc.one.com.json
+badd +38 roles_local/dnspod1-osl1/pl-onecom-dns-dnsdist-authdns.json
+badd +38 roles_local/dnspod1-ams1/pl-onecom-dns-dnsdist-authdns.json
+badd +38 roles_local/dnspod3-cph3/pl-onecom-dns-dnsdist-authdns.json
+badd +34 roles_local/dnspod2-cph7/pl-onecom-dns-dnsdist-authdns.json
+badd +102 roles/onecom-firewall-dnspod.json
+badd +3 roles/prometheus/onecom-prometheus-pdns-authdns-passwd.json
+badd +129 environments/basesvc/basesvc.json
+badd +6 nodes/basesvc/ns1-lon1.env.basesvc.one.com.json
+badd +12 nodes/corepod1-cph3/dns-db2.cst.corepod1-cph3.one.com.json
+badd +1 new_zone.json
+badd +10 soa_zone.json
+badd +84 create_cnames.pl
+badd +8 secrets/scripts/generate_gprpc_keys.rb
+badd +78 scripts/letsencrypt.rb
+badd +25 scripts/add_guest.rb
+badd +48 nodes/dev-cph3/core-dev-fra1.env.dev-cph3.one.com.json
+badd +1 clients/dev-cph3/core-dev-fra1.env.dev-cph3.one.com.json
+badd +22 nodes/dev-cph3/core-lxchost1.env.dev-cph3.one.com.json
+badd +14 nodes/dev-cph3/core-dev-sites1.env.dev-cph3.one.com.json
+badd +53 roles/onecom-global-firewall-macros.json
+badd +179 roles/gateways/onecom-gateway-ruleset-dev.json
+badd +36 roles/gateways/onecom-gateway-ruleset-infra.json
+badd +200 nodes/dev-cph3/ops-lxchost1.env.dev-cph3.one.com.json
+argglobal
+%argdel
+$argadd nodes/corepod1-cph3/dns-db1.cst.corepod1-cph3.one.com.json
+set stal=2
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
+edit nodes/corepod1-cph3/dns-db1.cst.corepod1-cph3.one.com.json
+argglobal
+balt nodes/corepod1-cph3/dns-db2.cst.corepod1-cph3.one.com.json
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 156 - ((2 * winheight(0) + 11) / 22)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 156
+normal! 0
+tabnext
+edit nodes/corepod1-cph3/dns-db1.cst.corepod1-cph3.one.com.json
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 165 + 133) / 267)
+exe 'vert 2resize ' . ((&columns * 101 + 133) / 267)
+argglobal
+balt nodes/dev-cph3/ops-lxchost1.env.dev-cph3.one.com.json
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 59 - ((0 * winheight(0) + 31) / 63)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 59
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("roles_local/corepod1-cph3/pl-onecom-powerdns-config.json", ":p")) | buffer roles_local/corepod1-cph3/pl-onecom-powerdns-config.json | else | edit roles_local/corepod1-cph3/pl-onecom-powerdns-config.json | endif
+if &buftype ==# 'terminal'
+  silent file roles_local/corepod1-cph3/pl-onecom-powerdns-config.json
+endif
+balt roles/onecom-dns-powerdns-authdns.json
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 185 - ((20 * winheight(0) + 31) / 63)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 185
+normal! 017|
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 165 + 133) / 267)
+exe 'vert 2resize ' . ((&columns * 101 + 133) / 267)
+tabnext 2
+set stal=1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=40 winwidth=165
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :
