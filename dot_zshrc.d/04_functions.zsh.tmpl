@@ -80,7 +80,7 @@ cfg_update() {
 }
 
 nvl() {
-	dir="/Users/martinfrausing/.nvim/sessions"
+	dir="{{ .chezmoi.homeDir }}/.nvim/sessions"
 	command_ex=""
 	if [[ ! -z "$1" ]]; then
 		command_ex="-q $1"
@@ -99,7 +99,7 @@ ot() {
 }
 
 tl() {
-	dir="/Users/martinfrausing/.tmuxp"
+	dir="{{ .chezmoi.homeDir }}/.tmuxp"
 	set -x
 
 	session="$1"
