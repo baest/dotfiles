@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "don't use git-cp!!, it does git reset --hard (TWICE)"

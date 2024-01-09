@@ -1,0 +1,10 @@
+requires 'File::Which', '>= 1.27';
+requires 'File::HomeDir', '>= 1.006';
+requires 'Config::IniFiles', '>= 3.000003';
+requires 'Capture::Tiny', '>= 0.48';
+requires 'Path::Tiny', '>= 0.144';
+requires 'JSON::MaybeXS', '>= 1.004005';
+requires 'Term::ANSIColor';
+requires 'IO::Socket::INET';
+requires 'Beanstalk::Client';
+requires 'String::ShellQuote';

@@ -1,0 +1,4 @@
+#!/opt/homebrew/bin/zsh
+
+cd ~/src/chef/repo
+scripts/cnodes "$@"

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Activate AXFR for domain and setup ips
+# Call with domain and AXFR IPs
+# Depends on jq and httpie
+
+JSON=$(cat <<'EOF'
+{
+    "data": {
+        "attributes": {
+            "axfr_active": true,
+            "axfr_ips": [
+                "127.0.0.2"
+            ],
+            "dnssec_wanted": false,
+            "rfc_compliant_wildcards": false
+        },
+        "id": "test2one.one",
+        "type": "domains"
+    }
+}
+EOF
+)
+
+JSON=$(jq --compact-output --null-input "$JSON")
+
+#echo $JSON
+
+echo $JSON | https POST systemsapi.one.com/v2/brands/one.com/domains
+
+
