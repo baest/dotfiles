@@ -1,7 +1,7 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+	packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 vim.cmd([[
@@ -70,19 +70,19 @@ return require('packer').startup(function(use)
 	use "lukas-reineke/indent-blankline.nvim"
 
 	use {
-	  'nvim-treesitter/nvim-treesitter',
-	  run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+		'nvim-treesitter/nvim-treesitter',
+		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
 	}
 	use 'nvim-treesitter/nvim-treesitter-textobjects'  -- Additional textobjects for treesitter
-        use 'p00f/nvim-ts-rainbow'
+	use 'p00f/nvim-ts-rainbow'
 
 	use 'neovim/nvim-lspconfig'                        -- Collection of configurations for built-in LSP client
 	use 'williamboman/nvim-lsp-installer'              -- Automatically install language servers to stdpath
-        use 'williamboman/mason.nvim'
-        use 'williamboman/mason-lspconfig.nvim'
+	use 'williamboman/mason.nvim'
+	use 'williamboman/mason-lspconfig.nvim'
 	use 'jose-elias-alvarez/null-ls.nvim'
 	use 'jayp0521/mason-null-ls.nvim'
-        use 'SmiteshP/nvim-navic'
+	use 'SmiteshP/nvim-navic'
 
 	use("ziontee113/neo-minimap")
 
@@ -90,17 +90,17 @@ return require('packer').startup(function(use)
 
 	--use("alker0/chezmoi.vim")
 
-  use {
-  "folke/trouble.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
-  config = function()
-    require("trouble").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  end
-}
+	use {
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("trouble").setup {
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			}
+		end
+	}
 
 	use { 'hrsh7th/nvim-cmp',                          -- Autocompletion 
 	  requires = { 'hrsh7th/cmp-nvim-lsp' } 
@@ -116,6 +116,8 @@ return require('packer').startup(function(use)
 	-- remove hlsearch when moving cursor
 	use { "romainl/vim-cool" }
 
+	use { "imsnif/kdl.vim" }
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
@@ -123,3 +125,4 @@ return require('packer').startup(function(use)
 	end
 end)
 
+-- vim: noai:ts=3:sw=3:noexpandtab
