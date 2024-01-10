@@ -116,6 +116,8 @@ return require('packer').startup(function(use)
 	-- remove hlsearch when moving cursor
 	use { "romainl/vim-cool" }
 
+	use { "shaunsingh/solarized.nvim" }
+
 	use { "imsnif/kdl.vim" }
 
 	-- Automatically set up your configuration after cloning packer.nvim

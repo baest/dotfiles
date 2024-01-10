@@ -1,6 +1,6 @@
 require("lualine").setup {
     options = {
-        theme = 'solarized_light'
+        theme = 'solarized'
     },
     sections = {
         lualine_c = {
