@@ -1,0 +1,33 @@
+layout {
+	cwd "src/database-schema/coredb"
+	default_tab_template {
+		// the default zellij tab-bar and status bar plugins
+		pane size=1 borderless=true {
+			plugin location="zellij:tab-bar"
+		}
+		children
+		pane size=1 borderless=true {
+			plugin location="zellij:status-bar"
+		}
+	}
+	pane_template name="nv" {
+		command "nv_sess_load"
+		close_on_exit true
+	}
+
+	tab name="migrate" {
+		nv {
+			args "coredb_migrate"
+		}
+	}
+	tab name="test" {
+		nv {
+			args "coredb_test"
+		}
+	}
+	tab name="fyi" {
+		nv {
+			args "coredb_fyi"
+		}
+	}
+}

@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+file="$@"
+
+dir="{{ .chezmoi.homeDir }}/.nvim/sessions"
+nvim -c "SessionsLoad $dir/$file"
