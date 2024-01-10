@@ -14,8 +14,7 @@ layout {
 		command "nv_sess_load"
 		close_on_exit true
 	}
-
-	tab name="migrate" {
+	tab name="migrate" focus=true {
 		nv {
 			args "coredb_migrate"
 		}
