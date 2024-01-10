@@ -32,7 +32,7 @@ export CLICOLOR=1
 
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
-if [[ $(which nvim > /dev/null) ]]; then
+if $(which nvim > /dev/null); then
     export EDITOR=nvim
 else
     export EDITOR=vim
