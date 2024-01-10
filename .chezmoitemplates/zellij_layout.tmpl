@@ -1,5 +1,3 @@
-layout {
-	cwd "src/database-schema/coredb"
 	default_tab_template {
 		// the default zellij tab-bar and status bar plugins
 		pane size=1 borderless=true {
@@ -10,23 +8,13 @@ layout {
 			plugin location="zellij:status-bar"
 		}
 	}
-	pane_template name="nv" {
+
+	pane_template name="nvs" {
 		command "nv_sess_load"
 		close_on_exit true
 	}
-	tab name="migrate" focus=true {
-		nv {
-			args "coredb_migrate"
-		}
+
+	pane_template name="nv" {
+		command "nvim"
+		close_on_exit true
 	}
-	tab name="test" {
-		nv {
-			args "coredb_test"
-		}
-	}
-	tab name="fyi" {
-		nv {
-			args "coredb_fyi"
-		}
-	}
-}

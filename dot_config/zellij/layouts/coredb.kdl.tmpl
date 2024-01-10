@@ -1,0 +1,21 @@
+layout {
+	cwd "src/database-schema/coredb"
+
+{{ includeTemplate "zellij_layout.tmpl" }}
+
+	tab name="migrate" focus=true {
+		nvs {
+			args "coredb_migrate"
+		}
+	}
+	tab name="test" {
+		nvs {
+			args "coredb_test"
+		}
+	}
+	tab name="fyi" {
+		nvs {
+			args "coredb_fyi"
+		}
+	}
+}

@@ -1,0 +1,16 @@
+layout {
+	cwd "src/sysapi"
+
+{{ includeTemplate "zellij_layout.tmpl" }}
+
+	tab name="doc" {
+		nv {
+			args "DNSSECBOT.md"
+		}
+	}
+	tab name="sysapi" focus=true {
+		nvs {
+			args "dnssecbot_sysapi"
+		}
+	}
+}
