@@ -21,7 +21,7 @@ require("config.toggleterm")
 require("config.focus")
 require("config.neo-minimap")
 require("config.chezmoi")
-require("config.solarized")
+--require("config.solarized")
 --require("config.leap")
 
 --require("shade").setup({

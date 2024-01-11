@@ -22,7 +22,7 @@ packer.init({
 	open_fn = function()
 		return require("packer.util").float({border = "rounded"})
 		end
-	 }
+	}
 })
 
 return require('packer').startup(function(use)
@@ -54,7 +54,7 @@ return require('packer').startup(function(use)
 	use({"tpope/vim-sleuth"})
 	use({"tpope/vim-eunuch"})
 	--use({"overcache/NeoSolarized"})
-	--use({"p00f/nvim-ts-rainbow"})
+	--https://gitlab.com/HiPhish/rainbow-delimiters.nvim
 	
 	--use {'averms/black-nvim', ft = 'python', config = 'vim.cmd [[UpdateRemotePlugins]]'}
 
@@ -116,7 +116,7 @@ return require('packer').startup(function(use)
 	-- remove hlsearch when moving cursor
 	use { "romainl/vim-cool" }
 
-	use { "shaunsingh/solarized.nvim" }
+	--use { "shaunsingh/solarized.nvim" }
 
 	use { "imsnif/kdl.vim" }
 
