@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/src/database-schema/coredb
+cd ~/src/systems-api/src
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,24 +13,15 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +31 test/451_dns_records_view.t
-badd +164 test/lib/CoreDBTestHelper.pm
-badd +139 ../dbcommon/lib/DBTestHelper.pm
-badd +32 test/350_zones.t
-badd +24 test/800_domain_add.t
-badd +2 test/480_dns_change_trigger.t
-badd +403 test/702_lookup_mail_cluster.t
-badd +73 test/704_lookup_domain_dkim.t
-badd +3 test/405_service_network.t
-badd +203 test/460_dns_get_cluster_records.t
-badd +27 test/470_dns_export_get_zone_records.t
-badd +356 test/450_dns_get_records.t
-badd +23 test/410_dns_get_service_zone.t
-badd +41 test/420_domain_dns_record_list.t
+badd +17 api3/fqdns.go
+badd +308 api3/routes.go
+badd +0 api/zone_dnssec_key_sets.go
+badd +1 models3/zone_dnssec_key_set/zone_dnssec_key_set.go
+badd +1 models3/fqdn/fqdn.go
 argglobal
 %argdel
-$argadd test/451_dns_records_view.t
-edit test/470_dns_export_get_zone_records.t
+$argadd api3/fqdns.go
+edit models3/zone_dnssec_key_set/zone_dnssec_key_set.go
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -47,10 +38,9 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 132 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 137 + 135) / 270)
+wincmd =
 argglobal
-balt test/420_domain_dns_record_list.t
+balt models3/fqdn/fqdn.go
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -61,19 +51,19 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 27 - ((17 * winheight(0) + 30) / 60)
+let s:l = 1 - ((0 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 27
-normal! 05|
+keepjumps 1
+normal! 027|
 wincmd w
 argglobal
-if bufexists(fnamemodify("test/420_domain_dns_record_list.t", ":p")) | buffer test/420_domain_dns_record_list.t | else | edit test/420_domain_dns_record_list.t | endif
+if bufexists(fnamemodify("api/zone_dnssec_key_sets.go", ":p")) | buffer api/zone_dnssec_key_sets.go | else | edit api/zone_dnssec_key_sets.go | endif
 if &buftype ==# 'terminal'
-  silent file test/420_domain_dns_record_list.t
+  silent file api/zone_dnssec_key_sets.go
 endif
-balt test/470_dns_export_get_zone_records.t
+balt api3/routes.go
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -84,15 +74,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 155 - ((0 * winheight(0) + 30) / 60)
+let s:l = 15 - ((14 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 155
-normal! 02|
+keepjumps 15
+normal! 099|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 132 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 137 + 135) / 270)
+2wincmd w
+wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
