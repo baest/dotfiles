@@ -8,3 +8,4 @@ requires 'Term::ANSIColor';
 requires 'IO::Socket::INET';
 requires 'Beanstalk::Client';
 requires 'String::ShellQuote';
+requires 'Data::Printer';

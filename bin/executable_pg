@@ -8,6 +8,7 @@ use Capture::Tiny ':all';
 use Carp 'confess';
 use Path::Tiny;
 use JSON::MaybeXS;
+use DDP;
 
 my ($service, $requested_port) = @ARGV;
 
@@ -85,7 +86,6 @@ run_command(@args, '-L', get_ssh_forward_string(), $ssh_host);
 $session_file->spew(encode_json({ host => $ssh_host, psql_host => $psql_host, port => $port, local_port => $local_port, local_sock => $local_sock, remote_sock => $remote_sock }));
 
 if (check_port($local_port, $local_sock)) {
-    $ENV{PGSERVICE} = $service;
     system(get_psql_cmd());
 }
 
@@ -104,7 +104,9 @@ $session_file->remove();
 sub get_psql_cmd {
     $ENV{PGSERVICE} = $service;
     #system(qw!psql -h /var/run/postgresql -p!, $local_port);
-    return (qw/psql -h/, $psql_host, '-p', $local_port);
+    my @ret = (qw/psql -h/, $psql_host, '-p', $local_port);
+    p @ret if $ENV{DEBUG};
+    return @ret;
 }
 
 #/tmp/pg.sock.5432:/var/run/postgresql/.s.PGSQL.5432
