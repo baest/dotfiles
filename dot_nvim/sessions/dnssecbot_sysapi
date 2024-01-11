@@ -14,9 +14,9 @@ else
   set shortmess=aoO
 endif
 badd +17 api3/fqdns.go
-badd +308 api3/routes.go
-badd +0 api/zone_dnssec_key_sets.go
-badd +1 models3/zone_dnssec_key_set/zone_dnssec_key_set.go
+badd +289 api3/routes.go
+badd +1 api/zone_dnssec_key_sets.go
+badd +73 models3/zone_dnssec_key_set/zone_dnssec_key_set.go
 badd +1 models3/fqdn/fqdn.go
 argglobal
 %argdel
@@ -38,9 +38,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 221 + 179) / 358)
+exe 'vert 2resize ' . ((&columns * 136 + 179) / 358)
 argglobal
-balt models3/fqdn/fqdn.go
+balt api3/fqdns.go
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -51,17 +52,17 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 42) / 84)
+let s:l = 73 - ((38 * winheight(0) + 39) / 78)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 027|
+keepjumps 73
+normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("api/zone_dnssec_key_sets.go", ":p")) | buffer api/zone_dnssec_key_sets.go | else | edit api/zone_dnssec_key_sets.go | endif
+if bufexists(fnamemodify("api3/fqdns.go", ":p")) | buffer api3/fqdns.go | else | edit api3/fqdns.go | endif
 if &buftype ==# 'terminal'
-  silent file api/zone_dnssec_key_sets.go
+  silent file api3/fqdns.go
 endif
 balt api3/routes.go
 setlocal fdm=manual
@@ -74,15 +75,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 15 - ((14 * winheight(0) + 42) / 84)
+let s:l = 13 - ((0 * winheight(0) + 39) / 78)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 15
-normal! 099|
+keepjumps 13
+normal! 0
 wincmd w
-2wincmd w
-wincmd =
+exe 'vert 1resize ' . ((&columns * 221 + 179) / 358)
+exe 'vert 2resize ' . ((&columns * 136 + 179) / 358)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
