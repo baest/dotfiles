@@ -42,6 +42,7 @@ require("config.chezmoi")
 require("config.lsp.mason")
 require("config.lsp.lspconfig")
 require("config.lsp.null-ls")
+require("config.go")
 
 vim.api.nvim_exec([[
 hi ActiveWindow ctermbg=NONE
