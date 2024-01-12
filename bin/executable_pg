@@ -13,6 +13,7 @@ use DDP;
 #TODO check that following is installed:
 # socat
 # psql
+# TODO socat -u OPEN:/dev/null UNIX-CONNECT:/tmp/.s.PGSQL.65433 can be used to check connection https://unix.stackexchange.com/a/556790
 
 my ($service, $requested_port) = @ARGV;
 
