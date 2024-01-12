@@ -87,7 +87,7 @@ badd +1 migration/0777_change_soa_for_service_zone.sql
 badd +60 migration/0785_disabled_cnames_blocks_only_cname.sql
 badd +3 migration/0786_rename_service_zone_brand.sql
 badd +35 migration/0787_change_soa_ns_for_mostly_unused_brands.sql
-badd +27 migration/0788_dnssec_bot.sql
+badd +32 migration/0788_dnssec_bot.sql
 argglobal
 %argdel
 $argadd migration/0579_zone_dns_export.sql
@@ -111,10 +111,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 1 + 43) / 86)
-exe 'vert 1resize ' . ((&columns * 269 + 181) / 362)
-exe '2resize ' . ((&lines * 1 + 43) / 86)
-exe 'vert 2resize ' . ((&columns * 0 + 181) / 362)
+exe '1resize ' . ((&lines * 1 + 31) / 62)
+exe 'vert 1resize ' . ((&columns * 269 + 135) / 270)
+exe '2resize ' . ((&lines * 1 + 31) / 62)
+exe 'vert 2resize ' . ((&columns * 0 + 135) / 270)
 argglobal
 balt migration/0721_add_default_soa_for_service_zone.sql
 setlocal fdm=manual
@@ -157,10 +157,10 @@ normal! zt
 keepjumps 1
 normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 1 + 43) / 86)
-exe 'vert 1resize ' . ((&columns * 269 + 181) / 362)
-exe '2resize ' . ((&lines * 1 + 43) / 86)
-exe 'vert 2resize ' . ((&columns * 0 + 181) / 362)
+exe '1resize ' . ((&lines * 1 + 31) / 62)
+exe 'vert 1resize ' . ((&columns * 269 + 135) / 270)
+exe '2resize ' . ((&lines * 1 + 31) / 62)
+exe 'vert 2resize ' . ((&columns * 0 + 135) / 270)
 tabnext
 edit migration/0788_dnssec_bot.sql
 let s:save_splitbelow = &splitbelow
@@ -179,8 +179,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 166 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 103 + 135) / 270)
 argglobal
 balt migration/0787_change_soa_ns_for_mostly_unused_brands.sql
 setlocal fdm=manual
@@ -193,12 +193,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 27 - ((26 * winheight(0) + 41) / 83)
+let s:l = 32 - ((0 * winheight(0) + 29) / 59)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 27
-normal! 048|
+keepjumps 32
+normal! 028|
 wincmd w
 argglobal
 if bufexists(fnamemodify("migration/0695_change_dns_export_queue.sql", ":p")) | buffer migration/0695_change_dns_export_queue.sql | else | edit migration/0695_change_dns_export_queue.sql | endif
@@ -216,15 +216,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 64 - ((63 * winheight(0) + 41) / 83)
+let s:l = 64 - ((0 * winheight(0) + 29) / 59)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 64
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 166 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 103 + 135) / 270)
 tabnext 2
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
