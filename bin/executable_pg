@@ -10,13 +10,16 @@ use Path::Tiny;
 use JSON::MaybeXS;
 use DDP;
 
+#TODO check that following is installed:
+# socat
+# psql
+
 my ($service, $requested_port) = @ARGV;
 
 my $home = File::HomeDir->my_home;
 my $cfg = Config::IniFiles->new( -file => "$home/.pg_service.conf", -default => "all" );
 my $session_dir = path('/tmp/pg');
 
-#TODO ctrl+c shouldn't kill connection
 #TODO create child process keeping an eye on connection and HUP the parent to reconnect and kill psql session
 
 die "Couldn't find service $service" unless $cfg->SectionExists($service);
@@ -42,9 +45,9 @@ my $local_port = $requested_port || 65432;
 my $has_tunnel = 0;
 
 if ($socket) {
-	$psql_host = '/tmp';
-	$local_sock = get_sock($psql_host, $local_port);
-	$remote_sock = get_sock('/var/run/postgresql', $port);
+    $psql_host = '/tmp';
+    $local_sock = get_sock($psql_host, $local_port);
+    $remote_sock = get_sock('/var/run/postgresql', $port);
 }
 
 my $session_file = $session_dir->child("$ssh_host--$port");
@@ -54,8 +57,10 @@ if ($session_file->is_file) {
     my $local_sock = $data->{local_sock};
 
     if (check_port($local_port, $local_sock)) {
-        say "Connection already established, reusing $local_port from $ssh_host";
-        exec(get_psql_cmd());
+	say "Connection already established, reusing $local_port from $ssh_host";
+	system (get_psql_cmd());
+	#disconnect();
+	exit 0;
     }
 }
 
@@ -65,7 +70,7 @@ while(1) {
     last unless $sock;
     die "Requested port $requested_port not available" if $requested_port;
     $local_port++;
-	$local_sock = get_sock($psql_host, $local_port) if $local_sock;
+    $local_sock = get_sock($psql_host, $local_port) if $local_sock;
 }
 
 say "Connecting to $local_port by forwarding from $ssh_host";
@@ -87,11 +92,13 @@ $session_file->spew(encode_json({ host => $ssh_host, psql_host => $psql_host, po
 
 if (check_port($local_port, $local_sock)) {
     system(get_psql_cmd());
+    disconnect();
 }
 
+sub disconnect {
 @args = ('ssh', '-O');
 if ($has_connection) {
-	push @args, 'cancel', '-L', get_ssh_forward_string();
+    push @args, 'cancel', '-L', get_ssh_forward_string();
 }
 else {
     push @args, 'exit';
@@ -100,75 +107,78 @@ run_command(@args, $ssh_host);
 unlink $local_sock if ($local_sock && -r $local_sock);
 
 $session_file->remove();
+}
 
 sub get_psql_cmd {
-    $ENV{PGSERVICE} = $service;
-    #system(qw!psql -h /var/run/postgresql -p!, $local_port);
-    my @ret = (qw/psql -h/, $psql_host, '-p', $local_port);
-    p @ret if $ENV{DEBUG};
-    return @ret;
+$ENV{PGSERVICE} = $service;
+#system(qw!psql -h /var/run/postgresql -p!, $local_port);
+my @ret = (qw/psql -h/, $psql_host, '-p', $local_port);
+p @ret if $ENV{DEBUG};
+return @ret;
 }
 
 #/tmp/pg.sock.5432:/var/run/postgresql/.s.PGSQL.5432
 sub get_sock {
-	my ($dir, $port) = @_;
-	return "$dir/.s.PGSQL.$port";
+my ($dir, $port) = @_;
+return "$dir/.s.PGSQL.$port";
 }
 
 sub get_ssh_forward_string {
-	return ($socket ? "$local_sock:$remote_sock" : "$local_port:$psql_host:$port");
+return ($socket ? "$local_sock:$remote_sock" : "$local_port:$psql_host:$port");
 }
 
 sub needed_proxy_jump {
-    my ($ssh_host) = @_;
-    my ($stdout, $stderr, $exit) = run_command('ssh', '-G', $ssh_host);
+my ($ssh_host) = @_;
+my ($stdout, $stderr, $exit) = run_command('ssh', '-G', $ssh_host);
 
-    if ($stdout =~ /proxyjump\s+(.*)/) {
-        my $proxy_jump_host = $1;
+if ($stdout =~ /proxyjump\s+(.*)/) {
+    my $proxy_jump_host = $1;
 
-        unless (has_ssh_connection($proxy_jump_host)) {
-            run_lethal_command(qw/ssh -f -N/, $proxy_jump_host);
-            return 1;
-        }
+    unless (has_ssh_connection($proxy_jump_host)) {
+	run_lethal_command(qw/ssh -f -N/, $proxy_jump_host);
+	return 1;
     }
-    return 0;
+}
+return 0;
 }
 
 sub has_ssh_connection {
-    return (!run_command(qw/ssh -O check/, @_));
+return (!run_command(qw/ssh -O check/, @_));
 }
 
 sub check_port {
-    my ($port, $sock) = @_;
-	if ($sock && -r $sock) {
-		return 1;
-	}
-    return IO::Socket::INET->new( PeerAddr => 'localhost',
-                                      PeerPort => $port,
-                                      Proto    => 'tcp'
-    );
+my ($port, $sock) = @_;
+if ($sock && -r $sock) {
+    return 1;
+}
+my $h = IO::Socket::INET->new( PeerAddr => 'localhost',
+    PeerPort => $port,
+    Proto    => 'tcp'
+);
+#warn $h->connected() if $h;
+return $h;
 }
 
 sub run_command {
-    my ($cmd, @args) = @_;
-    warn join(' ', $cmd, @args) if $ENV{DEBUG};
+my ($cmd, @args) = @_;
+warn join(' ', $cmd, @args) if $ENV{DEBUG};
 
-    my ($stdout, $stderr, $exit) = capture {
-        system( $cmd, @args );
-    };
+my ($stdout, $stderr, $exit) = capture {
+    system( $cmd, @args );
+};
 
-    warn "out: $stdout\nerr: $stderr" if $ENV{DEBUG};
+warn "out: $stdout\nerr: $stderr" if $ENV{DEBUG};
 
-    return (wantarray()) ? ($stdout, $stderr, $exit) : $exit;
+return (wantarray()) ? ($stdout, $stderr, $exit) : $exit;
 }
 
 sub run_lethal_command {
-    my ($cmd, @args) = @_;
-    my ($stdout, $stderr, $exit) = run_command($cmd, @args);
+my ($cmd, @args) = @_;
+my ($stdout, $stderr, $exit) = run_command($cmd, @args);
 
-    warn "out: $stdout\nerr: $stderr" if $exit;
+warn "out: $stdout\nerr: $stderr" if $exit;
 
-    confess "Failed " . join(' ', $cmd, @args) if $exit;
-    return $exit;
+confess "Failed " . join(' ', $cmd, @args) if $exit;
+return $exit;
 }
 
