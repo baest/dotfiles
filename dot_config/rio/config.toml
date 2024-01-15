@@ -41,7 +41,7 @@ theme = "mod-catppuccin-latte"
 # define x axis padding (default is 0)
 #
 # Example:
-# padding-x = 10
+padding-x = 5
 
 # Option as Alt
 #
@@ -161,7 +161,8 @@ disable-renderer-when-unfocused = true
 #
 # Example:
 [fonts]
-size = 14
+	size = 14
+	family = "FiraCode"
 #
 # [fonts.regular]
 # family = "cascadiamono"
