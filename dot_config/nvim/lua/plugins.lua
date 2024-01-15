@@ -77,7 +77,6 @@ return require('packer').startup(function(use)
 	use 'p00f/nvim-ts-rainbow'
 
 	use 'neovim/nvim-lspconfig'                        -- Collection of configurations for built-in LSP client
-	use 'williamboman/nvim-lsp-installer'              -- Automatically install language servers to stdpath
 	use 'williamboman/mason.nvim'
 	use 'williamboman/mason-lspconfig.nvim'
 	use 'jose-elias-alvarez/null-ls.nvim'
