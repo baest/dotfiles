@@ -170,12 +170,31 @@ function sushi_ssh() {
 }
 
 function za() {
-    ZJ_SESSIONS=$(zellij list-sessions --no-formatting --short)
+set -x
+    CMD="zellij list-sessions --no-formatting --short"
+    if [[ ! -z $ZELLIJ_SESSION_NAME ]]; then
+	CMD="$CMD  | grep --invert-match $ZELLIJ_SESSION_NAME"
+    fi
+    ZJ_SESSIONS=$(eval "$CMD")
     NO_SESSIONS=$(echo "${ZJ_SESSIONS}" | wc -l)
-    
+
     if [ "${NO_SESSIONS}" -ge 2 ]; then
-        zellij attach "$(echo "${ZJ_SESSIONS}" | sk)"
+	zellij attach "$(echo "${ZJ_SESSIONS}" | sk)"
     else
-        zellij attach -c
+	zellij attach -c
+    fi
+}
+
+function zl() {
+    set -x
+    dir="{{ .chezmoi.homeDir }}/.config/zellij/layouts"
+    command_ex=""
+    if [[ ! -z "$1" ]]; then
+	    command_ex="-q $1"
+    fi
+
+    file=$(ls $dir | perl -pE 's/\.kdl$//' | fzf -1 $command_ex)
+    if [[ ! -z "$file" ]]; then
+	zellij --layout=$file --session=$file
     fi
 }
