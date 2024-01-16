@@ -1,7 +1,11 @@
 
 _direnv_hook() {
   trap -- '' SIGINT;
+{{ if eq .chezmoi.os "darwin" }}
+  eval "$("/opt/homebrew/bin/direnv" export zsh)";
+{{ else }}
   eval "$("/usr/bin/direnv" export zsh)";
+{{ end }}
   trap - SIGINT;
 }
 typeset -ag precmd_functions;
