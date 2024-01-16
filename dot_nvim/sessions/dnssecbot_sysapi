@@ -16,23 +16,24 @@ endif
 badd +17 api3/fqdns.go
 badd +308 api3/routes.go
 badd +6 api3/zone_dnssec_key_sets.go
-badd +45 models3/zone_dnssec_key_set/zone_dnssec_key_set.go
-badd +9 models3/fqdn/fqdn.go
+badd +91 models3/zone_dnssec_key_set/zone_dnssec_key_set.go
+badd +104 models3/fqdn/fqdn.go
 badd +1 api3/domain_powerdns_metadatas.go
 badd +65 models3/zone_custom_record/zone_custom_record.go
 badd +1 coredb/t_vm.go
-badd +93 coredb/t_zone_dnssec_key_set.json
+badd +69 coredb/t_zone_dnssec_key_set.json
 badd +59 coredb/t_vm.json
 badd +35 coredb/t_dnssec_key_set.go
-badd +223 models3/zone_dnssec_cryptokey/zone_dnssec_cryptokey.go
+badd +16 models3/zone_dnssec_cryptokey/zone_dnssec_cryptokey.go
 badd +28 coredb/t_zone_dnssec_cryptokey.go
 badd +44 api3/error/errors.txt
-badd +40 coredb/t_zone_dnssec_cryptokey.json
-badd +93 coredb/coredb.go
-badd +58 coredb/t_zone_dnssec_key_set.go
+badd +4 coredb/t_zone_dnssec_cryptokey.json
+badd +168 coredb/coredb.go
+badd +16 coredb/t_zone_dnssec_key_set.go
 badd +39 api3/error/errors.go
-badd +222 models3/vm/vm.go
-badd +354 models3/backup/backup.go
+badd +182 models3/vm/vm.go
+badd +169 models3/backup/backup.go
+badd +15 backupinventorydb/v_source_view.go
 argglobal
 %argdel
 $argadd api3/fqdns.go
@@ -53,10 +54,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 126 + 166) / 332)
-exe 'vert 2resize ' . ((&columns * 205 + 166) / 332)
+exe 'vert 1resize ' . ((&columns * 126 + 165) / 330)
+exe 'vert 2resize ' . ((&columns * 203 + 165) / 330)
 argglobal
-balt models3/zone_dnssec_cryptokey/zone_dnssec_cryptokey.go
+balt models3/vm/vm.go
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -67,12 +68,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 217 - ((62 * winheight(0) + 42) / 85)
+let s:l = 182 - ((81 * winheight(0) + 42) / 85)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 217
-normal! 024|
+keepjumps 182
+normal! 09|
 wincmd w
 argglobal
 if bufexists(fnamemodify("models3/zone_dnssec_key_set/zone_dnssec_key_set.go", ":p")) | buffer models3/zone_dnssec_key_set/zone_dnssec_key_set.go | else | edit models3/zone_dnssec_key_set/zone_dnssec_key_set.go | endif
@@ -90,16 +91,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 51 - ((45 * winheight(0) + 42) / 85)
+let s:l = 91 - ((36 * winheight(0) + 42) / 85)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 51
-normal! 027|
+keepjumps 91
+normal! 072|
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 126 + 166) / 332)
-exe 'vert 2resize ' . ((&columns * 205 + 166) / 332)
+exe 'vert 1resize ' . ((&columns * 126 + 165) / 330)
+exe 'vert 2resize ' . ((&columns * 203 + 165) / 330)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
