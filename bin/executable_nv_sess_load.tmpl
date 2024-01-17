@@ -2,4 +2,5 @@
 file="$@"
 
 dir="{{ .chezmoi.homeDir }}/.nvim/sessions"
-nvim -S $dir/$file
+nvim -c "SessionsLoad $dir/$file"
+#nvim -S $dir/$file

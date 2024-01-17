@@ -89,7 +89,7 @@ nvl() {
 	file=`ls $dir | fzf -1 $command_ex`
 
 	if [[ ! -z "$file" ]]; then
-		nvim -c "SessionsLoad $dir/$file"
+		nv_sess_load $file
 		#nvim -S $dir/$file
 	fi
 }
