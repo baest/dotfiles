@@ -1,0 +1,126 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/src/systems-api/src
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +18 api3/fqdns.go
+badd +303 api3/routes.go
+badd +93 api3/zone_dnssec_key_sets.go
+badd +129 models3/zone_dnssec_key_set/zone_dnssec_key_set.go
+badd +104 models3/fqdn/fqdn.go
+badd +7 api3/domain_powerdns_metadatas.go
+badd +65 models3/zone_custom_record/zone_custom_record.go
+badd +1 coredb/t_vm.go
+badd +65 coredb/t_zone_dnssec_key_set.json
+badd +59 coredb/t_vm.json
+badd +35 coredb/t_dnssec_key_set.go
+badd +16 models3/zone_dnssec_cryptokey/zone_dnssec_cryptokey.go
+badd +28 coredb/t_zone_dnssec_cryptokey.go
+badd +44 api3/error/errors.txt
+badd +4 coredb/t_zone_dnssec_cryptokey.json
+badd +168 coredb/coredb.go
+badd +16 coredb/t_zone_dnssec_key_set.go
+badd +39 api3/error/errors.go
+badd +274 models3/vm/vm.go
+badd +169 models3/backup/backup.go
+badd +15 backupinventorydb/v_source_view.go
+badd +150 api3/zone_powerdns_metadatas.go
+badd +57 api3/vms.go
+badd +4 api/domains.go
+badd +85 provision/provision.go
+argglobal
+%argdel
+$argadd api3/fqdns.go
+edit api3/zone_dnssec_key_sets.go
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 103 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 166 + 135) / 270)
+argglobal
+balt api3/routes.go
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 44 - ((42 * winheight(0) + 30) / 60)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 44
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("api3/routes.go", ":p")) | buffer api3/routes.go | else | edit api3/routes.go | endif
+if &buftype ==# 'terminal'
+  silent file api3/routes.go
+endif
+balt provision/provision.go
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 30) / 60)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 103 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 166 + 135) / 270)
+tabnext 1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=1
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

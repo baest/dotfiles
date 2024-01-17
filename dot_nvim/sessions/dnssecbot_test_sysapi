@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/src/systems-api/src
+cd ~/src/systems-api
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,31 +13,16 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +17 api3/fqdns.go
-badd +308 api3/routes.go
-badd +6 api3/zone_dnssec_key_sets.go
-badd +91 models3/zone_dnssec_key_set/zone_dnssec_key_set.go
-badd +104 models3/fqdn/fqdn.go
-badd +1 api3/domain_powerdns_metadatas.go
-badd +65 models3/zone_custom_record/zone_custom_record.go
-badd +1 coredb/t_vm.go
-badd +69 coredb/t_zone_dnssec_key_set.json
-badd +59 coredb/t_vm.json
-badd +35 coredb/t_dnssec_key_set.go
-badd +16 models3/zone_dnssec_cryptokey/zone_dnssec_cryptokey.go
-badd +28 coredb/t_zone_dnssec_cryptokey.go
-badd +44 api3/error/errors.txt
-badd +4 coredb/t_zone_dnssec_cryptokey.json
-badd +168 coredb/coredb.go
-badd +16 coredb/t_zone_dnssec_key_set.go
-badd +39 api3/error/errors.go
-badd +182 models3/vm/vm.go
-badd +169 models3/backup/backup.go
-badd +15 backupinventorydb/v_source_view.go
+badd +1 test/v3/370_dnssec_cryptokeys.t
+badd +64 test/v3/380_zone_powerdns_metadatas.t
+badd +62 test/v3/480_webconfig.t
+badd +20 test/v3/390_dnssec_key_set.t
+badd +8 test/v3/360_dns_service_records.t
 argglobal
 %argdel
-$argadd api3/fqdns.go
-edit models3/zone_dnssec_key_set/zone_dnssec_key_set.go
+$argadd test/v3/370_dnssec_cryptokeys.t
+$argadd test/v3/380_zone_powerdns_metadatas.t
+edit test/v3/360_dns_service_records.t
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -54,10 +39,14 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 126 + 165) / 330)
-exe 'vert 2resize ' . ((&columns * 203 + 165) / 330)
+exe 'vert 1resize ' . ((&columns * 103 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 166 + 135) / 270)
 argglobal
-balt models3/vm/vm.go
+if bufexists(fnamemodify("test/v3/360_dns_service_records.t", ":p")) | buffer test/v3/360_dns_service_records.t | else | edit test/v3/360_dns_service_records.t | endif
+if &buftype ==# 'terminal'
+  silent file test/v3/360_dns_service_records.t
+endif
+balt test/v3/480_webconfig.t
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -68,19 +57,19 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 182 - ((81 * winheight(0) + 42) / 85)
+let s:l = 8 - ((7 * winheight(0) + 30) / 60)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 182
-normal! 09|
+keepjumps 8
+normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("models3/zone_dnssec_key_set/zone_dnssec_key_set.go", ":p")) | buffer models3/zone_dnssec_key_set/zone_dnssec_key_set.go | else | edit models3/zone_dnssec_key_set/zone_dnssec_key_set.go | endif
+if bufexists(fnamemodify("test/v3/390_dnssec_key_set.t", ":p")) | buffer test/v3/390_dnssec_key_set.t | else | edit test/v3/390_dnssec_key_set.t | endif
 if &buftype ==# 'terminal'
-  silent file models3/zone_dnssec_key_set/zone_dnssec_key_set.go
+  silent file test/v3/390_dnssec_key_set.t
 endif
-balt coredb/t_zone_dnssec_key_set.go
+balt test/v3/360_dns_service_records.t
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -91,16 +80,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 91 - ((36 * winheight(0) + 42) / 85)
+let s:l = 20 - ((19 * winheight(0) + 30) / 60)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 91
-normal! 072|
+keepjumps 20
+normal! 0
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 126 + 165) / 330)
-exe 'vert 2resize ' . ((&columns * 203 + 165) / 330)
+exe 'vert 1resize ' . ((&columns * 103 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 166 + 135) / 270)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
