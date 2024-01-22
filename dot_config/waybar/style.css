@@ -129,6 +129,11 @@
     color: #fab387;
   }
 
+ #language {
+     border-radius: 20px;
+     padding-left: 10px;
+ }
+
   #clock.4,
   #pulseaudio,
   #wireplumber,

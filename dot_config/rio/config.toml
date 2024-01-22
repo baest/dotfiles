@@ -162,7 +162,7 @@ disable-renderer-when-unfocused = true
 # Example:
 [fonts]
 	size = 15
-	family = "Fira Code"
+	#family = "Fira Code"
 #
 # [fonts.regular]
 # family = "cascadiamono"
