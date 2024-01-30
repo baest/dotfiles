@@ -1,6 +1,7 @@
-#!/usr/bin/env zsh
-file="$@"
+#!/usr/bin/env perl
+use 5.038;
 
-dir="{{ .chezmoi.homeDir }}/.nvim/sessions"
-nvim -c "SessionsLoad $dir/$file"
-#nvim -S $dir/$file
+my $file = shift @ARGV;
+
+my $dir = '{{ .chezmoi.homeDir }}/.nvim/sessions';
+system(qq!nvim -c "SessionsLoad $dir/$file"!);
