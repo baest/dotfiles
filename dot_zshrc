@@ -56,7 +56,8 @@ PATH="$PATH:${HOME}/.npm-packages/bin"
 #TODO NPM manpath? see https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
 
 # for some reason somethims $ZPLUG_BIN doesn't get added
-export PATH=$HOME/bin/first:$ZPLUG_BIN:$HOME/.perl6/bin:$PATH
+#export PATH=$HOME/bin/first:$ZPLUG_BIN:$PATH
+export PATH=$HOME/bin/first:$PATH
 
 #zprof
 
@@ -64,6 +65,11 @@ export PATH=$HOME/bin/first:$ZPLUG_BIN:$HOME/.perl6/bin:$PATH
 safe_source "$HOME/perl5/perlbrew/etc/bashrc"
 
 export ONECOMID=fra
+
+### zinit --> antidote
+#  source '/usr/share/zsh-antidote/antidote.zsh'
+#  antidote load
+#  zstyle ':antidote:bundle' use-friendly-names 'yes'
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -73,6 +79,9 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
         print -P "%F{33} %F{34}Installation successful.%f%b" || \
         print -P "%F{160} The clone has failed.%f%b"
 fi
+
+declare -A ZINIT
+ZINIT[NO_ALIASES]=1
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit

@@ -198,3 +198,13 @@ function zl() {
 	zellij --layout=$file --session=$file
     fi
 }
+
+function ppath() {
+    if (($+PATH)); then
+	echo "$#path element(s):"
+	printf '%q\n' "$path[@]"
+    else
+	echo "PATH unset"
+    fi
+
+}
