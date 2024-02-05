@@ -170,7 +170,6 @@ function sushi_ssh() {
 }
 
 function za() {
-set -x
     CMD="zellij list-sessions --no-formatting --short"
     if [[ ! -z $ZELLIJ_SESSION_NAME ]]; then
 	CMD="$CMD  | grep --invert-match $ZELLIJ_SESSION_NAME"
@@ -207,4 +206,28 @@ function ppath() {
 	echo "PATH unset"
     fi
 
+}
+
+function add_ssh_key_if_needed () {
+    if $(ssh-add -L 2>/dev/null | rg '^ssh-' > /dev/null); then
+	echo "Keys exist"
+    else
+	ssh-add $HOME/.ssh/id_ed25519
+    fi
+
+
+}
+
+function ssh () {
+	add_ssh_key_if_needed
+	unset -f ssh
+	unset -f git
+	/usr/bin/ssh "$@"
+}
+
+function git() {
+	add_ssh_key_if_needed
+	unset -f ssh
+	unset -f git
+	/usr/bin/git "$@"
 }
