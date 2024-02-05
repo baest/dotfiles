@@ -8,3 +8,4 @@ nytprof*
 .before_push_wip.sh
 .pre-commit-config.yaml
 *__pycache__*
+.envrc
