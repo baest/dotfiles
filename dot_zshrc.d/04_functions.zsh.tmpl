@@ -35,6 +35,7 @@ safe_source() {
 }
 
 pg() {
+	add_ssh_key_if_needed
 	[[ -z "$PERLBREW_VERSION" ]] && perlbrew_init
 	~/bin/pg "$@"
 }
@@ -210,7 +211,7 @@ function ppath() {
 
 function add_ssh_key_if_needed () {
     if $(ssh-add -L 2>/dev/null | rg '^ssh-' > /dev/null); then
-	echo "Keys exist"
+	#echo "Keys exist"
     else
 	ssh-add $HOME/.ssh/id_ed25519
     fi
@@ -231,3 +232,5 @@ function git() {
 	unset -f git
 	/usr/bin/git "$@"
 }
+
+
