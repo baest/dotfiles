@@ -10,7 +10,7 @@ config.check_for_updates = false
 config.hide_tab_bar_if_only_one_tab = true
 
 config.font =
-  wezterm.font('FiraCode Nerd Font Mono', { weight = 'Bold' })
+  wezterm.font('FiraCode Nerd Font Mono', { weight = 'Medium' })
 
 --config.font = wezterm.font_with_fallback({
 --  -- /usr/share/fonts/TTF/FiraCodeNerdFontMono-Bold.ttf, FontConfig
