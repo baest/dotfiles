@@ -219,6 +219,7 @@ function add_ssh_key_if_needed () {
 
 }
 
+{{ if ne .chezmoi.os "darwin" }}
 function ssh () {
 	add_ssh_key_if_needed
 	unset -f ssh
@@ -232,5 +233,4 @@ function git() {
 	unset -f git
 	/usr/bin/git "$@"
 }
-
-
+{{ end }}
