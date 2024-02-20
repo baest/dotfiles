@@ -107,6 +107,10 @@ tl() {
 	command_ex="-q $session"
 
 	session=`ls $dir | fzf -1 $command_ex`
+	if [ -z "$session"  ]; then
+	    return;
+	fi
+
 	session="${session%.*}"
 
 	is_loaded=$(tmux ls | grep $session)
