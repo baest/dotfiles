@@ -17,7 +17,7 @@ badd +1 test/v3/370_dnssec_cryptokeys.t
 badd +64 test/v3/380_zone_powerdns_metadatas.t
 badd +62 test/v3/480_webconfig.t
 badd +20 test/v3/390_dnssec_key_set.t
-badd +8 test/v3/360_dns_service_records.t
+badd +1 test/v3/360_dns_service_records.t
 argglobal
 %argdel
 $argadd test/v3/370_dnssec_cryptokeys.t
@@ -39,8 +39,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 103 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 166 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 171 + 179) / 359)
+exe 'vert 2resize ' . ((&columns * 187 + 179) / 359)
 argglobal
 if bufexists(fnamemodify("test/v3/360_dns_service_records.t", ":p")) | buffer test/v3/360_dns_service_records.t | else | edit test/v3/360_dns_service_records.t | endif
 if &buftype ==# 'terminal'
@@ -57,7 +57,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 8 - ((7 * winheight(0) + 30) / 60)
+let s:l = 8 - ((0 * winheight(0) + 43) / 86)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -80,16 +80,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 20 - ((19 * winheight(0) + 30) / 60)
+let s:l = 102 - ((85 * winheight(0) + 43) / 86)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 20
+keepjumps 102
 normal! 0
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 103 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 166 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 171 + 179) / 359)
+exe 'vert 2resize ' . ((&columns * 187 + 179) / 359)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
