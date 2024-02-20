@@ -54,4 +54,6 @@ export BAT_THEME="Solarized (light)"
 
 export PSQLRC_DOCKER="$HOME/.psqlrc_docker"
 
+{{ if ne .chezmoi.os "darwin" }}
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+{{ end }}
