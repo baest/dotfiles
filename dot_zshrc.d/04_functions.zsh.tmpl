@@ -111,10 +111,12 @@ tl() {
 
 	is_loaded=$(tmux ls | grep $session)
 	if [ -z "$is_loaded"  ]; then
-	    tmuxp load -d "$session"
+	    #tmuxp load -d "$session"
+	    tmuxp load "$session"
 	fi
-	tmux -2 -CC attach -d -E -t "$session"
-	hs -A -c "hs.window.frontmostWindow():maximize()"
+	tmux -2 attach -d -E -t "$session"
+	#tmux -2 -CC attach -d -E -t "$session"
+	#hs -A -c "hs.window.frontmostWindow():maximize()"
 }
 
 #function cnodes_zle() {
