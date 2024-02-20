@@ -13,7 +13,7 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +31 test/451_dns_records_view.t
+badd +1 test/451_dns_records_view.t
 badd +164 test/lib/CoreDBTestHelper.pm
 badd +139 ../dbcommon/lib/DBTestHelper.pm
 badd +32 test/350_zones.t
@@ -23,14 +23,14 @@ badd +403 test/702_lookup_mail_cluster.t
 badd +73 test/704_lookup_domain_dkim.t
 badd +3 test/405_service_network.t
 badd +203 test/460_dns_get_cluster_records.t
-badd +27 test/470_dns_export_get_zone_records.t
+badd +648 test/470_dns_export_get_zone_records.t
 badd +356 test/450_dns_get_records.t
 badd +23 test/410_dns_get_service_zone.t
-badd +41 test/420_domain_dns_record_list.t
+badd +156 test/420_domain_dns_record_list.t
 argglobal
 %argdel
 $argadd test/451_dns_records_view.t
-edit test/470_dns_export_get_zone_records.t
+edit test/451_dns_records_view.t
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -47,32 +47,9 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 132 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 137 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 127 + 166) / 333)
+exe 'vert 2resize ' . ((&columns * 205 + 166) / 333)
 argglobal
-balt test/420_domain_dns_record_list.t
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 27 - ((17 * winheight(0) + 30) / 60)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 27
-normal! 05|
-wincmd w
-argglobal
-if bufexists(fnamemodify("test/420_domain_dns_record_list.t", ":p")) | buffer test/420_domain_dns_record_list.t | else | edit test/420_domain_dns_record_list.t | endif
-if &buftype ==# 'terminal'
-  silent file test/420_domain_dns_record_list.t
-endif
 balt test/470_dns_export_get_zone_records.t
 setlocal fdm=manual
 setlocal fde=0
@@ -84,15 +61,39 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 155 - ((0 * winheight(0) + 30) / 60)
+let s:l = 163 - ((1 * winheight(0) + 43) / 87)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 155
-normal! 02|
+keepjumps 163
+normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 132 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 137 + 135) / 270)
+argglobal
+if bufexists(fnamemodify("test/470_dns_export_get_zone_records.t", ":p")) | buffer test/470_dns_export_get_zone_records.t | else | edit test/470_dns_export_get_zone_records.t | endif
+if &buftype ==# 'terminal'
+  silent file test/470_dns_export_get_zone_records.t
+endif
+balt test/451_dns_records_view.t
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 644 - ((1 * winheight(0) + 43) / 87)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 644
+normal! 0
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 127 + 166) / 333)
+exe 'vert 2resize ' . ((&columns * 205 + 166) / 333)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
