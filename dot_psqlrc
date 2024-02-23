@@ -30,6 +30,10 @@
 \set COMP_KEYWORD_CASE upper
 \set ON_ERROR_ROLLBACK interactive
 
+\set exp EXPLAIN (ANALYZE, VERBOSE, BUFFERS, COSTS, TIMING)
+\set expj 'EXPLAIN (ANALYZE, VERBOSE, BUFFERS, COSTS, TIMING, FORMAT JSON)'
+--\g (format=unaligned tuples_only=on ) xxx.json
+
 \unset QUIET
 
 -- \echo pspg is DISABLED for now
