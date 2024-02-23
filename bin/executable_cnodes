@@ -1,4 +1,4 @@
-#!/sbin/env zsh
+#!/usr/bin/env zsh
 
 cd ~/src/chef/repo
 scripts/cnodes "$@"
