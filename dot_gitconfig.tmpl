@@ -169,4 +169,13 @@
 [interactive]
     diffFilter = delta --color-only
 
+[branch]
+    sort = -committerdate
+
+[maintenance]
+	repo = {{ .chezmoi.homeDir }}/src/chef/repo
+	repo = {{ .chezmoi.homeDir }}/src/database-schema
+	repo = {{ .chezmoi.homeDir }}/src/systems-api
+	repo = {{ .chezmoi.homeDir }}/src/authdns
+
 # vi:ft=gitconfig
