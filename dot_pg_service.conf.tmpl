@@ -8,4 +8,7 @@ socket=/var/run/postgresql
 host={{ $b.host }}
 dbname={{ $b.dbname }}
 user={{ $b.user }}
+{{- if hasKey $b "port" }}
+port={{ $b.port }}
+{{- end }}
 {{ end }}
