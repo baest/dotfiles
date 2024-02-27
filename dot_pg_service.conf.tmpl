@@ -1,14 +1,19 @@
-[all]
-socket=/var/run/postgresql
-
 {{ $data := joinPath .chezmoi.sourceDir "data/encrypted_pg_service.yaml" | include | decrypt | fromYaml -}}
+{{- if hasKey $data "all" }}
+[all]
+{{- range $a, $b := index $data.all }}
+{{ $a }}={{ $b }}
+{{- end }}
+{{- end -}}
 
-{{ range $a, $b := index $data }}
+{{- range $a, $b := index $data }}
+{{- if hasKey $b "host" }}
 [{{ $a }}]
 host={{ $b.host }}
 dbname={{ $b.dbname }}
 user={{ $b.user }}
 {{- if hasKey $b "port" }}
 port={{ $b.port }}
+{{- end }}
 {{- end }}
 {{ end }}

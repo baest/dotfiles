@@ -8,6 +8,7 @@ use Capture::Tiny ':all';
 use Carp 'confess';
 use Path::Tiny;
 use JSON::MaybeXS;
+use YAML::PP;
 use DDP;
 
 #TODO check that following is installed:
@@ -18,24 +19,26 @@ use DDP;
 my ($service, $requested_port) = @ARGV;
 
 my $home = File::HomeDir->my_home;
-my $cfg = Config::IniFiles->new( -file => "$home/.pg_service.conf", -default => "all" );
+#my $cfg = Config::IniFiles->new( -file => "$home/.pg_service.conf", -default => "all" );
+my $yp = YAML::PP->new( schema => [qw/ + Merge /] );
+my $cfg = $yp->load_file("$home/data/pg_service.yaml");
 my $session_dir = path('/tmp/pg');
 
 #TODO create child process keeping an eye on connection and HUP the parent to reconnect and kill psql session
 
-die "Couldn't find service $service" unless $cfg->SectionExists($service);
+die "Couldn't find service $service" unless exists $cfg->{$service};
 
 unless ($session_dir->is_dir) {
     mkdir "$session_dir" or die "Couldn't create $session_dir: $!";
 }
 
-my $ssh_host = $cfg->val($service, 'host');
-my $port = $cfg->val($service, 'port', 5432);
-my $socket = $cfg->val($service, 'socket');
+my $ssh_host = $cfg->{$service}{host};
+my $port = $cfg->{$service}{port} // 5432;
+my $socket = $cfg->{all}{socket};
 my $psql_host = 'localhost';
 my ($local_sock, $remote_sock);
 
-$ENV{SSH_REAL_HOST} = $ssh_host;
+$ENV{SSH_REAL_HOST} = $cfg->{$service}{label} // $ssh_host;
 
 if ($ssh_host eq 'localhost') {
     $ENV{PGSERVICE} = $service;
