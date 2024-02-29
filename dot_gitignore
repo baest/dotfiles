@@ -9,3 +9,4 @@ nytprof*
 .pre-commit-config.yaml
 *__pycache__*
 .envrc
+*.kml
