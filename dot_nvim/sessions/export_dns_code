@@ -15,7 +15,7 @@ else
 endif
 badd +5 ~/src/database-schema/coredb/migration/0537_add_soa_serial_to_zone.sql
 badd +379 scripts/one.com-dns-exporter
-badd +424 test/lib/TestHelper.pm
+badd +1 test/lib/TestHelper.pm
 badd +357 test/020_cluster_records.t
 badd +456 test/010_old_domain_records.t
 badd +117 ~/src/database-schema/dnsdb/migration/0221_soa_in_coredb.sql
@@ -59,6 +59,7 @@ badd +5 ../dns-utilities/test/005_service_zone.t
 badd +362 test/010_domain_records.t
 badd +32 test/050_integration.t
 badd +16 test/100_clean_up_ent_records.t
+badd +8 container/pdns/pdns.d/pdns-hostnet.nl.conf
 argglobal
 %argdel
 $argadd scripts/one.com-dns-exporter
@@ -80,8 +81,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 103 + 136) / 272)
-exe 'vert 2resize ' . ((&columns * 168 + 136) / 272)
+exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
 argglobal
 if bufexists(fnamemodify("test/lib/TestHelper.pm", ":p")) | buffer test/lib/TestHelper.pm | else | edit test/lib/TestHelper.pm | endif
 if &buftype ==# 'terminal'
@@ -98,7 +99,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 431 - ((26 * winheight(0) + 32) / 64)
+let s:l = 431 - ((0 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -106,11 +107,11 @@ keepjumps 431
 normal! 022|
 wincmd w
 argglobal
-if bufexists(fnamemodify("../dns-utilities/test/005_service_zone.t", ":p")) | buffer ../dns-utilities/test/005_service_zone.t | else | edit ../dns-utilities/test/005_service_zone.t | endif
+if bufexists(fnamemodify("test/050_integration.t", ":p")) | buffer test/050_integration.t | else | edit test/050_integration.t | endif
 if &buftype ==# 'terminal'
-  silent file ../dns-utilities/test/005_service_zone.t
+  silent file test/050_integration.t
 endif
-balt test/lib/TestHelper.pm
+balt container/pdns/pdns.d/pdns-hostnet.nl.conf
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -121,16 +122,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 5 - ((4 * winheight(0) + 32) / 64)
+let s:l = 196 - ((27 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 5
-normal! 0
+keepjumps 196
+normal! 09|
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 103 + 136) / 272)
-exe 'vert 2resize ' . ((&columns * 168 + 136) / 272)
+exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

@@ -81,8 +81,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 22 + 182) / 364)
-exe 'vert 2resize ' . ((&columns * 341 + 182) / 364)
+exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
 argglobal
 balt fyi/public/t_domain.sql
 setlocal fdm=manual
@@ -95,7 +95,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 2 - ((1 * winheight(0) + 43) / 87)
+let s:l = 2 - ((1 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -118,16 +118,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 7 - ((1 * winheight(0) + 43) / 87)
+let s:l = 40 - ((1 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 7
+keepjumps 40
 normal! 011|
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 22 + 182) / 364)
-exe 'vert 2resize ' . ((&columns * 341 + 182) / 364)
+exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

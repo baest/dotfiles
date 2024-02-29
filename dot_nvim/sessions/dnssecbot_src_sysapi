@@ -21,7 +21,7 @@ badd +104 models3/fqdn/fqdn.go
 badd +7 api3/domain_powerdns_metadatas.go
 badd +65 models3/zone_custom_record/zone_custom_record.go
 badd +1 coredb/t_vm.go
-badd +1 coredb/t_zone_dnssec_key_set.json
+badd +84 coredb/t_zone_dnssec_key_set.json
 badd +59 coredb/t_vm.json
 badd +16 models3/zone_dnssec_cryptokey/zone_dnssec_cryptokey.go
 badd +28 coredb/t_zone_dnssec_cryptokey.go
@@ -57,8 +57,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 221 + 179) / 359)
-exe 'vert 2resize ' . ((&columns * 137 + 179) / 359)
+exe 'vert 1resize ' . ((&columns * 306 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 55 + 181) / 362)
 argglobal
 balt models3/zone_dnssec_key_set/zone_dnssec_key_set.go
 setlocal fdm=manual
@@ -71,11 +71,11 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 43) / 86)
+let s:l = 84 - ((11 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
+keepjumps 84
 normal! 0
 wincmd w
 argglobal
@@ -94,15 +94,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 43) / 86)
+let s:l = 141 - ((19 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
+keepjumps 141
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 221 + 179) / 359)
-exe 'vert 2resize ' . ((&columns * 137 + 179) / 359)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 306 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 55 + 181) / 362)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

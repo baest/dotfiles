@@ -13,7 +13,7 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 test/451_dns_records_view.t
+badd +163 test/451_dns_records_view.t
 badd +164 test/lib/CoreDBTestHelper.pm
 badd +139 ../dbcommon/lib/DBTestHelper.pm
 badd +32 test/350_zones.t
@@ -47,8 +47,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 127 + 166) / 333)
-exe 'vert 2resize ' . ((&columns * 205 + 166) / 333)
+exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
 argglobal
 balt test/470_dns_export_get_zone_records.t
 setlocal fdm=manual
@@ -61,7 +61,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 163 - ((1 * winheight(0) + 43) / 87)
+let s:l = 163 - ((70 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -84,7 +84,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 644 - ((1 * winheight(0) + 43) / 87)
+let s:l = 644 - ((0 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -92,8 +92,8 @@ keepjumps 644
 normal! 0
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 127 + 166) / 333)
-exe 'vert 2resize ' . ((&columns * 205 + 166) / 333)
+exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
