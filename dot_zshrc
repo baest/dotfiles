@@ -107,6 +107,7 @@ zinit add-fpath /opt/homebrew/share/zsh/site-functions
 zinit add-fpath ~/.zsh_completions
 
 zinit load wfxr/forgit
+zinit load atuinsh/atuin
 #zinit load marlonrichert/zsh-autocomplete
 
 # Load a few important annexes, without Turbo
