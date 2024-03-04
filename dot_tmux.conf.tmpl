@@ -8,10 +8,13 @@ bind-key R source-file ~/.tmux.conf \; display-message "Reloaded config"
 #bind-key -n C-k send-keys -R \; clear-history
 bind-key C send-keys -R \; clear-history
 bind-key -n C-L send-keys -R \; clear-history
+{{ if eq .chezmoi.os "darwin" }}
 #bind-key -tvi-copy C copy-pipe 'xclip >/dev/null' \; send-keys -R \; clear-history
 bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
 bind-key -T copy-mode-vi 'C' send -X copy-selection-and-cancel
 bind-key v run "xclip -o | tmux load-buffer - ; tmux paste-buffer"
+{{ else }}
+{{ end }}
 bind-key X send-keys y
 bind-key t run "resize_2_3.sh"
 
@@ -29,6 +32,12 @@ set -g focus-events on
 
 # Preserve any output before running interactive commands, such as Vim.
 set-window-option -g alternate-screen on
+
+{{ if eq .chezmoi.os "darwin" }}
+set -s copy-command 'pbcopy'
+{{ else }}
+set -s copy-command 'wl-copy'
+{{ end }}
 
 # Set window title
 set-option -g set-titles on
@@ -63,9 +72,6 @@ bind M \
 
 # Copy and pasting
 bind-key -T copy-mode-vi 'v' send -X begin-selection
-#bind-key -tvi-copy 'v' display-message "abe"
-#bind-key -tvi-copy 'y' copy-selection
-#bind -tvi-copy y copy-pipe 'xclip -selection clipboard >/dev/null'
 bind -T copy-mode-vi 'y' send -X copy-pipe 'xclip >/dev/null'
 bind -T copy-mode-vi 'r' send -X rectangle-toggle
 
@@ -101,7 +107,11 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 
 # thumbs
 set -g @thumbs-unique enabled
+{{- if eq .chezmoi.os "darwin" }}
+set -g @thumbs-command 'echo -n {} | pbcopy'
+{{- else }}
 set -g @thumbs-command 'echo -n {} | wl-copy'
+{{- end }}
 
 # resurrect continuum
 set -g @continuum-restore 'on'
