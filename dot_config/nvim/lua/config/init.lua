@@ -1,7 +1,3 @@
-vim.api.nvim_exec([[
-hi ActiveWindow ctermbg=NONE
-hi InactiveWindow ctermbg=LightGrey
-]], false)
 vim.keymap.del('n', 'Y')
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -44,9 +40,10 @@ require("config.lsp.lspconfig")
 require("config.lsp.null-ls")
 require("config.go")
 
+vim.api.nvim_set_hl(0, 'Pmenu', { bg='black', fg='white' })
+vim.api.nvim_set_hl(0, 'ActiveWindow', { ctermbg='NONE' })
+vim.api.nvim_set_hl(0, 'InactiveWindow', { ctermbg='LightGrey' })
 vim.api.nvim_exec([[
-hi ActiveWindow ctermbg=NONE
-hi InactiveWindow ctermbg=LightGrey
 set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 ]], false)
 
