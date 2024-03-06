@@ -20,8 +20,8 @@
 
 -- with hostname
 --\set PROMPT1 '%n %[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
---\set PROMPT1 '%x %R[%m] %# '
-\set PROMPT1 '%[%033[1m%]%/%[%033[0m%]%R[%`echo $SSH_REAL_HOST`]%[%033[1;31m%]%x%[%033[K%]%[%033[0m%]%# '
+\set PROMPT1 '%R[%`echo $SSH_REAL_HOST`] %x%# '
+--\set PROMPT1 '%[%033[1m%]%/%[%033[0m%]%R[%`echo $SSH_REAL_HOST`]%[%033[1;31m%]%x%[%033[K%]%[%033[0m%]%# '
 
 -- set prompt2 (next line in command) to whitespace from PG13
 -- \set PROMPT2 '%w'
