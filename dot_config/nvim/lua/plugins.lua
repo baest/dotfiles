@@ -74,7 +74,8 @@ return require('packer').startup(function(use)
 		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
 	}
 	use 'nvim-treesitter/nvim-treesitter-textobjects'  -- Additional textobjects for treesitter
-	use 'p00f/nvim-ts-rainbow'
+	--use 'p00f/nvim-ts-rainbow'
+	use 'HiPhish/rainbow-delimiters.nvim'
 
 	use 'neovim/nvim-lspconfig'                        -- Collection of configurations for built-in LSP client
 	use 'williamboman/mason.nvim'
@@ -118,7 +119,7 @@ return require('packer').startup(function(use)
 	use 'ray-x/go.nvim'
 	use 'ray-x/guihua.lua' -- recommended if need floating window support
 
-	--use { "shaunsingh/solarized.nvim" }
+	use { "shaunsingh/solarized.nvim" }
 
 	use { "imsnif/kdl.vim" }
 
