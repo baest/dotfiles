@@ -2,6 +2,8 @@ vim.keymap.del('n', 'Y')
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.g.mapleader = ","
+-- yank everything directly to main clipboard
+vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 vim.cmd('source ' .. vim.fn.stdpath('config') .. '/lua/config/init.vim')
 vim.loader.enable()
