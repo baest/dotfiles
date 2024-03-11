@@ -41,7 +41,10 @@
   #idle_inhibitor,
   #custom-newmail,
   #custom-gpu,
-  #tray {
+  #tray,
+  #network,
+  #language
+  {
     padding: 0 2px;
     background: #1a1a1a;
   }
@@ -111,10 +114,12 @@
     color: #89b4fa;
   }
   #memory {
-    color: #89dceb;
+    background: #89dceb;
+    color: black;
   }
   #cpu {
-    color: #cba6f7;
+    background: #cba6f7;
+    color: black;
   }
   #temperature {
     color: #f5c2e7;
@@ -123,7 +128,7 @@
     color: #f38ba8;
   }
   #battery {
-    color: #859900;
+    background: #859900;
   }
   #disk {
     color: #fab387;
@@ -131,7 +136,8 @@
 
  #language {
      border-radius: 20px;
-     padding-left: 10px;
+     background: red;
+     padding: 0 5px;
  }
 
   #clock.4,
@@ -145,4 +151,14 @@
   #temperature,
   #disk {
     padding: 0 10px;
+  }
+
+  #network {
+    background: blue;
+    padding: 0 2px;
+  }
+
+  #clock.4 {
+    background: green;
+    padding: 0 2px;
   }
