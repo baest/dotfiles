@@ -111,7 +111,11 @@ return require('packer').startup(function(use)
 
 	use { "akinsho/toggleterm.nvim", tag = '*' }
 
-	use { "ggandor/leap.nvim" }
+	--use { "ggandor/leap.nvim" }
+	use { "folke/flash.nvim" }
+
+	-- make file helper and more
+	use { "desdic/greyjoy.nvim" }
 
 	-- remove hlsearch when moving cursor
 	use { "romainl/vim-cool" }

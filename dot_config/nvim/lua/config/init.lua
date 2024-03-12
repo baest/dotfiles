@@ -7,7 +7,6 @@ vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 vim.cmd('source ' .. vim.fn.stdpath('config') .. '/lua/config/init.vim')
 vim.loader.enable()
---require('impatient')
 
 require('config.lualine')
 --require("config.possession")
@@ -19,7 +18,9 @@ require("config.toggleterm")
 require("config.focus")
 require("config.neo-minimap")
 require("config.chezmoi")
-require("config.rainbow-delimiters")
+require("config.greyjoy")
+--TODO fucked up colors, so fix
+--require("config.rainbow-delimiters")
 --require("config.solarized")
 --require("config.leap")
 
