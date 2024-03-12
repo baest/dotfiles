@@ -140,7 +140,6 @@
      padding: 0 5px;
  }
 
-  #clock.4,
   #pulseaudio,
   #wireplumber,
   #memory,
@@ -155,10 +154,11 @@
 
   #network {
     background: blue;
-    padding: 0 2px;
+    padding-left: 4px;
+    padding-right: 2px;
   }
 
   #clock.4 {
     background: green;
-    padding: 0 2px;
+    padding: 0 4px;
   }
