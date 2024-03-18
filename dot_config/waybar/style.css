@@ -42,8 +42,7 @@
   #custom-newmail,
   #custom-gpu,
   #tray,
-  #network,
-  #language
+  #network
   {
     padding: 0 2px;
     background: #1a1a1a;
@@ -136,7 +135,8 @@
 
  #language {
      border-radius: 20px;
-     background: red;
+     background: #cab14c;
+     color: black;
      padding: 0 5px;
  }
 
