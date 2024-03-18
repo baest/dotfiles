@@ -18,6 +18,11 @@ bind-key v run "xclip -o | tmux load-buffer - ; tmux paste-buffer"
 bind-key X send-keys y
 bind-key t run "resize_2_3.sh"
 
+# switch windows alt+number
+{{- range $i, $e := until 10 }}
+bind-key -n M-{{$i}} select-window -t {{$i}}
+{{- end }}
+
 #set -g default-terminal "tmux-256color"
 set -sg escape-time 10
 
