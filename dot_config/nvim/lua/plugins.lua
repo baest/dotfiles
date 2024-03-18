@@ -103,7 +103,7 @@ return require('packer').startup(function(use)
 	}
 
 	use { 'hrsh7th/nvim-cmp',                          -- Autocompletion 
-	  requires = { 'hrsh7th/cmp-nvim-lsp' } 
+	  requires = { 'hrsh7th/cmp-nvim-lsp' }
 	}
 	use { 'L3MON4D3/LuaSnip',                        -- Snippet Engine and Snippet Expansion
 	  requires = { 'saadparwaiz1/cmp_luasnip' }
@@ -125,7 +125,8 @@ return require('packer').startup(function(use)
 
 	use { "shaunsingh/solarized.nvim" }
 
-	use { "imsnif/kdl.vim" }
+	--use { "imsnif/kdl.vim" }
+	use { "rafamadriz/friendly-snippets" }
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
