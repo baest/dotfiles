@@ -43,6 +43,7 @@ require("config.lsp.mason")
 require("config.lsp.lspconfig")
 require("config.lsp.null-ls")
 require("config.go")
+require("config.gitsigns")
 
 vim.api.nvim_set_hl(0, 'Pmenu', { bg='black', fg='white' })
 vim.api.nvim_set_hl(0, 'ActiveWindow', { ctermbg='NONE' })
