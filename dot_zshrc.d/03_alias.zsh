@@ -40,6 +40,8 @@ else
 	alias nv=nvim
 	alias nvs='nvim -On'
 	alias nv2='nvim -O2'
+	alias nvk='NVIM_APPNAME="nvim-kickstart" nvim'
+	alias nvo='NVIM_APPNAME="nvim-own" nvim'
 	alias damnit='nvim $(git grep -l "<<<< HEAD")'
 fi
 alias pbi=perlbrew_init
