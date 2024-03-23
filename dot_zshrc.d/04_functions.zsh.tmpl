@@ -240,3 +240,7 @@ function git() {
 	/usr/bin/git "$@"
 }
 {{ end }}
+
+function changie() {
+    (cd ~/work/log && /usr/bin/changie "$@")
+}
