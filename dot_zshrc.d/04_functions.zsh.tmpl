@@ -138,7 +138,8 @@ function cnodesfzf() {
 	ZLE_ENABLED=0
     fi
 
-    local selected_host=$({cat ~/.cache/cnodes & awk '{print $1}' ~/.ssh/known_hosts; }|sort|uniq|sk --multi --query "$LBUFFER" --prompt="SSH remote > " --color "prompt:#89b4fa")
+    #local selected_host=$({cat ~/.cache/cnodes & awk '{print $1}' ~/.ssh/known_hosts; }|sort|uniq|sk --multi --query "$LBUFFER" --prompt="SSH remote > " --color "prompt:#89b4fa")
+g   local selected_host=$(cat ~/.cache/cnodes | sk --multi --query "$LBUFFER" --prompt="SSH remote > " --color "prompt:#89b4fa")
     if [ -n "$selected_host" ]; then
 	if [ -n "$TMUX" ]; then
 	    WINDOWNAME=$(echo ${selected_host}|cut -d . -f1)
