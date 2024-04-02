@@ -2,7 +2,7 @@
 set -x
 
 brightness() {
-	sudo brightnessctl --device='tpacpi::kbd_backlight' $@
+	brightnessctl --device='tpacpi::kbd_backlight' $@
 }
 
 if [ "$#" -eq 0 ]; then
