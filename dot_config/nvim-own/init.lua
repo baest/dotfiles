@@ -64,9 +64,6 @@ require 'late-options'
 --	-- make file helper and more
 --	use { "desdic/greyjoy.nvim" }
 --
---	-- remove hlsearch when moving cursor
---	use { "romainl/vim-cool" }
---
 --	use 'ray-x/go.nvim'
 --	use 'ray-x/guihua.lua' -- recommended if need floating window support
 --
