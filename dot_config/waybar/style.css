@@ -48,6 +48,10 @@
     background: #1a1a1a;
   }
 
+  #custom-exit {
+  	padding: 0 5px;
+  }
+
   #workspaces button {
     padding: 0 2px;
     color: #fdf6e3;

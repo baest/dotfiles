@@ -52,7 +52,8 @@ ts.setup({
 	pickers = {
 		buffers = {
 			ignore_current_buffer = true,
-			sort_lastused = true,
+			--sort_lastused = true,
+			sort_mru = true,
 			--sorter = sorters.get_substr_matcher(),
 			sorter = sorters.get_fzy_sorter(),
 			show_all_buffers = true,
