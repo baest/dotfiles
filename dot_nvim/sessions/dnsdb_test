@@ -18,7 +18,7 @@ badd +13 test/310_auth_list_q.t
 badd +45 test/300_auth_basic_q.t
 badd +237 test/250_get_records.t
 badd +10 test/600_acme_challenge-cname.t
-badd +110 test/900_performance.t
+badd +1 test/900_performance.t
 badd +97 ../tools/t/lib/TestHelpers.pm
 badd +112 ../dbcommon/lib/DBTestHelper.pm
 badd +21 test/210_get_prefix_from_suffix.t
@@ -59,8 +59,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 224 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 137 + 181) / 362)
 argglobal
 if bufexists(fnamemodify("test/900_performance.t", ":p")) | buffer test/900_performance.t | else | edit test/900_performance.t | endif
 if &buftype ==# 'terminal'
@@ -77,12 +77,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 110 - ((83 * winheight(0) + 42) / 84)
+let s:l = 114 - ((0 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 110
-normal! 033|
+keepjumps 114
+normal! 0
 wincmd w
 argglobal
 if bufexists(fnamemodify("test/300_auth_basic_q.t", ":p")) | buffer test/300_auth_basic_q.t | else | edit test/300_auth_basic_q.t | endif
@@ -100,15 +100,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 44 - ((38 * winheight(0) + 42) / 84)
+let s:l = 44 - ((0 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 44
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 224 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 137 + 181) / 362)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

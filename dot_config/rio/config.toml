@@ -35,6 +35,8 @@ blinking-cursor = false
 #
 # Example:
 theme = "mod-catppuccin-latte"
+#theme = "solarized"
+#theme = "solarized_dark"
 
 # Padding-x
 #
@@ -162,6 +164,7 @@ disable-renderer-when-unfocused = true
 # Example:
 [fonts]
 	size = 15
+	#family = "terminus"
 	#family = "Fira Code"
 #
 # [fonts.regular]

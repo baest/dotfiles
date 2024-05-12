@@ -13,37 +13,40 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +19 lua/config/telescope.lua
+badd +31 lua/config/telescope.lua
 badd +63 lua/config/init.vim
 badd +1 init.vim
 badd +1 _init.lua
-badd +132 lua/plugins.lua
-badd +5 lua/config/init.lua
+badd +123 lua/plugins.lua
+badd +4 lua/config/init.lua
 badd +9 lua/config/possession.lua
 badd +3 lua/config/sessions.lua
-badd +5 lua/config/indent_blankline.lua
+badd +34 lua/config/indent_blankline.lua
 badd +1 init.lua
 badd +1 lua/config/lualine.lua
-badd +11 _init.vim
+badd +1 _init.vim
 badd +1 lua/config/treesitter.lua
 badd +1 .nvim/session
-badd +18 lua/config/toggleterm.lua
+badd +2 lua/config/toggleterm.lua
 badd +1 lua/config/leap.lua
 badd +2 lua/config/focus.lua
 badd +50 lua/config/lsp/null-ls.lua
 badd +4 lua/config/lsp/mason.lua
-badd +46 lua/config/lsp/lspconfig.lua
+badd +38 lua/config/lsp/lspconfig.lua
 badd +1 lua/config/lsp/lspsaga.lua
 badd +4 TODO
 badd +12 lua/config/neo-minimap.lua
 badd +1 lua/config/black.lua
+badd +15 lua/config/rainbow-delimiters.lua
+badd +1 lua/config/solarized.lua
+badd +1 lua/config/go.lua
 argglobal
 %argdel
 $argadd init.vim
 $argadd _init.lua
 $argadd lua/plugins.lua
 $argadd lua/config/init.lua
-edit lua/plugins.lua
+edit lua/config/telescope.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -60,15 +63,39 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 167 + 135) / 271)
+exe 'vert 2resize ' . ((&columns * 103 + 135) / 271)
+argglobal
+2argu
+if bufexists(fnamemodify("lua/config/telescope.lua", ":p")) | buffer lua/config/telescope.lua | else | edit lua/config/telescope.lua | endif
+if &buftype ==# 'terminal'
+  silent file lua/config/telescope.lua
+endif
+balt lua/config/toggleterm.lua
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 52 - ((27 * winheight(0) + 31) / 62)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 52
+normal! 015|
+wincmd w
 argglobal
 2argu
 if bufexists(fnamemodify("lua/plugins.lua", ":p")) | buffer lua/plugins.lua | else | edit lua/plugins.lua | endif
 if &buftype ==# 'terminal'
   silent file lua/plugins.lua
 endif
-balt lua/config/lualine.lua
+balt init.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -79,39 +106,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 132 - ((84 * winheight(0) + 42) / 85)
+let s:l = 43 - ((41 * winheight(0) + 31) / 62)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 132
-normal! 04|
+keepjumps 43
+normal! 010|
 wincmd w
-argglobal
-2argu
-if bufexists(fnamemodify("lua/config/lualine.lua", ":p")) | buffer lua/config/lualine.lua | else | edit lua/config/lualine.lua | endif
-if &buftype ==# 'terminal'
-  silent file lua/config/lualine.lua
-endif
-balt lua/config/focus.lua
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 42) / 85)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 1
-normal! 0
-wincmd w
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 167 + 135) / 271)
+exe 'vert 2resize ' . ((&columns * 103 + 135) / 271)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

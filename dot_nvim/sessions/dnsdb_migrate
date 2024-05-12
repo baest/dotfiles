@@ -78,8 +78,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 103 + 135) / 271)
+exe 'vert 2resize ' . ((&columns * 167 + 135) / 271)
 argglobal
 balt lint_config.pl
 setlocal fdm=manual
@@ -92,7 +92,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 141 - ((29 * winheight(0) + 42) / 84)
+let s:l = 141 - ((0 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -115,16 +115,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 10 - ((9 * winheight(0) + 42) / 84)
+let s:l = 14 - ((0 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 10
-normal! 043|
+keepjumps 14
+normal! 0
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 103 + 135) / 271)
+exe 'vert 2resize ' . ((&columns * 167 + 135) / 271)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

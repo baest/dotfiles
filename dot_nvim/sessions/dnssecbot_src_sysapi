@@ -14,33 +14,75 @@ else
   set shortmess=aoO
 endif
 badd +18 api3/fqdns.go
-badd +1 api3/routes.go
-badd +40 api3/zone_dnssec_key_sets.go
-badd +1 models3/zone_dnssec_key_set/zone_dnssec_key_set.go
-badd +104 models3/fqdn/fqdn.go
+badd +283 api3/routes.go
+badd +97 models3/fqdn/fqdn.go
 badd +7 api3/domain_powerdns_metadatas.go
-badd +65 models3/zone_custom_record/zone_custom_record.go
+badd +162 models3/zone_custom_record/zone_custom_record.go
 badd +1 coredb/t_vm.go
-badd +84 coredb/t_zone_dnssec_key_set.json
+badd +133 coredb/t_zone_dnssec_key_set.json
 badd +59 coredb/t_vm.json
-badd +16 models3/zone_dnssec_cryptokey/zone_dnssec_cryptokey.go
-badd +28 coredb/t_zone_dnssec_cryptokey.go
+badd +52 models3/zone_dnssec_cryptokey/zone_dnssec_cryptokey.go
+badd +32 coredb/t_zone_dnssec_cryptokey.go
 badd +44 api3/error/errors.txt
 badd +4 coredb/t_zone_dnssec_cryptokey.json
-badd +168 coredb/coredb.go
-badd +16 coredb/t_zone_dnssec_key_set.go
-badd +39 api3/error/errors.go
+badd +182 coredb/coredb.go
+badd +93 api3/error/errors.go
 badd +274 models3/vm/vm.go
-badd +169 models3/backup/backup.go
+badd +657 models3/backup/backup.go
 badd +15 backupinventorydb/v_source_view.go
-badd +150 api3/zone_powerdns_metadatas.go
+badd +149 api3/zone_powerdns_metadatas.go
 badd +57 api3/vms.go
 badd +4 api/domains.go
-badd +85 provision/provision.go
+badd +86 provision/provision.go
+badd +92 ../test/v3/390_zone_dnssec_key_set.t
+badd +50 models3/service_record/service_record.go
+badd +21 coredb/t_zone_dnssec_key_set.go
+badd +57 api3/dnssec_key_sets.go
+badd +421 models3/zone_dnssec_key_set/zone_dnssec_key_set.go
+badd +39 api3/zone_dnssec_key_sets.go
+badd +109 ~/src/systems-api/src/db3/db.go
+badd +135 ~/src/systems-api/src/types/string.go
+badd +140 ../test/v3/391_dnssec_key_set.t
+badd +318 health://
+badd +186 ~/src/systems-api/src/types/time.go
+badd +11 ~/src/systems-api/src/api3/job_queue_tsts.go
+badd +12 ~/src/systems-api/src/api3/certificate_bot_certificate_requests.go
+badd +166 ~/src/systems-api/src/vendor/github.com/miekg/dns/dnssec_keyscan.go
+badd +987 ~/src/systems-api/src/vendor/github.com/miekg/dns/types.go
+badd +1 ~/src/systems-api/src/vendor/github.com/miekg/dns/dnssec_privkey.go
+badd +59 ~/src/systems-api/src/vendor/github.com/miekg/dns/msg.go
+badd +71 ~/src/systems-api/src/provision/cluster_service.go
+badd +19 models3/restore/restore.go
+badd +84 ~/src/systems-api/src/job_queue3/function.go
+badd +104 models3/vm_action/vm_action.go
+badd +305 ~/src/systems-api/src/coredb/t_zone.go
+badd +26 models3/user_ip_filter/user_ip_filter.go
+badd +161 ~/src/systems-api/src/db3/tx.go
+badd +83 api3/ptr_records.go
+badd +53 models3/ptr_record/ptr_record.go
+badd +208 ~/src/systems-api/src/gprpc2/gprpc2.go
+badd +29 ~/src/systems-api/src/http/http.go
+badd +176 ~/src/systems-api/src/vendor/gitlab.group.one/go/digest/digest.go
+badd +157 ~/sdk/go1.20.14/src/encoding/json/encode.go
+badd +196 cmd/systems-api-server/main.go
+badd +74 ~/src/systems-api/src/job_queue3/job_queue3.go
+badd +41 ~/src/systems-api/src/utils/ctx_util/ctx_util.go
+badd +93 config/config.go
+badd +169 ../test/lib/TestHelper/JobQueue3.pm
+badd +928 ../test/lib/TestHelper.pm
+badd +11 ~/src/systems-api/src/types/duration.go
+badd +612 ~/sdk/go1.20.14/src/time/time.go
+badd +119 ~/src/systems-api/src/coredb/t_brand.go
+badd +1358 ~/sdk/go1.20.14/src/net/http/request.go
+badd +47 ~/src/systems-api/src/api3/controller.go
+badd +329 models3/cluster/cluster.go
+badd +555 coredb/t_cluster.go
+badd +63 coredb/t_zone.json
+badd +16 coredb/t_cluster.json
 argglobal
 %argdel
 $argadd api3/fqdns.go
-edit coredb/t_zone_dnssec_key_set.json
+edit models3/zone_dnssec_key_set/zone_dnssec_key_set.go
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -57,10 +99,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 306 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 55 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 103 + 135) / 271)
+exe 'vert 2resize ' . ((&columns * 167 + 135) / 271)
 argglobal
-balt models3/zone_dnssec_key_set/zone_dnssec_key_set.go
+balt coredb/t_zone_dnssec_key_set.go
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -71,19 +113,19 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 84 - ((11 * winheight(0) + 42) / 84)
+let s:l = 313 - ((35 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 84
-normal! 0
+keepjumps 313
+normal! 09|
 wincmd w
 argglobal
 if bufexists(fnamemodify("models3/zone_dnssec_key_set/zone_dnssec_key_set.go", ":p")) | buffer models3/zone_dnssec_key_set/zone_dnssec_key_set.go | else | edit models3/zone_dnssec_key_set/zone_dnssec_key_set.go | endif
 if &buftype ==# 'terminal'
   silent file models3/zone_dnssec_key_set/zone_dnssec_key_set.go
 endif
-balt api3/routes.go
+balt coredb/t_zone_dnssec_key_set.go
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -94,16 +136,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 141 - ((19 * winheight(0) + 42) / 84)
+let s:l = 421 - ((30 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 141
-normal! 0
+keepjumps 421
+normal! 046|
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 306 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 55 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 103 + 135) / 271)
+exe 'vert 2resize ' . ((&columns * 167 + 135) / 271)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

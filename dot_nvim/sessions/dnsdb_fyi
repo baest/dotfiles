@@ -61,10 +61,11 @@ badd +1 fyi/public/type_auth_info_zone.sql
 badd +27 fyi/public/f_is_ent_record.sql
 badd +39 fyi/public/f_get_service_zone.sql
 badd +27 fyi/public/t_coredb_domain.sql
+badd +54 fyi/public/t_service_zone_record.sql
 argglobal
 %argdel
 $argadd fyi/public/f_get_dns_records.sql
-edit fyi/public/f_auth_info_zone.sql
+edit fyi/public/t_service_zone_record.sql
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -81,10 +82,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 124 + 126) / 253)
+exe 'vert 2resize ' . ((&columns * 128 + 126) / 253)
 argglobal
-balt fyi/public/t_domain.sql
+balt fyi/public/f_auth_info_zone.sql
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -95,12 +96,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 2 - ((1 * winheight(0) + 42) / 84)
+let s:l = 54 - ((0 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
-normal! 0
+keepjumps 54
+normal! 014|
 wincmd w
 argglobal
 if bufexists(fnamemodify("fyi/public/t_record.sql", ":p")) | buffer fyi/public/t_record.sql | else | edit fyi/public/t_record.sql | endif
@@ -118,16 +119,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 40 - ((1 * winheight(0) + 42) / 84)
+let s:l = 40 - ((0 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 40
-normal! 011|
+normal! 012|
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 124 + 126) / 253)
+exe 'vert 2resize ' . ((&columns * 128 + 126) / 253)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

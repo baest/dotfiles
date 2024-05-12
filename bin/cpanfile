@@ -11,3 +11,6 @@ requires 'String::ShellQuote';
 requires 'Data::Printer';
 requires 'YAML::PP';
 requires 'Term::Size';
+requires 'Plack::Test';
+requires 'Test::Most';
+requires 'IO::Async';

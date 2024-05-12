@@ -14,9 +14,9 @@ else
   set shortmess=aoO
 endif
 badd +5 ~/src/database-schema/coredb/migration/0537_add_soa_serial_to_zone.sql
-badd +379 scripts/one.com-dns-exporter
-badd +1 test/lib/TestHelper.pm
-badd +357 test/020_cluster_records.t
+badd +586 scripts/one.com-dns-exporter
+badd +349 test/lib/TestHelper.pm
+badd +371 test/020_cluster_records.t
 badd +456 test/010_old_domain_records.t
 badd +117 ~/src/database-schema/dnsdb/migration/0221_soa_in_coredb.sql
 badd +3 ~/src/database-schema/dnsdb/migration/0222_dns_record_uniq_index.sql
@@ -29,7 +29,7 @@ badd +1 test/005_check_suffix_to_prefix.t
 badd +25 ~/src/database-schema/dnsdb/test/210_get_prefix_from_suffix.t
 badd +4 container/dnsdb/fixture_migration/0001_core_domains.sql
 badd +44 /opt/homebrew/Cellar/perl/5.34.0/lib/perl5/5.34.0/warnings/register.pm
-badd +111 test/030_dnssec_keys.t
+badd +337 test/030_dnssec_keys.t
 badd +18 ~/src/database-schema/dnsdb/migration/0227_get_prefix_from_suffix.sql
 badd +114 test/050_old_integration.t
 badd +1 ~/src/database-schema/dnsdb/migration/0228_drop_special_suffix_handling.sql
@@ -56,15 +56,15 @@ badd +79 Makefile
 badd +90 test/020_old_cluster_records.t
 badd +381 test/025_zone_records.t
 badd +5 ../dns-utilities/test/005_service_zone.t
-badd +362 test/010_domain_records.t
-badd +32 test/050_integration.t
+badd +186 test/010_domain_records.t
+badd +216 test/050_integration.t
 badd +16 test/100_clean_up_ent_records.t
 badd +8 container/pdns/pdns.d/pdns-hostnet.nl.conf
 argglobal
 %argdel
 $argadd scripts/one.com-dns-exporter
 $argadd container/coredb/migration/0530_add_soa_serial.sql
-edit test/lib/TestHelper.pm
+edit scripts/one.com-dns-exporter
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -81,14 +81,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 103 + 126) / 253)
+exe 'vert 2resize ' . ((&columns * 149 + 126) / 253)
 argglobal
-if bufexists(fnamemodify("test/lib/TestHelper.pm", ":p")) | buffer test/lib/TestHelper.pm | else | edit test/lib/TestHelper.pm | endif
-if &buftype ==# 'terminal'
-  silent file test/lib/TestHelper.pm
-endif
-balt scripts/one.com-dns-exporter
+balt test/010_domain_records.t
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -99,19 +95,19 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 431 - ((0 * winheight(0) + 42) / 84)
+let s:l = 586 - ((33 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 431
-normal! 022|
+keepjumps 586
+normal! 027|
 wincmd w
 argglobal
-if bufexists(fnamemodify("test/050_integration.t", ":p")) | buffer test/050_integration.t | else | edit test/050_integration.t | endif
+if bufexists(fnamemodify("test/030_dnssec_keys.t", ":p")) | buffer test/030_dnssec_keys.t | else | edit test/030_dnssec_keys.t | endif
 if &buftype ==# 'terminal'
-  silent file test/050_integration.t
+  silent file test/030_dnssec_keys.t
 endif
-balt container/pdns/pdns.d/pdns-hostnet.nl.conf
+balt test/010_domain_records.t
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -122,16 +118,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 196 - ((27 * winheight(0) + 42) / 84)
+let s:l = 337 - ((0 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 196
-normal! 09|
+keepjumps 337
+normal! 0
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 138 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 103 + 126) / 253)
+exe 'vert 2resize ' . ((&columns * 149 + 126) / 253)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

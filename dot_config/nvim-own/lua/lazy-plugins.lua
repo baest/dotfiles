@@ -23,18 +23,13 @@ require('lazy').setup({
   --  This is equivalent to:
   --    require('Comment').setup({})
 
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
   --require 'kickstart/plugins/telescope',
 
   require 'kickstart/plugins/lspconfig',
 
-  --require 'kickstart/plugins/conform',
-
   require 'kickstart/plugins/cmp',
 
-  --require 'kickstart/plugins/tokyonight',
+  -- require 'kickstart/plugins/tokyonight',
 
   require 'kickstart/plugins/todo-comments',
 
@@ -96,9 +91,9 @@ require('lazy').setup({
   change_detection = {
     notify = false,
   },
-  --  install = {
-  --    colorscheme = { 'catppuccin' },
-  --  },
+  -- install = {
+  --   colorscheme = { 'catppuccin' },
+  -- },
 })
 
 --require('lazy').setup({

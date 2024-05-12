@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/src/temporal-workflows
+cd ~/src/maestro-worker-dns
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,13 +13,86 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +74 internal/temporal/workflows/mysql_restore/mysql_restore_cluster_databases.go
-badd +31 test/mysql_restore/mysql_restore_cluster_test.go
-badd +23 test/temporal_test_suite.go
+badd +75 internal/temporal/workflows/mysql_restore/mysql_restore_cluster_databases.go
+badd +44 test/mysql_restore/mysql_restore_cluster_test.go
+badd +48 test/temporal_test_suite.go
+badd +355 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/internal/workflow_testsuite.go
+badd +89 internal/temporal/workflows/dnssecbot/sign.go
+badd +12 pkg/sysapi.v3/dnssec_key_set.go
+badd +29 internal/dns/resolver.go
+badd +1 health://
+badd +1 test/mysql_evacuate/mysql_evacuate.go
+badd +16 test/mysql_evacuate/mysql_evacuate_host_test.go
+badd +16 test.go
+badd +20 internal/temporal/workflows/base_workflow.go
+badd +1 internal/temporal/workflows/dnssecbot/error.go
+badd +3 ~/src/temporal-workflows/internal/temporal/activities/gprpc2/activities.go
+badd +118 internal/temporal/activities/dnssecbot/activities.go
+badd +10 internal/temporal/activities/sysapi.v3/activities.go
+badd +14 ~/src/temporal-workflows/internal/temporal/activities/sysapi.v3/sysapi.go
+badd +1 internal/temporal/activities/email/email.go
+badd +17 internal/temporal/activities/dnssecbot/dnssecbot.go
+badd +1031 ~/src/temporal-workflows/vendor/github.com/miekg/dns/types.go
+badd +248 ~/src/temporal-workflows/vendor/github.com/miekg/dns/client.go
+badd +49 ~/src/temporal-workflows/vendor/github.com/miekg/dns/dnssec.go
+badd +20 pkg/sysapi.v3/migration.go
+badd +10 internal/dns/keys.go
+badd +21 ~/src/temporal-workflows/vendor/github.com/miekg/dns/dnssec_privkey.go
+badd +57 internal/temporal/validator/validator.go
+badd +124 cmd/worker/main.go
+badd +104 scripts/examples.py
+badd +29 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/log/logger.go
+badd +19 internal/config/config.go
+badd +59 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/activity/activity.go
+badd +203 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/internal/activity.go
+badd +86 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/internal/interceptor.go
+badd +1 ~/src/temporal-workflows/internal/temporal/workflows/mysql_restore/error.go
+badd +46 internal/temporal/activities/slack/activities.go
+badd +22 ~/src/temporal-workflows/internal/temporal/activities/slack/slack.go
+badd +30 /usr/lib/go/src/fmt/errors.go
+badd +62 /usr/lib/go/src/errors/errors.go
+badd +22 internal/temporal/workflows/examples/sysapi_v3_databases_sync.go
+badd +60 pkg/sysapi.v3/cluster.go
+badd +232 ~/src/temporal-workflows/pkg/sysapi.v3/sysapi.go
+badd +18 pkg/sysapi.v3/database.go
+badd +128 test/dnssecbot/sign_test.go
+badd +157 test/mysql_evacuate/mysql_migrate_intrapod_cluster_test.go
+badd +191 test/mailstorage_migrate/mailstorage_migrate_intrapod_cluster_test.go
+badd +39 ~/src/temporal-workflows/internal/temporal/workflows/mailstorage_migrate/mailstorage_migrate_intrapod_cluster.go
+badd +20 ~/src/temporal-workflows/test/mailstorage_migrate/mailstorage_migrate.go
+badd +46 test/dnssecbot/activities_test.go
+badd +55 pkg/sysapi.v3/brand.go
+badd +1200 /usr/lib/go/src/net/url/url.go
+badd +21 internal/temporal/config.go
+badd +158 ~/src/temporal-workflows/vendor/golang.org/x/exp/slog/level.go
+badd +8 ~/src/temporal-workflows/pkg/sysapi.v3/service.go
+badd +38 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/testsuite/testsuite.go
+badd +2095 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/internal/internal_workflow_testsuite.go
+badd +570 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/internal/internal_worker.go
+badd +19 internal/temporal/dnssecbot/dnssecbot.go
+badd +59 internal/temporal/dnssecbot/step_enumer.go
+badd +164 /usr/lib/go/src/crypto/crypto.go
+badd +119 ~/src/temporal-workflows/vendor/golang.org/x/exp/slog/logger.go
+badd +1 ~/src/temporal-workflows-dns/vendor/github.com/miekg/dns/dnssec_keygen.go
+badd +70 ~/src/temporal-workflows-dns/vendor/github.com/miekg/dns/dnssec_keyscan.go
+badd +158 ~/src/temporal-workflows-dns/vendor/go.temporal.io/sdk/workflow/deterministic_wrappers.go
+badd +1132 ~/src/temporal-workflows-dns/vendor/go.temporal.io/sdk/internal/workflow.go
+badd +119 Makefile
+badd +17 internal/temporal/workflows/dnssecbot/unsign.go
+badd +1 ~/install_src/miekg_dns/dnssec.go
+badd +10 internal/temporal/workflows/dnssecbot/common.go
+badd +113 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/workflow/activity_options.go
+badd +661 /usr/lib/go/src/time/time.go
+badd +40 test/dnssecbot/unsign_test.go
+badd +171 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/temporal/error.go
+badd +577 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/internal/error.go
+badd +2 TODO.md
+badd +170 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/workflow/deterministic_wrappers.go
+badd +49 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/workflow/context.go
 argglobal
 %argdel
 $argadd internal/temporal/workflows/mysql_restore/mysql_restore_cluster_databases.go
-edit internal/temporal/workflows/mysql_restore/mysql_restore_cluster_databases.go
+edit internal/temporal/workflows/dnssecbot/unsign.go
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -36,10 +109,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 167 + 135) / 271)
+exe 'vert 2resize ' . ((&columns * 103 + 135) / 271)
 argglobal
-balt test/temporal_test_suite.go
+balt test/dnssecbot/unsign_test.go
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -50,19 +123,19 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 39 - ((38 * winheight(0) + 42) / 84)
+let s:l = 127 - ((30 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 39
-normal! 092|
+keepjumps 127
+normal! 017|
 wincmd w
 argglobal
-if bufexists(fnamemodify("test/mysql_restore/mysql_restore_cluster_test.go", ":p")) | buffer test/mysql_restore/mysql_restore_cluster_test.go | else | edit test/mysql_restore/mysql_restore_cluster_test.go | endif
+if bufexists(fnamemodify("test/dnssecbot/unsign_test.go", ":p")) | buffer test/dnssecbot/unsign_test.go | else | edit test/dnssecbot/unsign_test.go | endif
 if &buftype ==# 'terminal'
-  silent file test/mysql_restore/mysql_restore_cluster_test.go
+  silent file test/dnssecbot/unsign_test.go
 endif
-balt test/temporal_test_suite.go
+balt test/dnssecbot/sign_test.go
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -73,15 +146,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 18 - ((17 * winheight(0) + 42) / 84)
+let s:l = 44 - ((33 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 18
-normal! 010|
+keepjumps 44
+normal! 044|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 167 + 135) / 271)
+exe 'vert 2resize ' . ((&columns * 103 + 135) / 271)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
