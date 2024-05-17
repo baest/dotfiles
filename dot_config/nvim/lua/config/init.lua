@@ -20,6 +20,7 @@ require("config.neo-minimap")
 require("config.chezmoi")
 require("config.greyjoy")
 require("config.text-case")
+require("config.edit-markdown-table")
 --TODO fucked up colors, so fix
 --require("config.rainbow-delimiters")
 --require("config.solarized")
