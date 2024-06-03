@@ -139,7 +139,7 @@ function cnodesfzf() {
     fi
 
     #local selected_host=$({cat ~/.cache/cnodes & awk '{print $1}' ~/.ssh/known_hosts; }|sort|uniq|sk --multi --query "$LBUFFER" --prompt="SSH remote > " --color "prompt:#89b4fa")
-    local selected_host=$(cat ~/.cache/cnodes | sk --multi --query "$LBUFFER" --prompt="SSH remote > " --color "prompt:#89b4fa")
+    local selected_host=$(cat ~/.cache/cnodes | fzf --bind "tab:preview(sushi {})" --query "$LBUFFER" --prompt="SSH remote > " --color "prompt:#89b4fa")
     if [ -n "$selected_host" ]; then
 	if [ -n "$TMUX" ]; then
 	    WINDOWNAME=$(echo ${selected_host}|cut -d . -f1)
@@ -147,7 +147,8 @@ function cnodesfzf() {
 	elif [ -n "$ZELLIJ" ]; then
 	    zellij action rename-pane "${selected_host}"
 	fi
-	BUFFER="ssh ${selected_host}"
+	SSH_CMD={{ lookPath "ssh" }}
+	BUFFER="$SSH_CMD ${selected_host}"
 	if [[ ${ZLE_ENABLED} -eq 1 ]]; then
 	    zle accept-line
 	else
@@ -231,14 +232,14 @@ function ssh () {
 	add_ssh_key_if_needed
 	unset -f ssh
 	unset -f git
-	/usr/bin/ssh "$@"
+	{{ lookPath "ssh" }} "$@"
 }
 
 function git() {
 	add_ssh_key_if_needed
 	unset -f ssh
 	unset -f git
-	/usr/bin/git "$@"
+	{{ lookPath "git" }} "$@"
 }
 {{ end }}
 
