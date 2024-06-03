@@ -37,6 +37,13 @@ safe_source() {
 pg() {
 	add_ssh_key_if_needed
 	[[ -z "$PERLBREW_VERSION" ]] && perlbrew_init
+	if [ -z "$@" ]; then
+	    local pgsel=$(yq -r 'keys[]' < data/pg_service.yaml | perl -lne 'length()>3 && print' | fzf --prompt="PG > " --color "prompt:#89b4fa")
+	    if [ -n "$pgsel" ]; then
+		~/bin/pg "$pgsel"
+	    fi
+	    return
+	fi
 	~/bin/pg "$@"
 }
 
