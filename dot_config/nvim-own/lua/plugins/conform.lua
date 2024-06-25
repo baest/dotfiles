@@ -20,7 +20,8 @@ return {
     formatters_by_ft = {
       c = { 'clang-format' },
       cpp = { 'clang-format' },
-      go = { 'golines', 'goimports', 'gofmt', 'gofumpt', 'gci' },
+      go = { 'goimports', 'gofmt', 'gofumpt', 'gci' },
+      --go = { 'golines', 'goimports', 'gofmt', 'gofumpt', 'gci' },
       javascript = { { 'prettierd', 'prettier' } },
       json = { 'jq' },
       lua = { 'stylua' },

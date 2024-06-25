@@ -5,10 +5,10 @@ vim.g.maplocalleader = ','
 vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
-require 'options'
+require('core.options')
 
 -- [[ Basic Keymaps ]]
-require 'keymaps'
+require('core.keymaps')
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 require 'lazy-bootstrap'
@@ -16,7 +16,11 @@ require 'lazy-bootstrap'
 -- [[ Configure and install plugins ]]
 require 'lazy-plugins'
 
+require("core.autogroups")
+
 require 'late-options'
+
+--TODO trouble doesn't provide diagnostics
 
 -- TODO
 --	use({"nvim-telescope/telescope-fzy-native.nvim"})
@@ -37,18 +41,6 @@ require 'late-options'
 --
 --	--use("alker0/chezmoi.vim")
 --
---	use {
---		"folke/trouble.nvim",
---		requires = "kyazdani42/nvim-web-devicons",
---		config = function()
---			require("trouble").setup {
---				-- your configuration comes here
---				-- or leave it empty to use the default settings
---				-- refer to the configuration section below
---			}
---		end
---	}
---
 --	use { 'hrsh7th/nvim-cmp',                          -- Autocompletion
 --	  requires = { 'hrsh7th/cmp-nvim-lsp' }
 --	}
@@ -56,16 +48,11 @@ require 'late-options'
 --	  requires = { 'saadparwaiz1/cmp_luasnip' }
 --	}
 --
---	use { "akinsho/toggleterm.nvim", tag = '*' }
---
 --	--use { "ggandor/leap.nvim" }
 --	use { "folke/flash.nvim" }
 --
 --	-- make file helper and more
 --	use { "desdic/greyjoy.nvim" }
---
---	use 'ray-x/go.nvim'
---	use 'ray-x/guihua.lua' -- recommended if need floating window support
 --
 --	use { "shaunsingh/solarized.nvim" }
 --

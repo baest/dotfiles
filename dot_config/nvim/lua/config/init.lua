@@ -21,6 +21,8 @@ require("config.chezmoi")
 require("config.greyjoy")
 require("config.text-case")
 require("config.edit-markdown-table")
+require("config.conform")
+require("config.trouble")
 --TODO fucked up colors, so fix
 --require("config.rainbow-delimiters")
 --require("config.solarized")

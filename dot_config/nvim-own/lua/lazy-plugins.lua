@@ -25,9 +25,9 @@ require('lazy').setup({
 
   --require 'kickstart/plugins/telescope',
 
-  require 'kickstart/plugins/lspconfig',
+  --require 'kickstart/plugins/lspconfig',
 
-  require 'kickstart/plugins/cmp',
+  --require 'kickstart/plugins/cmp',
 
   -- require 'kickstart/plugins/tokyonight',
 

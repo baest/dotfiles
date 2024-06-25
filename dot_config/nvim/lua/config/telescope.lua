@@ -24,7 +24,7 @@ end
 
 ts.setup({
 	defaults = {
-		file_ignore_patterns = {".git/", ".cache/", "vendor"},
+		file_ignore_patterns = {".git/", ".cache/", "vendor", ".local"},
 		prompt_prefix = " ",
 		selection_caret = " ",
 		--path_display = { "smart" },

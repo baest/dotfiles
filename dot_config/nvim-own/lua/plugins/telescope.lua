@@ -52,7 +52,34 @@ return {
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
+
+      local sorters = require 'telescope.sorters'
+      local actions = require 'telescope.actions'
       require('telescope').setup {
+        defaults = {
+          file_ignore_patterns = { '.git/', '.cache/', 'vendor', '.local' },
+          prompt_prefix = ' ',
+          selection_caret = ' ',
+          mappings = {
+            i = {
+              --['<C-j>'] = actions.move_selection_next,
+              --['<C-k>'] = actions.move_selection_previous,
+              --['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
+              ['<esc>'] = actions.close,
+              ['<CR>'] = actions.select_default + actions.center,
+
+              -- You can perform as many actions in a row as you like
+              -- ["<CR>"] = actions.select_default + actions.center + my_cool_custom_action,
+              ['<C-h>'] = actions.which_key, -- keys from pressing <C-/>
+            },
+            n = {
+              --['<C-j>'] = actions.move_selection_next,
+              --['<C-k>'] = actions.move_selection_previous,
+              --['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
+              ['<C-h>'] = actions.which_key,
+            },
+          },
+        },
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
@@ -61,10 +88,28 @@ return {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          buffers = {
+            ignore_current_buffer = true,
+            --sort_lastused = true,
+            sort_mru = true,
+            --sorter = sorters.get_substr_matcher(),
+            sorter = sorters.get_fzy_sorter(),
+            show_all_buffers = true,
+            path_display = { 'absolute' },
+          },
+          colorscheme = {
+            enable_preview = true,
+          },
+          lsp_references = {
+            preview = true, -- error on launchin lsp_references
+          },
+        },
         extensions = {
-          ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
+          extensions = {
+            ['ui-select'] = {
+              require('telescope.themes').get_dropdown(),
+            },
           },
         },
       }
@@ -86,18 +131,30 @@ return {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-      vim.keymap.set("n", "<S-Tab>", function()
-        builtin.find_files({
-          find_command = {"fd", "--type=f", "--absolute-path", "--hidden", "--no-ignore", "--exclude", ".git", "--exclude", "__pycache__", "--ignore-file", ".ts_ignore"},
+      vim.keymap.set('n', '<S-Tab>', function()
+        builtin.find_files {
+          find_command = {
+            'fd',
+            '--type=f',
+            '--absolute-path',
+            '--hidden',
+            '--no-ignore',
+            '--exclude',
+            '.git',
+            '--exclude',
+            '__pycache__',
+            '--ignore-file',
+            '.ts_ignore',
+          },
           hidden = true,
           previewer = true,
           wrap_results = true,
-          prompt_title = "Search files"
-        })
-      end, { noremap = true, silent = true, desc = "Search files" })
-      vim.keymap.set("n", "<Tab>", function()
+          prompt_title = 'Search files',
+        }
+      end, { noremap = true, silent = true, desc = 'Search files' })
+      vim.keymap.set('n', '<Tab>', function()
         builtin.buffers()
-      end, { noremap = true, silent = true, desc = "Show buffers" })
+      end, { noremap = true, silent = true, desc = 'Show buffers' })
       --vim.keymap.set('n', '<leader>cz', ts.extensions.chezmoi.find_files, {})
 
       -- Slightly advanced example of overriding default behavior and theme

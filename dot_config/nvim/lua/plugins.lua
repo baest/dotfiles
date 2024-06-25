@@ -93,13 +93,6 @@ return require('packer').startup(function(use)
 	use {
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
-		config = function()
-			require("trouble").setup {
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			}
-		end
 	}
 
 	use { 'hrsh7th/nvim-cmp',                          -- Autocompletion 
@@ -133,6 +126,9 @@ return require('packer').startup(function(use)
 	use { "johmsalas/text-case.nvim" }
 
 	use { 'kiran94/edit-markdown-table.nvim' }
+
+	use { "stevearc/conform.nvim" }
+
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
