@@ -5,10 +5,10 @@ vim.g.maplocalleader = ','
 vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
-require('core.options')
+require 'core.options'
 
 -- [[ Basic Keymaps ]]
-require('core.keymaps')
+require 'core.keymaps'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 require 'lazy-bootstrap'
@@ -16,9 +16,9 @@ require 'lazy-bootstrap'
 -- [[ Configure and install plugins ]]
 require 'lazy-plugins'
 
-require("core.autogroups")
+require 'core.autogroups'
 
-require 'late-options'
+require 'core.late-options'
 
 --TODO trouble doesn't provide diagnostics
 

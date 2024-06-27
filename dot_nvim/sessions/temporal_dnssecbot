@@ -15,47 +15,47 @@ else
 endif
 badd +75 internal/temporal/workflows/mysql_restore/mysql_restore_cluster_databases.go
 badd +44 test/mysql_restore/mysql_restore_cluster_test.go
-badd +48 test/temporal_test_suite.go
-badd +355 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/internal/workflow_testsuite.go
-badd +89 internal/temporal/workflows/dnssecbot/sign.go
-badd +12 pkg/sysapi.v3/dnssec_key_set.go
-badd +29 internal/dns/resolver.go
+badd +60 test/temporal_test_suite.go
+badd +68 vendor/go.temporal.io/sdk/internal/workflow_testsuite.go
+badd +171 internal/temporal/workflows/dnssecbot/sign.go
+badd +17 pkg/sysapi.v3/dnssec_key_set.go
+badd +18 internal/dns/resolver.go
 badd +1 health://
 badd +1 test/mysql_evacuate/mysql_evacuate.go
 badd +16 test/mysql_evacuate/mysql_evacuate_host_test.go
-badd +16 test.go
-badd +20 internal/temporal/workflows/base_workflow.go
+badd +19 test.go
+badd +61 internal/temporal/workflows/base_workflow.go
 badd +1 internal/temporal/workflows/dnssecbot/error.go
 badd +3 ~/src/temporal-workflows/internal/temporal/activities/gprpc2/activities.go
-badd +118 internal/temporal/activities/dnssecbot/activities.go
-badd +10 internal/temporal/activities/sysapi.v3/activities.go
-badd +14 ~/src/temporal-workflows/internal/temporal/activities/sysapi.v3/sysapi.go
+badd +129 internal/temporal/activities/dnssecbot/activities.go
+badd +57 internal/temporal/activities/sysapi.v3/activities.go
+badd +12 internal/temporal/activities/sysapi.v3/sysapi.go
 badd +1 internal/temporal/activities/email/email.go
-badd +17 internal/temporal/activities/dnssecbot/dnssecbot.go
-badd +1031 ~/src/temporal-workflows/vendor/github.com/miekg/dns/types.go
-badd +248 ~/src/temporal-workflows/vendor/github.com/miekg/dns/client.go
-badd +49 ~/src/temporal-workflows/vendor/github.com/miekg/dns/dnssec.go
+badd +8 internal/temporal/activities/dnssecbot/dnssecbot.go
+badd +958 vendor/github.com/miekg/dns/types.go
+badd +248 vendor/github.com/miekg/dns/client.go
+badd +95 vendor/github.com/miekg/dns/dnssec.go
 badd +20 pkg/sysapi.v3/migration.go
-badd +10 internal/dns/keys.go
-badd +21 ~/src/temporal-workflows/vendor/github.com/miekg/dns/dnssec_privkey.go
+badd +79 internal/dns/keys.go
+badd +21 vendor/github.com/miekg/dns/dnssec_privkey.go
 badd +57 internal/temporal/validator/validator.go
-badd +124 cmd/worker/main.go
-badd +104 scripts/examples.py
-badd +29 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/log/logger.go
+badd +154 cmd/worker/main.go
+badd +114 scripts/examples.py
+badd +29 vendor/go.temporal.io/sdk/log/logger.go
 badd +19 internal/config/config.go
-badd +59 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/activity/activity.go
-badd +203 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/internal/activity.go
-badd +86 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/internal/interceptor.go
+badd +59 vendor/go.temporal.io/sdk/activity/activity.go
+badd +203 vendor/go.temporal.io/sdk/internal/activity.go
+badd +86 vendor/go.temporal.io/sdk/internal/interceptor.go
 badd +1 ~/src/temporal-workflows/internal/temporal/workflows/mysql_restore/error.go
 badd +46 internal/temporal/activities/slack/activities.go
 badd +22 ~/src/temporal-workflows/internal/temporal/activities/slack/slack.go
-badd +30 /usr/lib/go/src/fmt/errors.go
+badd +22 /usr/lib/go/src/fmt/errors.go
 badd +62 /usr/lib/go/src/errors/errors.go
 badd +22 internal/temporal/workflows/examples/sysapi_v3_databases_sync.go
 badd +60 pkg/sysapi.v3/cluster.go
-badd +232 ~/src/temporal-workflows/pkg/sysapi.v3/sysapi.go
+badd +122 pkg/sysapi.v3/sysapi.go
 badd +18 pkg/sysapi.v3/database.go
-badd +128 test/dnssecbot/sign_test.go
+badd +35 test/dnssecbot/sign_test.go
 badd +157 test/mysql_evacuate/mysql_migrate_intrapod_cluster_test.go
 badd +191 test/mailstorage_migrate/mailstorage_migrate_intrapod_cluster_test.go
 badd +39 ~/src/temporal-workflows/internal/temporal/workflows/mailstorage_migrate/mailstorage_migrate_intrapod_cluster.go
@@ -64,35 +64,47 @@ badd +46 test/dnssecbot/activities_test.go
 badd +55 pkg/sysapi.v3/brand.go
 badd +1200 /usr/lib/go/src/net/url/url.go
 badd +21 internal/temporal/config.go
-badd +158 ~/src/temporal-workflows/vendor/golang.org/x/exp/slog/level.go
-badd +8 ~/src/temporal-workflows/pkg/sysapi.v3/service.go
-badd +38 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/testsuite/testsuite.go
-badd +2095 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/internal/internal_workflow_testsuite.go
-badd +570 ~/src/temporal-workflows/vendor/go.temporal.io/sdk/internal/internal_worker.go
-badd +19 internal/temporal/dnssecbot/dnssecbot.go
-badd +59 internal/temporal/dnssecbot/step_enumer.go
+badd +158 vendor/golang.org/x/exp/slog/level.go
+badd +8 pkg/sysapi.v3/service.go
+badd +38 vendor/go.temporal.io/sdk/testsuite/testsuite.go
+badd +2075 vendor/go.temporal.io/sdk/internal/internal_workflow_testsuite.go
+badd +570 vendor/go.temporal.io/sdk/internal/internal_worker.go
+badd +9 internal/temporal/dnssecbot/dnssecbot.go
+badd +1 internal/temporal/dnssecbot/step_enumer.go
 badd +164 /usr/lib/go/src/crypto/crypto.go
-badd +119 ~/src/temporal-workflows/vendor/golang.org/x/exp/slog/logger.go
+badd +119 vendor/golang.org/x/exp/slog/logger.go
 badd +1 ~/src/temporal-workflows-dns/vendor/github.com/miekg/dns/dnssec_keygen.go
 badd +70 ~/src/temporal-workflows-dns/vendor/github.com/miekg/dns/dnssec_keyscan.go
 badd +158 ~/src/temporal-workflows-dns/vendor/go.temporal.io/sdk/workflow/deterministic_wrappers.go
 badd +1132 ~/src/temporal-workflows-dns/vendor/go.temporal.io/sdk/internal/workflow.go
 badd +119 Makefile
-badd +17 internal/temporal/workflows/dnssecbot/unsign.go
+badd +19 internal/temporal/workflows/dnssecbot/cleanup_deleted_keysets.go
 badd +1 ~/install_src/miekg_dns/dnssec.go
-badd +10 internal/temporal/workflows/dnssecbot/common.go
-badd +113 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/workflow/activity_options.go
+badd +38 internal/temporal/workflows/dnssecbot/common.go
+badd +113 vendor/go.temporal.io/sdk/workflow/activity_options.go
 badd +661 /usr/lib/go/src/time/time.go
-badd +40 test/dnssecbot/unsign_test.go
-badd +171 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/temporal/error.go
-badd +577 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/internal/error.go
+badd +74 test/dnssecbot/unsign_test.go
+badd +192 vendor/go.temporal.io/sdk/temporal/error.go
+badd +577 vendor/go.temporal.io/sdk/internal/error.go
 badd +2 TODO.md
-badd +170 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/workflow/deterministic_wrappers.go
-badd +49 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/workflow/context.go
+badd +157 vendor/go.temporal.io/sdk/workflow/deterministic_wrappers.go
+badd +49 vendor/go.temporal.io/sdk/workflow/context.go
+badd +316 vendor/github.com/go-playground/validator/v10/validator_instance.go
+badd +1463 vendor/github.com/stretchr/testify/assert/assertion_forward.go
+badd +21 vendor/github.com/miekg/dns/dnssec_keyscan.go
+badd +24 vendor/github.com/miekg/dns/reverse.go
+badd +42 internal/temporal/workflows/workflow_step.go
+badd +62 internal/temporal/workflows/workflowstep_enumer.go
+badd +94 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/workflow/workflow.go
+badd +43 internal/temporal/workflows/dnssecbot/unsign.go
+badd +11 pkg/sysapi.v3/dnssec_key_set_find.go
+badd +240 ~/src/maestro-worker-dns/vendor/go.temporal.io/sdk/worker/worker.go
+badd +15 internal/temporal/workflows/dnssecbot/verify_active_ds.go
+badd +8 pkg/sysapi.v3/dnssec_key_set_expired.go
 argglobal
 %argdel
 $argadd internal/temporal/workflows/mysql_restore/mysql_restore_cluster_databases.go
-edit internal/temporal/workflows/dnssecbot/unsign.go
+edit pkg/sysapi.v3/dnssec_key_set_find.go
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -109,10 +121,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 271)
-exe 'vert 2resize ' . ((&columns * 103 + 135) / 271)
+exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
 argglobal
-balt test/dnssecbot/unsign_test.go
+balt pkg/sysapi.v3/dnssec_key_set_expired.go
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -123,19 +135,19 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 127 - ((30 * winheight(0) + 30) / 61)
+let s:l = 11 - ((10 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 127
-normal! 017|
+keepjumps 11
+normal! 06|
 wincmd w
 argglobal
-if bufexists(fnamemodify("test/dnssecbot/unsign_test.go", ":p")) | buffer test/dnssecbot/unsign_test.go | else | edit test/dnssecbot/unsign_test.go | endif
+if bufexists(fnamemodify("internal/temporal/activities/sysapi.v3/activities.go", ":p")) | buffer internal/temporal/activities/sysapi.v3/activities.go | else | edit internal/temporal/activities/sysapi.v3/activities.go | endif
 if &buftype ==# 'terminal'
-  silent file test/dnssecbot/unsign_test.go
+  silent file internal/temporal/activities/sysapi.v3/activities.go
 endif
-balt test/dnssecbot/sign_test.go
+balt pkg/sysapi.v3/dnssec_key_set_find.go
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -146,15 +158,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 44 - ((33 * winheight(0) + 30) / 61)
+let s:l = 58 - ((50 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 44
-normal! 044|
+keepjumps 58
+normal! 025|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 271)
-exe 'vert 2resize ' . ((&columns * 103 + 135) / 271)
+exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

@@ -61,7 +61,7 @@ badd +1 fyi/public/type_auth_info_zone.sql
 badd +27 fyi/public/f_is_ent_record.sql
 badd +39 fyi/public/f_get_service_zone.sql
 badd +27 fyi/public/t_coredb_domain.sql
-badd +54 fyi/public/t_service_zone_record.sql
+badd +13 fyi/public/t_service_zone_record.sql
 argglobal
 %argdel
 $argadd fyi/public/f_get_dns_records.sql
@@ -82,8 +82,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 124 + 126) / 253)
-exe 'vert 2resize ' . ((&columns * 128 + 126) / 253)
+exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
 argglobal
 balt fyi/public/f_auth_info_zone.sql
 setlocal fdm=manual
@@ -96,11 +96,11 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 54 - ((0 * winheight(0) + 35) / 71)
+let s:l = 13 - ((12 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 54
+keepjumps 13
 normal! 014|
 wincmd w
 argglobal
@@ -119,15 +119,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 40 - ((0 * winheight(0) + 35) / 71)
+let s:l = 40 - ((7 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 40
 normal! 012|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 124 + 126) / 253)
-exe 'vert 2resize ' . ((&columns * 128 + 126) / 253)
+exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

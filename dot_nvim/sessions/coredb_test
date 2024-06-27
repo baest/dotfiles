@@ -22,7 +22,7 @@ badd +2 test/480_dns_change_trigger.t
 badd +403 test/702_lookup_mail_cluster.t
 badd +73 test/704_lookup_domain_dkim.t
 badd +3 test/405_service_network.t
-badd +232 test/460_dns_get_cluster_records.t
+badd +223 test/460_dns_get_cluster_records.t
 badd +661 test/470_dns_export_get_zone_records.t
 badd +316 test/450_dns_get_records.t
 badd +23 test/410_dns_get_service_zone.t
@@ -47,8 +47,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 156 + 126) / 253)
-exe 'vert 2resize ' . ((&columns * 96 + 126) / 253)
+exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
 argglobal
 balt test/470_dns_export_get_zone_records.t
 setlocal fdm=manual
@@ -61,12 +61,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 232 - ((0 * winheight(0) + 35) / 71)
+let s:l = 223 - ((37 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 232
-normal! 029|
+keepjumps 223
+normal! 0
 wincmd w
 argglobal
 if bufexists(fnamemodify("test/470_dns_export_get_zone_records.t", ":p")) | buffer test/470_dns_export_get_zone_records.t | else | edit test/470_dns_export_get_zone_records.t | endif
@@ -84,15 +84,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 675 - ((0 * winheight(0) + 35) / 71)
+let s:l = 675 - ((14 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 675
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 156 + 126) / 253)
-exe 'vert 2resize ' . ((&columns * 96 + 126) / 253)
+exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
+exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
