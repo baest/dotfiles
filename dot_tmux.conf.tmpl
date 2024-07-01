@@ -22,6 +22,7 @@ bind-key t run "resize_2_3.sh"
 {{- range $i, $e := until 10 }}
 bind-key -n M-{{$i}} select-window -t {{$i}}
 {{- end }}
+bind-key -n M-0 select-window -t 10 # override 0 to select win 10
 
 #set -g default-terminal "tmux-256color"
 set -sg escape-time 10

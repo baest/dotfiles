@@ -130,7 +130,7 @@
   #temperature.critical {
     color: #f38ba8;
   }
-  #battery {
+  #battery, #upower {
     background: #859900;
   }
   #disk {
@@ -156,6 +156,10 @@
     padding: 0 10px;
   }
 
+  #upower {
+    padding-right: 5px;
+  }
+  
   #network {
     background: blue;
     padding-left: 4px;
