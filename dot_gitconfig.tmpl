@@ -156,10 +156,10 @@
     gpgsign = true
 
 [pager]
-    diff = delta
-    log = delta
-    reflog = delta
-    show = delta
+    diff = delta --side-by-side --width ${FZF_PREVIEW_COLUMNS-$COLUMNS}
+    log = delta --side-by-side --width ${FZF_PREVIEW_COLUMNS-$COLUMNS}
+    reflog = delta --side-by-side --width ${FZF_PREVIEW_COLUMNS-$COLUMNS}
+    show = delta --side-by-side --width ${FZF_PREVIEW_COLUMNS-$COLUMNS}
 
 [delta]
     line-numbers = true
