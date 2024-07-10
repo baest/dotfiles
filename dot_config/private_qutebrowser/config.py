@@ -225,6 +225,9 @@ config.bind('K', 'tab-next')
 #   - vi-VN: Vietnamese (Viet Nam)
 c.spellcheck.languages = ["en-GB", "da-DK"]
 
+c.url.start_pages = ['about:blank']
+c.url.default_page = 'about:blank'
+
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
     "g": "https://google.com/?q={}",
