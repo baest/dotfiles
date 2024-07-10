@@ -1,0 +1,10 @@
+#!/usr/bin/env perl
+use 5.038;
+
+my $disconnect = shift @ARGV;
+my $cmd = 'connect';
+
+$cmd = "dis$cmd" if $disconnect;
+
+my $headphones = 'F8:4E:17:DF:02:82';
+system(qq!bluetoothctl $cmd $headphones!);

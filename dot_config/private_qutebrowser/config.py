@@ -172,6 +172,9 @@ config.set(
     "file:///home/fra/.local/share/qutebrowser/userscripts/*",
 )
 
+config.bind('J', 'tab-prev')
+config.bind('K', 'tab-next')
+
 # Languages to use for spell checking. You can check for available
 # languages and install dictionaries using scripts/dictcli.py. Run the
 # script with -h/--help for instructions.
@@ -227,3 +230,5 @@ c.url.searchengines = {
     "g": "https://google.com/?q={}",
     "pg": "https://www.postgresql.org/search/?q={}",
 }
+
+config.source('base16-qutebrowser/themes/default/base16-solarized-light.config.py')
