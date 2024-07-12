@@ -235,3 +235,5 @@ c.url.searchengines = {
 }
 
 config.source('base16-qutebrowser/themes/default/base16-solarized-light.config.py')
+
+config.load_autoconfig()

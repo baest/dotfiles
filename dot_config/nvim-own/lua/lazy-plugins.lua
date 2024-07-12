@@ -31,7 +31,7 @@ require('lazy').setup({
 
   -- require 'kickstart/plugins/tokyonight',
 
-  require 'kickstart/plugins/todo-comments',
+  -- require 'kickstart/plugins/todo-comments',
 
   require 'kickstart/plugins/mini',
 
@@ -50,6 +50,21 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   { import = 'plugins' },
 }, {
+  pkg = {
+    enabled = true,
+    cache = vim.fn.stdpath("state") .. "/lazy/pkg-cache.lua",
+    -- the first package source that is found for a plugin will be used.
+    sources = {
+      "lazy",
+      "rockspec", -- will only be used when rocks.enabled is true
+      "packspec",
+    },
+  },
+  rocks = {
+    enabled = true,
+    root = vim.fn.stdpath("data") .. "/lazy-rocks",
+    server = "https://nvim-neorocks.github.io/rocks-binaries/",
+  },
   ui = {
     border = 'rounded', -- show borders
     -- If you have a Nerd Font, set icons to an empty table which will use the

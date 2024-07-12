@@ -20,43 +20,35 @@ require 'core.autogroups'
 
 require 'core.late-options'
 
---TODO trouble doesn't provide diagnostics
+--	remove hlsearch when moving cursor. Seem to be unnecessary
+--	use { "romainl/vim-cool" }
+-- using flash currently so??
+--	--use { "ggandor/leap.nvim" }
 
 -- TODO
+--	use 'SmiteshP/nvim-navic'
+--	use("ziontee113/neo-minimap")
+--
 --	use({"nvim-telescope/telescope-fzy-native.nvim"})
---	use({'nvim-telescope/telescope.nvim'})
 
 --	use 'HiPhish/rainbow-delimiters.nvim'
 --
---	use 'neovim/nvim-lspconfig'                        -- Collection of configurations for built-in LSP client
---	use 'williamboman/mason.nvim'
---	use 'williamboman/mason-lspconfig.nvim'
 --	use 'jose-elias-alvarez/null-ls.nvim'
 --	use 'jayp0521/mason-null-ls.nvim'
---	use 'SmiteshP/nvim-navic'
 --
---	use("ziontee113/neo-minimap")
---
---	use("xvzc/chezmoi.nvim")
---
---	--use("alker0/chezmoi.vim")
---
---	use { 'hrsh7th/nvim-cmp',                          -- Autocompletion
---	  requires = { 'hrsh7th/cmp-nvim-lsp' }
---	}
 --	use { 'L3MON4D3/LuaSnip',                        -- Snippet Engine and Snippet Expansion
 --	  requires = { 'saadparwaiz1/cmp_luasnip' }
 --	}
---
---	--use { "ggandor/leap.nvim" }
---	use { "folke/flash.nvim" }
 --
 --	-- make file helper and more
 --	use { "desdic/greyjoy.nvim" }
 --
 --	use { "shaunsingh/solarized.nvim" }
 --
+--	--use { "imsnif/kdl.vim" }
 --	use { "rafamadriz/friendly-snippets" }
+--
+--	use { 'kiran94/edit-markdown-table.nvim' }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
