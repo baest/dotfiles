@@ -12,8 +12,10 @@ vim.opt.relativenumber = true
 -- Enable mouse mode, can be useful for resizing splits for example!
 --vim.opt.mouse = 'a'
 vim.opt.mouse = ''
-vim.o.mouse = 'nvi'
-vim.cmd(':nmap <ScrollWheelUp> <nop>')
+vim.o.mouse = ''
+--vim.o.mouse = 'nvi'
+--vim.cmd(':nmap <ScrollWheelUp> <nop>')
+--vim.cmd(':nmap <ScrollWheelDown> <nop>')
 
 -- Don't show the mode, since it's already in status line
 vim.opt.showmode = false

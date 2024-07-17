@@ -103,7 +103,9 @@ zinit wait lucid for \
  atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
 
-zinit add-fpath /opt/homebrew/share/zsh/site-functions
+if [ -d /opt/homebrew/share/zsh/site-functions ]; then
+    zinit add-fpath /opt/homebrew/share/zsh/site-functions
+fi
 zinit add-fpath ~/.zsh_completions
 
 zinit load wfxr/forgit
