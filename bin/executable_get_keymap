@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+KEYBOARD="microsoft-wired-keyboard-600"
+LANG=$(hyprctl devices -j | jq -r ".keyboards[] | select(.name == \"$KEYBOARD\") | .active_keymap")
+if [[ "$LANG" == "Danish" ]]; then
+	echo "DK"
+else
+	echo "UK"
+fi
