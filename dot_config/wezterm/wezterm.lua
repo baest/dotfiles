@@ -10,7 +10,8 @@ config.check_for_updates = false
 config.hide_tab_bar_if_only_one_tab = true
 
 config.font =
-  wezterm.font('FiraCode Nerd Font Mono', { weight = 'Medium' })
+  wezterm.font('FiraCode Nerd Font Mono')
+  --wezterm.font('FiraCode Nerd Font Mono', { weight = 'Medium' })
 
 --config.font = wezterm.font_with_fallback({
 --  -- /usr/share/fonts/TTF/FiraCodeNerdFontMono-Bold.ttf, FontConfig
@@ -23,7 +24,7 @@ config.font =
 --  "JetBrains Mono",
 --
 --})
-config.font_size = 9.0
+config.font_size = 9.1
 config.color_scheme = 'Solarized (light) (terminal.sexy)'
 
 

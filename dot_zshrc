@@ -144,9 +144,12 @@ zinit wait \
 
 #safe_source "$HOME/.py-systems/bin/activate"
 
-if [[ -x "$(command -v starship)" ]]; then
-  eval "$(starship init zsh)"
-fi
+znap eval starship 'starship init zsh --print-full-init'
+znap prompt
+
+#if [[ -x "$(command -v starship)" ]]; then
+#  eval "$(starship init zsh)"
+#fi
 
 if [[ ! -z "$ITERM_SESSION_ID" ]]; then
     safe_source "$HOME/.iterm2_shell_integration.zsh"

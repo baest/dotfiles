@@ -32,6 +32,9 @@ keymap('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 keymap('n', '<ScrollWheelUp>', '<nop>', { desc = 'Disable scrollwheel' })
 keymap('n', '<ScrollWheelDown>', '<nop>', { desc = 'Disable scrollwheel' })
 
+-- aerial --
+keymap('n', '<leader>a', '<cmd>AerialToggle<CR>', { desc = 'Toggle aerial' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

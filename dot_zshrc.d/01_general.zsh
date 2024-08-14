@@ -4,7 +4,7 @@ bindkey '\eq' push-line-or-edit
 bindkey '^U' backward-kill-line
 
 autoload -Uz compinit
-compinit -i
+compinit -iC
 
 # _history
 zstyle ':completion:*' completer _expand _complete _correct _list
@@ -42,7 +42,7 @@ setopt extendedglob
 setopt GLOBSTARSHORT
 setopt no_complete_aliases
 
-limit coredumpsize 0
+#limit coredumpsize 0
 autoload zkbd zmv zcalc help
 #zargs#zmv 
 autoload zsh/mathfunc

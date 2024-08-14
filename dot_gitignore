@@ -10,3 +10,4 @@ nytprof*
 *__pycache__*
 .envrc
 *.kml
+.jj
