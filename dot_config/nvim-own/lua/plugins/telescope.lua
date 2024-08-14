@@ -58,7 +58,7 @@ return {
       local action_state = require('telescope.actions.state')
       require('telescope').setup {
         defaults = {
-          file_ignore_patterns = { '.git/', '.cache/', 'vendor', '.local' },
+          file_ignore_patterns = { '.git/', '.cache/', 'vendor', '.local', '.jj/' },
           prompt_prefix = ' ',
           selection_caret = ' ',
           mappings = {

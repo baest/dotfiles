@@ -170,6 +170,8 @@ function cnodesfzf() {
 zle -N cnodesfzf
 bindkey '^X' cnodesfzf
 
+function x() { cnodesfzf; }
+
 set_iterm_name() {
   mode=$1; shift
   echo -ne "\033]$mode;$@\007"

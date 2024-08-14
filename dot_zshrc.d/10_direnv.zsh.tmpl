@@ -2,9 +2,9 @@
 _direnv_hook() {
   trap -- '' SIGINT;
 {{ if eq .chezmoi.os "darwin" }}
-  eval "$("/opt/homebrew/bin/direnv" export zsh)";
+  znap eval starship '/opt/homebrew/bin/direnv export zsh'
 {{ else }}
-  eval "$("/usr/bin/direnv" export zsh)";
+  znap eval starship '/usr/bin/direnv export zsh'
 {{ end }}
   trap - SIGINT;
 }

@@ -7,7 +7,7 @@ return {
     max_line_len = 190,
     dap_debug = true,
     dap_debug_gui = true,
-    --    lsp_inlay_hints = { enable = false },
+    lsp_inlay_hints = { enable = false },
     diagnostic = { virtual_text = { spacing = 2, prefix = '' } },
     luasnip = true,
   },

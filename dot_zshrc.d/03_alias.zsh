@@ -23,6 +23,9 @@ alias top="top -c"
 alias 1='cd ..'
 alias 2='cd ../..'
 alias 3='cd ../../..'
+alias 4='cd ../../../..'
+alias 5='cd ../../../../..'
+alias 6='cd ../../../../../..'
 alias a=attach
 
 # tig
@@ -74,3 +77,5 @@ alias b2d="perl -e 'printf qq|%d\n|, oct( q|0b| . shift )'"
 alias b2o="perl -e 'printf qq|%o\n|, oct( q|0b| . shift )'"
 
 alias cm=chezmoi
+
+alias jjpull="jj git fetch && jj rebase -d 'trunk()'"

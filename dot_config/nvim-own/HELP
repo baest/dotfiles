@@ -1,0 +1,35 @@
+HELP
+
+PCRE regexes
+ start with \v
+ :\v\.+
+
+ alter natively
+ :perldo s/searchme/replaceme/g
+ :%!perl -pi -e 's/<text>/\n/'
+
+ when writing searches with /... use ctrl+r, ctrl+w to get the word under the cursor copied to the search terms
+
+Jump
+ % jumps to the other part of a () {} []...
+
+Autocomplete filenames
+ ctrl+x-ctrl+f for autocomplete filenames
+ ctrl+x-ctrl+u for autocomplete whatever visible inside tmux panel
+
+Join lines
+ if you want to join without inserting spaces, do gJ
+
+Delete line match abe
+ :g/abe/d
+
+Paste in insert mode
+ ctrl+o p (ctrl exits insert mode for one command)
+ ctrl-R " (ctrl-R can be used with other registers than ")
+
+Setting stuff in all windows/tabs at once
+ :tabdo windo set number
+
+Flash
+ Copy line without moving cursor where $x is the flash mark to jump to
+ yrs$xy
