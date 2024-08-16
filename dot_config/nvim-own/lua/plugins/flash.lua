@@ -1,11 +1,11 @@
 return {
-  "folke/flash.nvim",
-  event = "VeryLazy",
+  'folke/flash.nvim',
+  event = 'VeryLazy',
   ---@type Flash.Config
   opts = {
     modes = {
-      search = { enabled = true, }, -- disable for search
-      char = { enabled = false, },  -- disable for fFtT 
+      search = { enabled = false }, -- disable for search
+      char = { enabled = true }, -- disable for fFtT
     },
     label = {
       rainbow = { enabled = true },

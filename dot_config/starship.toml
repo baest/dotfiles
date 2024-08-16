@@ -81,4 +81,4 @@ format = " [$symbol$status]($style) "
 [kubernetes]
 disabled = false
 detect_env_vars = [ 'K8S' ]
-detect_files = ['k8s'] # for some reason this needs to be 
+#detect_files = ['k8s'] # for some reason this needs to be 
