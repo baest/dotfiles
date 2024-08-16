@@ -63,4 +63,6 @@ vim.opt.scrolloff = 10
 
 vim.keymap.del('n', 'Y')
 
+vim.o.termguicolors = true
+
 -- vim: ts=2 sts=2 sw=2 et

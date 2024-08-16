@@ -39,6 +39,10 @@ set -g focus-events on
 # Preserve any output before running interactive commands, such as Vim.
 set-window-option -g alternate-screen on
 
+set -g terminal-overrides ',xterm-256color:Tc'
+set -g default-terminal "tmux-256color"
+set -as terminal-overrides ',xterm*:sitm=\E[3m'
+
 {{ if eq .chezmoi.os "darwin" }}
 set -s copy-command 'pbcopy'
 {{ else }}
@@ -54,7 +58,6 @@ set-option -g set-titles-string '#W'
 set-option -g allow-passthrough on
 #set -g default-terminal "tmux-256color"
 #set -as terminal-overrides ',xterm*:XT:sitm=\E[3m'
-set -ga terminal-overrides ",xterm-256color:RGB:sitm=\E[3m"
 
 
 # Scrolling with Shift-PageUp/Shift-PageDown.
@@ -122,15 +125,11 @@ set -g @continuum-restore 'on'
 set -g @continuum-save-interval '10'
 set -g @resurrect-strategy-nvim 'session'
 set -g @resurrect-capture-pane-contents 'on'
-set -g @resurrect-processes 'vi vim nvim emacs man less more tail top htop irssi weechat mutt pg perl psql ssh'
+set -g @resurrect-processes 'vi vim nvim emacs man less more tail top htop irssi weechat mutt perl psql ssh'
 #https://github.com/spywhere/tmux-named-snapshot
 
 #TEST
 set -g @colors-solarized 'light'
-
-#set -g @resurrect-processes 'vi vim nvim emacs man less more tail top htop irssi mutt ssh psql autossh time_login.pl perl'
-#set -g @resurrect-strategy-vim 'session'
-#set -g @resurrect-save-script-path '/nfs/home/mfk/.tmux/plugins/tmux-resurrect/scripts/save.sh'
 
 #fpp
 set -g @fpp-key 'f'
@@ -168,5 +167,11 @@ run-shell ~/.tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
 #set -g window-style 'fg=colour247,bg=colour236'
 #set -g window-active-style 'fg=colour250,bg=black'
 
-#\"#22T\" 
+# try hard to make colours work and generally ansi codes within tmux
+set -g default-terminal "xterm-256color"
+set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # colored underscores
+set -as terminal-overrides ',xterm-256color:RGB' # true-color support
+#set -ga terminal-overrides ",xterm-256color:RGB:sitm=\E[3m"
+
+#\"#22T\"
 set -g status-right "#[fg=colour11,bg=colour7,nobold,nounderscore,noitalics]#[fg=colour7,bg=colour11] #{prefix_highlight} | #{continuum_status} | %H:%M %d-%b-%y "
