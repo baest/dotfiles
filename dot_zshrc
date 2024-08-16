@@ -99,18 +99,17 @@ zinit wait lucid for \
  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
  blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-completions #\
+# atload"!_zsh_autosuggest_start" \
+#    zsh-users/zsh-autosuggestions
 
 if [ -d /opt/homebrew/share/zsh/site-functions ]; then
     zinit add-fpath /opt/homebrew/share/zsh/site-functions
 fi
 zinit add-fpath ~/.zsh_completions
 
-zinit load wfxr/forgit
-zinit load atuinsh/atuin
-#zinit load marlonrichert/zsh-autocomplete
+#zinit load wfxr/forgit
+#zinit load atuinsh/atuin
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -123,33 +122,32 @@ zinit light-mode for \
 zinit ice as"program" pick"bin/git-fuzzy"
 zinit light bigH/git-fuzzy
 
-#zinit pack"default+keys" for fzf
-zinit wait \
-    atclone'mkdir -p $ZPFX/{bin,man/man1}' \
-    atpull'%atclone' \
-    dl'https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh -> _fzf_completion;
-      https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -> key-bindings.zsh;
-      https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf-tmux.1 -> $ZPFX/man/man1/fzf-tmux.1;
-      https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1 -> $ZPFX/man/man1/fzf.1' \
-    from'gh-r' \
-    id-as'junegunn/fzf' \
-    lucid \
-    nocompile \
-    pick'/dev/null' \
-    sbin'fzf' \
-    src'key-bindings.zsh' \
-  for @junegunn/fzf
+##zinit pack"default+keys" for fzf
+#zinit wait \
+#    atclone'mkdir -p $ZPFX/{bin,man/man1}' \
+#    atpull'%atclone' \
+#    dl'https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh -> _fzf_completion;
+#      https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -> key-bindings.zsh;
+#      https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf-tmux.1 -> $ZPFX/man/man1/fzf-tmux.1;
+#      https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1 -> $ZPFX/man/man1/fzf.1' \
+#    from'gh-r' \
+#    id-as'junegunn/fzf' \
+#    lucid \
+#    nocompile \
+#    pick'/dev/null' \
+#    sbin'fzf' \
+#    src'key-bindings.zsh' \
+#  for @junegunn/fzf
 
 ### End of Zinit's installer chunk
 
 #safe_source "$HOME/.py-systems/bin/activate"
 
-znap eval starship 'starship init zsh --print-full-init'
-znap prompt
-
-#if [[ -x "$(command -v starship)" ]]; then
-#  eval "$(starship init zsh)"
-#fi
+# TODO: move to .zshrc.d
+znap source wfxr/forgit
+znap source atuinsh/atuin
+znap source zsh-users/zsh-autosuggestions
+znap source junegunn/fzf shell/{completion,key-bindings}.zsh
 
 if [[ ! -z "$ITERM_SESSION_ID" ]]; then
     safe_source "$HOME/.iterm2_shell_integration.zsh"
