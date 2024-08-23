@@ -148,12 +148,6 @@ function cnodesfzf() {
     #local selected_host=$({cat ~/.cache/cnodes & awk '{print $1}' ~/.ssh/known_hosts; }|sort|uniq|sk --multi --query "$LBUFFER" --prompt="SSH remote > " --color "prompt:#89b4fa")
     local selected_host=$(cat ~/.cache/cnodes | fzf --bind "tab:preview(sushi {})" --query "$LBUFFER" --prompt="SSH remote > " --color "prompt:#89b4fa")
     if [ -n "$selected_host" ]; then
-	if [ -n "$TMUX" ]; then
-	    WINDOWNAME=$(echo ${selected_host}|cut -d . -f1)
-	    tmux rename-window -t work "${WINDOWNAME}"
-	elif [ -n "$ZELLIJ" ]; then
-	    zellij action rename-pane "${selected_host}"
-	fi
 	SSH_CMD={{ lookPath "ssh" }}
 	BUFFER="$SSH_CMD ${selected_host}"
 	if [[ ${ZLE_ENABLED} -eq 1 ]]; then
