@@ -233,16 +233,26 @@ function add_ssh_key_if_needed () {
 {{ if ne .chezmoi.os "darwin" }}
 function ssh () {
 	add_ssh_key_if_needed
-	unset -f ssh
-	unset -f git
+	unset_sshkey_override
 	{{ lookPath "ssh" }} "$@"
 }
 
 function git() {
 	add_ssh_key_if_needed
+	unset_sshkey_override
+	{{ lookPath "git" }} "$@"
+}
+
+function jj() {
+	add_ssh_key_if_needed
+	unset_sshkey_override
+	{{ lookPath "jj" }} "$@"
+}
+
+function unset_sshkey_override() {
 	unset -f ssh
 	unset -f git
-	{{ lookPath "git" }} "$@"
+	unset -f jj
 }
 {{ end }}
 

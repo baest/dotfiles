@@ -33,3 +33,6 @@ Setting stuff in all windows/tabs at once
 Flash
  Copy line without moving cursor where $x is the flash mark to jump to
  yrs$xy
+
+Telescope buffers
+ ctrl+x to delete a buffer you don't want
