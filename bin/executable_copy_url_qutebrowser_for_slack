@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+echo "$@" | perl -pE 's/\s+\(\!\d+\).*//' | wl-copy

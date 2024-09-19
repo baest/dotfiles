@@ -174,6 +174,8 @@ config.set(
 
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
+#config.bind("<y><h>", "yank inline '{url} <-- {title}'")
+config.bind("<y><h>", "spawn /home/fra/bin/copy_url_qutebrowser_for_slack '{url} <-- {title}'")
 
 # Languages to use for spell checking. You can check for available
 # languages and install dictionaries using scripts/dictcli.py. Run the
