@@ -79,3 +79,5 @@ alias b2o="perl -e 'printf qq|%o\n|, oct( q|0b| . shift )'"
 alias cm=chezmoi
 
 alias jjpull="jj git fetch && jj rebase -d 'trunk()'"
+alias jjp="jj git fetch && jj rebase -d 'trunk()'"
+alias jjs="jj status"
