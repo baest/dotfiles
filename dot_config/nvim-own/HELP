@@ -36,3 +36,6 @@ Flash
 
 Telescope buffers
  ctrl+x to delete a buffer you don't want
+
+Prettify txt tables (like markdown):
+ :!column -t -s '|' -o '|'

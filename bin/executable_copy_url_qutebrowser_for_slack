@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-echo "$@" | perl -pE 's/\s+\(\!\d+\).*//' | wl-copy
+echo "$@" | perl -pE 's/\s+\(\!\d+\).*//; s/(merge_requests\/\d+)[\#\?]\S+/$1/' | wl-copy
