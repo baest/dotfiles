@@ -82,3 +82,23 @@ format = " [$symbol$status]($style) "
 disabled = false
 detect_env_vars = [ 'K8S' ]
 #detect_files = ['k8s'] # for some reason this needs to be 
+
+[custom.jj]
+command = '''
+jj log -r@ -l1 --ignore-working-copy --no-graph --color always  -T '
+  separate(" ",
+    branches.map(|x| x.name()).join(" "),
+    if(conflict, "conflict"),
+    if(divergent, "divergent"),
+    if(hidden, "hidden"),
+  )
+'
+'''
+detect_folders = [".jj"]
+symbol = "jj"
+
+[custom.jjstate]
+detect_folders = [".jj"]
+command = '''
+jj log -r@ -n1 --no-graph -T "" --stat | tail -n1 | perl -pE 's/(\d+) files? changed, (\d+) insertions?\(\+\), (\d+) deletions?\(-\)/$1m $2+ $3-/'
+'''

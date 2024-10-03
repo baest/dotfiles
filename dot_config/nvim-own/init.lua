@@ -18,6 +18,8 @@ require 'lazy-plugins'
 
 require 'core.autogroups'
 
+require 'core.filetype'
+
 require 'core.late-options'
 
 --	remove hlsearch when moving cursor. Seem to be unnecessary

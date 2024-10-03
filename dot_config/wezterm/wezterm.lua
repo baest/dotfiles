@@ -16,7 +16,8 @@ config.warn_about_missing_glyphs = false
 --config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
 config.font =
-  wezterm.font('FiraCode Nerd Font Mono')
+  --wezterm.font('FiraCode Nerd Font Mono')
+  wezterm.font('FiraCode Nerd Font Mono', { weight = 450 })
   --wezterm.font('FiraCode Nerd Font Mono', { weight = 'Medium' })
 
 --config.font = wezterm.font_with_fallback({
@@ -31,7 +32,22 @@ config.font =
 --
 --})
 config.font_size = 9.1
-config.color_scheme = 'Solarized (light) (terminal.sexy)'
+
+local coloursheme = 'Solarized (light) (terminal.sexy)'
+
+local solarized = wezterm.get_builtin_color_schemes()[coloursheme]
+solarized.brights[8] = solarized.ansi[8]
+
+config.color_schemes = {
+    -- Override the builtin scheme with our modification.
+    ['Solarized (light) (terminal.sexy)'] = solarized,
+}
+config.color_scheme = coloursheme
+
+config.inactive_pane_hsb = {
+  saturation = 0.1,
+  brightness = 0.1,
+}
 
 config.keys = {
   {

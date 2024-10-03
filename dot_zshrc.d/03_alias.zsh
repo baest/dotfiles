@@ -81,3 +81,4 @@ alias cm=chezmoi
 alias jjpull="jj git fetch && jj rebase -d 'trunk()'"
 alias jjp="jj git fetch && jj rebase -d 'trunk()'"
 alias jjs="jj status"
+alias jjd="jj diff"
