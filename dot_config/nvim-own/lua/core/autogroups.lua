@@ -1,25 +1,25 @@
 -- No share or backup files in /mnt or /boot
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    pattern = { "/mnt/*", "/boot/*" },
-    callback = function()
-        vim.opt_local.undofile = true
-        vim.opt_local.shada = "NONE"
-    end,
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  pattern = { '/mnt/*', '/boot/*' },
+  callback = function()
+    vim.opt_local.undofile = true
+    vim.opt_local.shada = 'NONE'
+  end,
 })
 
 -- Show yanking for 200ms
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-    callback = function()
-        vim.highlight.on_yank({
-            on_visual = false,
-            higroup = "IncSearch",
-            timeout = 200,
-        })
-    end,
+vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
+  callback = function()
+    vim.highlight.on_yank {
+      on_visual = false,
+      higroup = 'IncSearch',
+      timeout = 200,
+    }
+  end,
 })
 
 -- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
+vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, { command = 'checktime' })
 
 --vim.api.nvim_create_autocmd("VimEnter", {
 --    group = vim.api.nvim_create_augroup("restore_marlin", { clear = true }),
@@ -53,50 +53,57 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { comma
 --})
 
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = {
-        "qf",
-        "help",
-        "man",
-        "notify",
-        "lspinfo",
-        "startuptime",
-        "tsplayground",
-        "PlenaryTestPopup",
-        "macrothishelp",
-        "greyjoy",
-        "fugitive",
-        "fugitiveblame",
-        "git",
-        "checkhealth",
-        "query",
-    },
-    callback = function(event)
-        vim.bo[event.buf].buflisted = false
-        vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true, desc = "Close buffer" })
-    end,
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {
+    'qf',
+    'help',
+    'man',
+    'notify',
+    'lspinfo',
+    'startuptime',
+    'tsplayground',
+    'PlenaryTestPopup',
+    'macrothishelp',
+    'greyjoy',
+    'fugitive',
+    'fugitiveblame',
+    'git',
+    'checkhealth',
+    'query',
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true, desc = 'Close buffer' })
+  end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = {
-        "qf",
-    },
-    callback = function(event)
-        vim.bo[event.buf].buflisted = false
-        vim.keymap.set(
-            "n",
-            "o",
-            "<cmd>silent! cfdo edit %<cr>",
-            { buffer = event.buf, silent = true, desc = "Edit all in quickfix list" }
-        )
-        vim.keymap.set("n", "r", function()
-            return ":cdo s///gc<Left><Left><Left><Left>"
-        end, { silent = false, expr = true, noremap = true, desc = "Search and replace all in quickfix list" })
-    end,
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {
+    'qf',
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set('n', 'o', '<cmd>silent! cfdo edit %<cr>', { buffer = event.buf, silent = true, desc = 'Edit all in quickfix list' })
+    vim.keymap.set('n', 'r', function()
+      return ':cdo s///gc<Left><Left><Left><Left>'
+    end, { silent = false, expr = true, noremap = true, desc = 'Search and replace all in quickfix list' })
+  end,
 })
 
 -- Attach my keymappins for all LSPs
-vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = require("core.lspkeymaps").setkeys,
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = require('core.lspkeymaps').setkeys,
+})
+
+-- Watch all Chezmoi files automatically
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = { os.getenv 'HOME' .. '/.local/share/chezmoi/*' },
+  callback = function(ev)
+    local bufnr = ev.buf
+    local edit_watch = function()
+      require('chezmoi.commands.__edit').watch(bufnr)
+    end
+    vim.schedule(edit_watch)
+  end,
 })
