@@ -40,12 +40,12 @@ if [[ -z "$(which nvim 2> /dev/null)" ]]; then
 	alias nv=vim
 	alias damnit='vim $(git grep -l "<<<< HEAD")'
 else
-	alias nvs='NVIM_APPNAME="nvim-own" nvim -On'
-	alias nv2='NVIM_APPNAME="nvim-own" nvim -O2'
+	alias nvs='nvim -On'
+	alias nv2='nvim -O2'
 	alias nvk='NVIM_APPNAME="nvim-kickstart" nvim'
-	alias nv='NVIM_APPNAME="nvim-own" nvim'
+	alias nv='nvim'
 	alias nvold=nvim
-	alias damnit='NVIM_APPNAME="nvim-own" nvim $(git grep -l "<<<< HEAD")'
+	alias damnit='nvim $(git grep -l "<<<< HEAD")'
 fi
 alias pbi=perlbrew_init
 if `which thefuck > /dev/null 2>&1`; then
