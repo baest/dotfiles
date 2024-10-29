@@ -16,9 +16,9 @@ config.warn_about_missing_glyphs = false
 --config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
 config.font =
-  --wezterm.font('FiraCode Nerd Font Mono')
-  wezterm.font('FiraCode Nerd Font Mono', { weight = 450 })
-  --wezterm.font('FiraCode Nerd Font Mono', { weight = 'Medium' })
+--wezterm.font('FiraCode Nerd Font Mono')
+    wezterm.font('FiraCode Nerd Font Mono', { weight = 450 })
+--wezterm.font('FiraCode Nerd Font Mono', { weight = 'Medium' })
 
 --config.font = wezterm.font_with_fallback({
 --  -- /usr/share/fonts/TTF/FiraCodeNerdFontMono-Bold.ttf, FontConfig
@@ -39,8 +39,8 @@ local solarized = wezterm.get_builtin_color_schemes()[coloursheme]
 solarized.brights[8] = solarized.ansi[8]
 
 config.color_schemes = {
-    -- Override the builtin scheme with our modification.
-    ['Solarized (light) (terminal.sexy)'] = solarized,
+  -- Override the builtin scheme with our modification.
+  ['Solarized (light) (terminal.sexy)'] = solarized,
 }
 config.color_scheme = coloursheme
 
@@ -51,8 +51,8 @@ config.inactive_pane_hsb = {
 
 config.keys = {
   {
-    key = 'O',
-    mods = 'CTRL',
+    key = 'o',
+    mods = 'SHIFT|CTRL',
     action = wezterm.action.QuickSelectArgs {
       label = 'open url',
       patterns = {
@@ -63,6 +63,24 @@ config.keys = {
         wezterm.log_info('opening: ' .. url)
         wezterm.open_with(url)
       end),
+    },
+  },
+  {
+    key = 'b',
+    mods = 'SHIFT|CTRL',
+    action = wezterm.action.QuickSelectArgs {
+      label = 'copy branch',
+      patterns = {
+        'fra/[[:alnum:]_-]+',
+      },
+      --      action = wezterm.action_callback(function(window, pane)
+      --        local branch = window:get_selection_text_for_pane(pane)
+      --        local cp_source = 'PrimarySelection'
+      --        local act = wezterm.action
+      --        wezterm.log_info('copying branch: ' .. branch)
+      --        act.CopyTo(cp_source)
+      --        act.PasteFrom(cp_source)
+      --      end),
     },
   },
 }
@@ -85,4 +103,3 @@ config.mouse_bindings = {
 
 -- and finally, return the configuration to wezterm
 return config
-
