@@ -172,10 +172,12 @@ config.set(
     "file:///home/fra/.local/share/qutebrowser/userscripts/*",
 )
 
-config.bind('J', 'tab-prev')
-config.bind('K', 'tab-next')
-#config.bind("<y><h>", "yank inline '{url} <-- {title}'")
-config.bind("<y><h>", "spawn /home/fra/bin/copy_url_qutebrowser_for_slack '{url} <-- {title}'")
+# config.bind('J', 'tab-prev')
+# config.bind('K', 'tab-next')
+# config.bind("<y><h>", "yank inline '{url} <-- {title}'")
+config.bind(
+    "<y><h>", "spawn /home/fra/bin/copy_url_qutebrowser_for_slack '{url} <-- {title}'"
+)
 config.bind("1", "spawn --userscript qute-1pass")
 
 # Languages to use for spell checking. You can check for available
@@ -228,8 +230,8 @@ config.bind("1", "spawn --userscript qute-1pass")
 #   - vi-VN: Vietnamese (Viet Nam)
 c.spellcheck.languages = ["en-GB", "da-DK"]
 
-c.url.start_pages = ['about:blank']
-c.url.default_page = 'about:blank'
+c.url.start_pages = ["about:blank"]
+c.url.default_page = "about:blank"
 
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
@@ -237,6 +239,6 @@ c.url.searchengines = {
     "pg": "https://www.postgresql.org/search/?q={}",
 }
 
-config.source('base16-qutebrowser/themes/default/base16-solarized-light.config.py')
+config.source("base16-qutebrowser/themes/default/base16-solarized-light.config.py")
 
 config.load_autoconfig()

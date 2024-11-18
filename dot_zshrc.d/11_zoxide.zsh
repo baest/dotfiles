@@ -1,1 +1,1 @@
-znap eval starship 'zoxide init zsh'
+znap eval zoxide 'zoxide init zsh'

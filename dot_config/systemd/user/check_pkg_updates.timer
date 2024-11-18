@@ -1,0 +1,9 @@
+[Unit]
+Description=Check updates for packages
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=1h
+
+[Install]
+WantedBy=timers.target

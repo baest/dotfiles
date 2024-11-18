@@ -1,0 +1,10 @@
+[Unit]
+Description=Check for package updates
+
+[Service]
+Type=oneshot
+RemainAfterExit=false
+ExecStart=/home/fra/bin/check_pkg_updates.sh
+
+[Install]
+WantedBy=default.target

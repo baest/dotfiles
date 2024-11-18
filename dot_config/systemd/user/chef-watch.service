@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch chef repo
+
+[Service]
+ExecStart=/home/fra/bin/watch_chef.raku
+WorkingDirectory=%h/src/chef/repo
+
+[Install]
+WantedBy=default.target
