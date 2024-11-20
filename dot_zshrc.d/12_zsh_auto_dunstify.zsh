@@ -1,1 +1,16 @@
 znap source Amir1453/zsh-auto-dunstify
+
+AUTO_NOTIFY_IGNORE+=("x")
+AUTO_NOTIFY_IGNORE+=("less")
+AUTO_NOTIFY_IGNORE+=("cm")
+AUTO_NOTIFY_IGNORE+=("nv")
+AUTO_NOTIFY_IGNORE+=("nvim")
+AUTO_NOTIFY_IGNORE+=("pg")
+AUTO_NOTIFY_IGNORE+=("jj")
+AUTO_NOTIFY_IGNORE+=("jjd")
+AUTO_NOTIFY_IGNORE+=("jjl")
+
+#export AUTO_NOTIFY_WHITELIST=("paru" "docker")
+
+export AUTO_NOTIFY_THRESHOLD=20
+export AUTO_NOTIFY_EXPIRE_TIME=5000
