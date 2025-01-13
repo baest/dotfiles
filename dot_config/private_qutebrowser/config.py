@@ -236,7 +236,8 @@ c.url.default_page = "about:blank"
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
     "g": "https://google.com/?q={}",
-    "pg": "https://www.postgresql.org/search/?q={}",
+    # "pg": "https://www.postgresql.org/search/?q={}",
+    "pg": "https://pgdoc.link/{}",
 }
 
 config.source("base16-qutebrowser/themes/default/base16-solarized-light.config.py")

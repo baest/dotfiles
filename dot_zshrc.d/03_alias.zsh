@@ -52,8 +52,9 @@ if `which thefuck > /dev/null 2>&1`; then
 	eval $(thefuck --alias)
 fi
 
-alias bc="figlet 'use squiid' && sleep 2 && squiid"
-alias fend="figlet 'use squiid' && sleep 2 && squiid"
+alias bc="figlet 'use numbat' && sleep 2 && numbat"
+alias fend="figlet 'use numbat' && sleep 2 && numbat"
+alias squiid="figlet 'use numbat' && sleep 2 && numbat"
 
 alias unhex="xxd -r -p"
 alias hex="xxd -p -c0 -u"
@@ -78,9 +79,23 @@ alias b2o="perl -e 'printf qq|%o\n|, oct( q|0b| . shift )'"
 
 alias cm=chezmoi
 
-alias jjpull="jj git fetch && jj rebase -d 'trunk()'"
-alias jjp="jj git fetch && jj rebase -d 'trunk()'"
+alias jjpull="jj git fetch && jj rebase --branch 'all:myb' -d 'trunk()'"
+alias jjp="jj git fetch && jj rebase --branch 'all:coalesce(myb, @)' -d 'trunk()'"
 alias jjs="jj status"
-alias jjd="jj diff"
+alias jjpmb="jj git push -r myb"
+#alias jjd='LESS="-RXQ" jj diff'
+jjd() {
+    LESS="-RXQ"
+    jj diff "$@"
+}
+jjpm() {
+    ## jj push master/main
+    REV="@"
+    if [ ${1+x} ]; then
+        REV=$1
+    fi
+    echo "jj bookmark move --to $REV 'regex:^(main|master)\$'"
+    echo "jj git push -b 'regex:^(main|master)\$'"
+}
 alias jjl="jj log --stat"
 alias doggo="doggo --strategy=random"

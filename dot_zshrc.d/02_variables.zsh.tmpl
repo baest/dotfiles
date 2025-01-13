@@ -5,7 +5,7 @@ HISTFILE=~/.zsh_history
 
 export BLOCKSIZE=K;
 export PAGER=less;
-export LESS='-RQ'
+export LESS='-FRXQ'
 export DELTA_PAGER="less $LESS"
 
 export PS1="%*:%n@%m:%~%{${fg[red]}%}%B%(?..(%?%))%b%#";
@@ -53,6 +53,7 @@ unset TMOUT
 export BAT_THEME="Solarized (light)"
 
 export PSQLRC_DOCKER="$HOME/.psqlrc_docker"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg.rc"
 
 {{ if ne .chezmoi.os "darwin" }}
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
