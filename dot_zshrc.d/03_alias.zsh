@@ -1,11 +1,11 @@
 alias ls="ls -F"
-#alias ll="ls -alh"
+alias ll="ls -alh"
 
-if `which eza &> /dev/null`; then 
+if `which eza &> /dev/null`; then
 	alias ll="eza -laagH --git"
 	#alias ll="exa -laag --git --grid"
 	alias tree="eza --tree -laagH --git"
-elif `which exa &> /dev/null`; then 
+elif `which exa &> /dev/null`; then
 	alias ll="exa -laagH --git"
 	#alias ll="exa -laag --git --grid"
 	alias tree="exa --tree -laagH --git"
@@ -80,7 +80,8 @@ alias b2o="perl -e 'printf qq|%o\n|, oct( q|0b| . shift )'"
 alias cm=chezmoi
 
 alias jjpull="jj git fetch && jj rebase --branch 'all:myb' -d 'trunk()'"
-alias jjp="jj git fetch && jj rebase --branch 'all:coalesce(myb, @)' -d 'trunk()'"
+#alias jjp="jj git fetch && jj rebase --branch 'all:coalesce(myb, @)' -d 'trunk()'"
+alias jjp="jj git fetch && jj rebase --branch 'all:mutable()' -d 'trunk()'"
 alias jjs="jj status"
 alias jjpmb="jj git push -r myb"
 #alias jjd='LESS="-RXQ" jj diff'

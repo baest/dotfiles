@@ -149,6 +149,8 @@ znap source atuinsh/atuin
 znap source zsh-users/zsh-autosuggestions
 znap source junegunn/fzf shell/{completion,key-bindings}.zsh
 
+unset_sshkey_override_if_possible()
+
 if [[ ! -z "$ITERM_SESSION_ID" ]]; then
     safe_source "$HOME/.iterm2_shell_integration.zsh"
     #[[ ! -f ~/.zgen/.iterm2_shell_integration.zsh ]] || source ~/.zgen/.iterm2_shell_integration.zsh

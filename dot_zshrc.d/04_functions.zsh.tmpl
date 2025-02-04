@@ -244,17 +244,31 @@ function git() {
 	{{ lookPath "git" }} "$@"
 }
 
-function jj() {
+function tmux() {
 	add_ssh_key_if_needed
 	unset_sshkey_override
-	{{ lookPath "jj" }} "$@"
+	{{ lookPath "tmux" }} "$@"
 }
+
+#function jj() {
+#	add_ssh_key_if_needed
+#	unset_sshkey_override
+#	{{ lookPath "jj" }} "$@"
+#}
 
 function unset_sshkey_override() {
 	unset -f ssh
 	unset -f git
-	unset -f jj
+	unset -f tmux
+#	unset -f jj
 }
+function unset_sshkey_override_if_possible() {
+    if $(ssh-add -L 2>/dev/null | rg '^ssh-' > /dev/null); then
+	unset_sshkey_override
+    fi
+}
+{{else}}
+function unset_sshkey_override_if_possible() { }
 {{ end }}
 
 function changie() {

@@ -39,3 +39,33 @@ Telescope buffers
 
 Prettify txt tables (like markdown):
  :!column -t -s '|' -o '|'
+
+Indent blank line
+ :IndentBlanklineDisable
+ :set list
+
+LSP:
+  Rename variable (lspkeymaps.lua)
+   ,rn
+
+  Show signature of function (on hover)
+   gss
+
+Edit position (:help jumplist)
+  ctrl+o to jump back after gd or similar
+
+Comments toggle:
+  line-wise in visual mode:
+     gc
+ 
+  block-wise in visual mode:
+     gb
+
+Move to next char:
+  fFtT forward/backwards to next/prev char (just before with tT)
+  dt (and so on to delete to next e.g. ")
+  ct (will also delete and then put into insert mode)
+
+Enable/Disable auto format:
+  :FormatDisable (! with bang disable only current buffer)
+  :FormatEnable

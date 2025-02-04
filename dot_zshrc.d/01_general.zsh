@@ -1,6 +1,7 @@
 bindkey -e
 #see zsh manual p 170
 bindkey '\eq' push-line-or-edit
+bindkey -M vicmd 'q' push-line-or-edit
 bindkey '^U' backward-kill-line
 
 autoload -Uz compinit

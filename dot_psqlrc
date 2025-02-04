@@ -33,7 +33,9 @@
 \set exp EXPLAIN (ANALYZE, VERBOSE, BUFFERS, COSTS, TIMING)
 \set expj 'EXPLAIN (ANALYZE, VERBOSE, BUFFERS, COSTS, TIMING, FORMAT JSON)'
 \set cunt 'COUNT(*)'
+\set cnt 'COUNT(*)'
 --\g (format=unaligned tuples_only=on ) xxx.json
+--\set ECHO_HIDDEN on
 
 \unset QUIET
 
