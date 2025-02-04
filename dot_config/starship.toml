@@ -1,3 +1,4 @@
+"$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = false
 
@@ -10,7 +11,7 @@ error_symbol = "[❯](bold red)"
 success_symbol = "[❯](green)"
 
 [hostname]
-format =  "❮$hostname❯ "
+format = "❮$hostname❯ "
 disabled = false
 
 [username]
@@ -80,7 +81,7 @@ format = " [$symbol$status]($style) "
 
 [kubernetes]
 disabled = false
-detect_env_vars = [ 'K8S' ]
+detect_env_vars = ['K8S']
 #detect_files = ['k8s'] # for some reason this needs to be 
 
 [custom.jj]
