@@ -1,0 +1,148 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/src/promdress
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +3 docker-compose.yml
+badd +90 src/cmd/one.com-promdress/main.go
+badd +38 Makefile
+badd +1 container/test-runner/Dockerfile
+badd +35 src/metric/metric.go
+badd +21 test/001_hello.t
+badd +158 test/lib/TestHelper.pm
+badd +14 container/promdress/promdress.toml
+badd +123 test/002_update.t
+badd +27 container/testdb/initdb/0200_fixtures.sql
+badd +49 .gitlab-ci.yml
+badd +1 container/testdb/initdb/0100_schema.sql
+badd +5 container/testdb/initdb/0300_othertestdb_schema.sql
+badd +17 abe.sql
+badd +55 ~/src/promdress/src/vendor/github.com/prometheus/client_golang/prometheus/gauge.go
+badd +117 ~/src/promdress/src/vendor/github.com/prometheus/client_golang/prometheus/metric.go
+badd +399 ~/src/promdress/src/vendor/github.com/jackc/pgx/v5/rows.go
+badd +91 ~/src/promdress/src/vendor/github.com/jackc/pgx/v5/pgxpool/pool.go
+badd +34 src/metric/metric_test.go
+badd +1 ~/src/promdress/src/go.mod
+badd +1 test/003_convert.t
+badd +10 abe.go
+badd +7 tools/promdress.http
+badd +1 db/schema.sql
+badd +9 container/testdb/initdb/0400_othertestdb_fixture.sql
+badd +270 ~/src/promdress/src/vendor/github.com/prometheus/client_golang/prometheus/registry.go
+badd +1 src/cmd/one.com-promdress/main_test.go
+badd +31 ~/src/promdress/src/vendor/github.com/jackc/pgx/v5/pgconn/errors.go
+badd +281 ~/src/promdress/src/vendor/github.com/prometheus/client_golang/prometheus/counter.go
+badd +133 ~/src/promdress/src/vendor/github.com/jackc/pgx/v5/pgxpool/conn.go
+badd +73 ~/src/promdress/src/vendor/github.com/jackc/pgx/v5/pgxpool/rows.go
+badd +1602 ~/src/promdress/src/vendor/github.com/spf13/viper/viper.go
+badd +35 src/cmd/one.com-promdress/util.go
+badd +42 src/sql/load_sql.go
+badd +37 src/sql/queries.sql
+badd +70 ~/src/promdress/src/vendor/github.com/qustavo/dotsql/dotsql.go
+badd +11 src/sql/load_sql_test.go
+badd +247 /usr/lib/go/src/fmt/print.go
+badd +436 /usr/lib/go/src/log/log.go
+badd +200 /usr/lib/go/src/log/slog/logger.go
+badd +17 /usr/lib/go/src/errors/wrap.go
+badd +17 /usr/lib/go/src/errors/join.go
+badd +79 /usr/lib/go/src/embed/embed.go
+badd +97 ~/src/promdress/src/vendor/github.com/prometheus/client_golang/prometheus/wrap.go
+badd +384 ~/src/promdress/src/vendor/github.com/prometheus/client_golang/prometheus/vec.go
+badd +27 ~/src/promdress/src/vendor/github.com/prometheus/client_golang/prometheus/collector.go
+badd +16 ~/src/promdress/src/util/util.go
+badd +1637 ~/src/promdress/src/vendor/github.com/stretchr/testify/assert/assertions.go
+argglobal
+%argdel
+$argadd src/cmd/one.com-promdress/main.go
+edit src/metric/metric.go
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 138 + 180) / 361)
+argglobal
+balt src/cmd/one.com-promdress/main.go
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 35 - ((34 * winheight(0) + 44) / 89)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 35
+normal! 05|
+wincmd w
+argglobal
+if bufexists(fnamemodify("src/metric/metric.go", ":p")) | buffer src/metric/metric.go | else | edit src/metric/metric.go | endif
+if &buftype ==# 'terminal'
+  silent file src/metric/metric.go
+endif
+balt ~/src/promdress/src/vendor/github.com/prometheus/client_golang/prometheus/vec.go
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 34 - ((0 * winheight(0) + 44) / 89)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 34
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 138 + 180) / 361)
+tabnext 1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=1
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

@@ -14,10 +14,9 @@ else
   set shortmess=aoO
 endif
 badd +5 ~/src/database-schema/coredb/migration/0537_add_soa_serial_to_zone.sql
-badd +806 scripts/one.com-dns-exporter
-badd +135 test/lib/TestHelper.pm
-badd +89 test/020_cluster_records.t
-badd +456 test/010_old_domain_records.t
+badd +14 scripts/one.com-dns-exporter
+badd +330 test/lib/TestHelper.pm
+badd +171 test/020_cluster_records.t
 badd +117 ~/src/database-schema/dnsdb/migration/0221_soa_in_coredb.sql
 badd +3 ~/src/database-schema/dnsdb/migration/0222_dns_record_uniq_index.sql
 badd +1 container/coredb/migration/0530_add_soa_serial.sql
@@ -29,37 +28,29 @@ badd +1 test/005_check_suffix_to_prefix.t
 badd +25 ~/src/database-schema/dnsdb/test/210_get_prefix_from_suffix.t
 badd +4 container/dnsdb/fixture_migration/0001_core_domains.sql
 badd +44 /opt/homebrew/Cellar/perl/5.34.0/lib/perl5/5.34.0/warnings/register.pm
-badd +333 test/030_dnssec_keys.t
+badd +380 test/030_dnssec_keys.t
 badd +18 ~/src/database-schema/dnsdb/migration/0227_get_prefix_from_suffix.sql
-badd +114 test/050_old_integration.t
 badd +1 ~/src/database-schema/dnsdb/migration/0228_drop_special_suffix_handling.sql
 badd +3 container/dnsdb/fixture/migration/0001_core_domains.sql
-badd +33 test/040_failure.t
-badd +731 ../integration_test-dns-uil/scripts/one.com-dns-exporter
-badd +1 test/010_domain_dns_records.t
-badd +53 ../integration_test-dns-uil/test/010_domain_records.t
-badd +35 test/500_performance.t
+badd +42 test/040_failure.t
+badd +18 test/500_performance.t
 badd +32 container/pdns/pdns-one.com.conf
-badd +1 lib/DNSExporter/Helper.pm
-badd +3 test/100_old_clean_up_ent_records.t
-badd +32 /opt/homebrew/opt/perl/lib/perl5/5.34/Carp.pm
+badd +54 lib/DNSExporter/Helper.pm
 badd +22 scripts/group.one-clean-up-ent-records
-badd +450 test/025_old_zone_records.t
 badd +1 container/dnsdb/fixture/migration/101_service_service_and_friends.sql
-badd +81 test/005_old_service_zone.t
-badd +4 test/003_brand.t
-badd +31 container/coredb/fixture/migration/101_service_service_and_friends.sql
+badd +16 test/003_brand.t
+badd +1 container/coredb/fixture/migration/101_service_service_and_friends.sql
 badd +4 .gitlab-ci.yml
 badd +24 container/test-runner/Dockerfile
 badd +1 docker-compose.yml
 badd +79 Makefile
-badd +90 test/020_old_cluster_records.t
-badd +662 test/025_zone_records.t
-badd +5 ../dns-utilities/test/005_service_zone.t
-badd +646 test/010_domain_records.t
+badd +570 test/025_zone_records.t
+badd +129 ../dns-utilities/test/005_service_zone.t
+badd +650 test/010_domain_records.t
 badd +216 test/050_integration.t
 badd +16 test/100_clean_up_ent_records.t
 badd +8 container/pdns/pdns.d/pdns-hostnet.nl.conf
+badd +105 test/015_domain_migration.t
 argglobal
 %argdel
 $argadd scripts/one.com-dns-exporter
@@ -81,12 +72,35 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
 argglobal
 if bufexists(fnamemodify("test/lib/TestHelper.pm", ":p")) | buffer test/lib/TestHelper.pm | else | edit test/lib/TestHelper.pm | endif
 if &buftype ==# 'terminal'
   silent file test/lib/TestHelper.pm
+endif
+balt test/020_cluster_records.t
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 330 - ((44 * winheight(0) + 44) / 89)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 330
+normal! 05|
+wincmd w
+argglobal
+if bufexists(fnamemodify("test/020_cluster_records.t", ":p")) | buffer test/020_cluster_records.t | else | edit test/020_cluster_records.t | endif
+if &buftype ==# 'terminal'
+  silent file test/020_cluster_records.t
 endif
 balt test/003_brand.t
 setlocal fdm=manual
@@ -96,41 +110,19 @@ setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal fen
+setlocal nofen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 135 - ((63 * winheight(0) + 42) / 84)
+let s:l = 171 - ((16 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 135
-normal! 0
+keepjumps 171
+normal! 05|
 wincmd w
-argglobal
-if bufexists(fnamemodify("test/003_brand.t", ":p")) | buffer test/003_brand.t | else | edit test/003_brand.t | endif
-if &buftype ==# 'terminal'
-  silent file test/003_brand.t
-endif
-balt test/001_hello.t
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 4 - ((3 * winheight(0) + 42) / 84)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 4
-normal! 0
-wincmd w
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

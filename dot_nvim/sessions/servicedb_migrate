@@ -1,0 +1,150 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/src/database-schema/servicedb
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +82 fyi/public/f_lookup_cluster_varnish_http_v4.sql
+badd +2 fyi/public/f_lookup_cluster_varnish_http_v5.sql
+badd +12 fyi/public/f_lookup_domain_varnish_http_v4.sql
+badd +1 fyi/public/f_lookup_varnish_http.sql
+badd +372 migration/0436_varnish_http.sql
+badd +18 fyi/public/f_domain_update_trigger.sql
+badd +30 fyi/public/f_provision_fqdns.sql
+badd +1 ~/src/database-schema/servicedb/migration/0437_drop_unused.sql
+badd +1 ~/src/database-schema/servicedb/migration/0436_fix_webconfig.sql
+badd +41 test.sql
+badd +97 migration/0437_varnish_http.sql
+badd +56 fyi/public/f_lookup_cluster_varnish_http_v5.old.sql
+badd +20 migration/0438_lookup_varnish.sql
+badd +5 test/909_performance_lookup_varnish.t
+badd +138 migration/0439_varnish_http.sql
+badd +2 tmp.sql
+badd +97 migration/0440_varnish_http.sql
+badd +1 migration/0442_varnish_http_cache_response.sql
+badd +1 migration/0441_lookup_varnish.sql
+badd +12 ~/src/database-schema/servicedb/migration/0442_lookup_cert.sql
+badd +1 fyi/public/f_lookup_cluster_certificate_name_by_fqdn_v1.sql
+badd +1 migration/0445_varnish_http_cache_response.sql
+badd +74 lint_config.pl
+badd +4 migration/0445_missing_references.sql
+badd +50 migration/0448_varnish_http_cache_response.sql
+badd +2 migration/0445_lookup_cert.sql
+badd +17 ~/src/database-schema/servicedb/migration/0447_lookup_schema.sql
+badd +33 migration/0449_drop_unused.sql
+badd +1 migration/0450_drop_varnish_cache.sql
+badd +73 ~/src/database-schema/servicedb/migration/0450_lookup_varnish.sql
+badd +53 fyi/public/f_provision.sql
+badd +20 fyi/public/f_provision_mysql_databases.sql
+badd +22 fyi/public/f_provision_zones.sql
+badd +41 fyi/lookup/f_refresh_varnish_http_cache.sql
+badd +1 migration/0452_lookup_cert.sql
+badd +13 fyi/public/f_lookup_domain_certificate_name_by_domain_v1.sql
+badd +1 fyi/public/f_provision_certificates.sql
+badd +1 fyi/public/f_provision_cluster.sql
+badd +1 .coverage
+badd +6 fyi/lookup/f_domain_change_trigger.sql
+badd +1 fyi/public/f_lookup_certificate.sql
+badd +24 fyi/public/f_lookup_certificate_v1.sql
+argglobal
+%argdel
+$argadd fyi/public/f_lookup_cluster_varnish_http_v4.sql
+$argadd fyi/public/f_lookup_cluster_varnish_http_v5.sql
+$argadd fyi/public/f_lookup_domain_varnish_http_v4.sql
+$argadd fyi/public/f_lookup_varnish_http.sql
+$argadd migration/0436_varnish_http.sql
+edit migration/0452_lookup_cert.sql
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 138 + 180) / 361)
+argglobal
+if bufexists(fnamemodify("migration/0452_lookup_cert.sql", ":p")) | buffer migration/0452_lookup_cert.sql | else | edit migration/0452_lookup_cert.sql | endif
+if &buftype ==# 'terminal'
+  silent file migration/0452_lookup_cert.sql
+endif
+balt fyi/lookup/f_refresh_varnish_http_cache.sql
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 44) / 89)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("migration/0452_lookup_cert.sql", ":p")) | buffer migration/0452_lookup_cert.sql | else | edit migration/0452_lookup_cert.sql | endif
+if &buftype ==# 'terminal'
+  silent file migration/0452_lookup_cert.sql
+endif
+balt fyi/public/f_lookup_domain_certificate_name_by_domain_v1.sql
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 44) / 89)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 138 + 180) / 361)
+tabnext 1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=1
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

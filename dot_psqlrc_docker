@@ -16,7 +16,12 @@
 \set HISTSIZE 50000
 \set HISTCONTROL ignoreboth
 --\set HISTFILE ~/.psql_history/ :DBNAME
+\getenv psql_history PSQL_HISTORY
+\if :{?psql_history}
+\else
 \set HISTFILE /build/.psql_history_:DBNAME
+\endif
+
 
 \set COMP_KEYWORD_CASE upper
 \set ON_ERROR_ROLLBACK interactive

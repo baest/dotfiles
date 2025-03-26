@@ -1,0 +1,145 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd ~/src/systems-api
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +35 src/models3/domain2cluster/convert_dns.go
+badd +1 src/models3/zone_custom_record/zone_custom_record.go
+badd +334 ~/src/systems-api/src/models3/zone/zone.go
+badd +11 test/v3/310_zones.t
+badd +26 src/coredb/t_service_zone.json
+badd +1 src/coredb/t_brand.json
+badd +73 src/api3/error/errors.txt
+badd +149 src/coredb/coredb.go
+badd +196 ~/src/systems-api/src/coredb/t_brand.go
+badd +34 src/coredb/t_service_zone.go
+badd +200 ~/src/systems-api/src/coredb/t_domain.go
+badd +684 ~/src/systems-api/src/vendor/github.com/doug-martin/goqu/v9/select_dataset.go
+badd +205 test/lib/TestHelper.pm
+badd +118 test/lib/TestClient.pm
+badd +10 test/v2/701_domain2cluster.t
+badd +122 ~/src/systems-api/src/coredb/t_domain2cluster_migration.go
+badd +551 src/models/domain/domain.go
+badd +21 ~/src/systems-api/src/coredb/v_domain_view.go
+badd +660 test/v2/001-domains.t
+badd +271 ~/src/systems-api/src/json_api/json_api.go
+badd +343 src/api3/routes.go
+badd +88 ~/src/systems-api/src/api3/cluster_certificates.go
+badd +350 ~/src/systems-api/src/models3/certificate/certificate.go
+badd +79 test/v3/491_certificates.t
+badd +23 test/v2/491_certificates.t
+badd +663 test/v2/702_domain2cluster_with_everything.t
+badd +81 src/api3/ptr_records.go
+badd +74 ~/src/systems-api/src/api3/controller.go
+badd +65 test/v3/344_cluster_ptr_records.t
+badd +208 ~/src/systems-api/src/models3/cluster_service/cluster_service.go
+badd +76 src/dnssec_migrate/migrate.go
+badd +211 ~/src/systems-api/src/cmd/systems-api-server/main.go
+badd +23 ~/src/systems-api/src/diskusage_consumer/diskusage_consumer.go
+badd +79 src/dkim/dkim_signer.go
+badd +221 ~/src/systems-api/src/logging/logging.go
+badd +243 /usr/lib/go/src/encoding/pem/pem.go
+badd +20 /usr/lib/go/src/bytes/buffer.go
+badd +106 /usr/lib/go/src/crypto/x509/pkcs8.go
+badd +11 ed25519.go
+argglobal
+%argdel
+$argadd src/models3/domain2cluster/convert_dns.go
+$argadd src/models3/zone_custom_record/zone_custom_record.go
+edit ed25519.go
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 223 + 180) / 361)
+argglobal
+if bufexists(fnamemodify("ed25519.go", ":p")) | buffer ed25519.go | else | edit ed25519.go | endif
+if &buftype ==# 'terminal'
+  silent file ed25519.go
+endif
+balt src/dnssec_migrate/migrate.go
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 17 - ((16 * winheight(0) + 44) / 89)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 17
+normal! 05|
+wincmd w
+argglobal
+if bufexists(fnamemodify("src/dkim/dkim_signer.go", ":p")) | buffer src/dkim/dkim_signer.go | else | edit src/dkim/dkim_signer.go | endif
+if &buftype ==# 'terminal'
+  silent file src/dkim/dkim_signer.go
+endif
+balt /usr/lib/go/src/encoding/pem/pem.go
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 79 - ((78 * winheight(0) + 44) / 89)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 79
+normal! 05|
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 223 + 180) / 361)
+tabnext 1
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=1
+let &shortmess = s:shortmess_save
+let &winminheight = s:save_winminheight
+let &winminwidth = s:save_winminwidth
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+nohlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

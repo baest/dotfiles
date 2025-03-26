@@ -13,106 +13,95 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +82 migration/0579_zone_dns_export.sql
-badd +201 fyi/public/f_dns_get_records_single_domain.sql
-badd +57 fyi/public/f_dns_export_get_records.sql
-badd +23 fyi/public/v_dns_records_view.sql
-badd +1 fyi/public/f_dns_export_cluster_suspension_info.sql
-badd +1 fyi/public/v_cluster_service_current_assignment_view.sql
-badd +2 fyi/public/f_dns_export_get_cluster_records.sql
-badd +1 migration/0610_add_dns_export_get_zone_records.sql
-badd +123 migration/0612_make_zone_events.sql
-badd +68 migration/0611_dns_export_trigger_on_domain_suspension.sql
-badd +7 fyi/promdress/type_metric_t.sql
-badd +26 migration/0613_fix_promdress_dns_export_queue_total_view.sql
-badd +17 migration/0614_add_internal_custom_dns.sql
-badd +1 migration/0614_missing_grant_dkim.sql
-badd +345 migration/0616_empty_fqdn_should_not_trigger_domain_dns_export_again.sql
-badd +1 migration/0615_empty_fqdn_should_not_trigger_domain_dns_export.sql
-badd +395 migration/0617_add_internal_custom_dns.sql
-badd +1 migration/0617_drop_old_dns_export_tables.sql
-badd +343 migration/0619_add_zone_dns_export_events.sql
-badd +128 migration/0619_handle_nullable_domain_id.sql
-badd +50 migration/0623_add_zone_dns_export_events.sql
-badd +1 migration/0631_redo_service_dns_view.sql
-badd +8 migration/0538_no_soa_records_in_service_dns.sql
-badd +21 migration/0633_redo_service_dns_view_again.sql
-badd +38 migration/0634_zone_domain_mutual_exclusion.sql
-badd +1 migration/0634_fix_service_dns_views.sql
-badd +18 migration/0634_add_zone_dns_export_events.sql
-badd +69 migration/0639_fix_dns_export_change_trigger.sql
-badd +374 migration/0640_fix_dns_export_change_trigger_again.sql
-badd +3 migration/0644_drop_zone_stuff_in_legacy_model.sql
-badd +111 migration/0647_drop_more_zone_stuff_in_legacy_model.sql
-badd +1 migration/0647_drop_last_zone_sync_trigger.sql
-badd +46 fyi/public/v_dns_zone_mail_records.sql
-badd +2 fyi/public/v_dns_domain_service_records_view.sql
-badd +26 migration/0649_make_dkim_records_great_again.sql
-badd +13 migration/0651_drop_domain_id_in_fqdn.sql
-badd +87 migration/0652_drop_domain_suspension.sql
-badd +4 migration/0654_lookup_dkim.sql
-badd +34 migration/0655_lookup_dkim.sql
-badd +70 migration/0681_service_zone.sql
-badd +64 migration/0664_add_vm_related_relations.sql
-badd +85 migration/0694_service_zone_data.sql
-badd +1 migration/0696_export_ptr_records_and_service_zone.sql
-badd +12 migration/0694_service_zone_data2_test_zone.sql
-badd +64 migration/0695_change_dns_export_queue.sql
-badd +1 coredb/migration/0695_export_ptr_records_and_service_zone.sql
-badd +688 migration/0695_export_ptr_records_and_service_zone.sql
-badd +2 migration/0703_change_service_zone_brand_name.sql
-badd +15 migration/0705_fix_missing_ns_records_for_service_zone.sql
-badd +1 migration/0710_run_dns_export_on_webroute_update.sql
-badd +24 migration/0711_no_soa_serial_bump_on_cluster_change.sql
-badd +3 migration/0721_add_default_soa_for_service_zone.sql
-badd +8 migration/0721_domains_as_service_zone.sql
 badd +232 fixture/migration/0350_test_pods.sql
-badd +2 migration/0720_domain_zone_mutual_exclusion_immediate.sql
-badd +4 migration/0720_zone_domain_mutual_exclusion_immediate.sql
-badd +104 migration/0712_service_assignment2cluster_service_instance.sql
-badd +1 migration/0724_export_fqdn_on_cluster.sql
-badd +631 migration/0730_export_fqdn_from_coredb.sql
 badd +1 fixture/migration/9000_post_cleanup.sql
-badd +1 abe.sql
-badd +1 migration/0736_remove_wildcard.one.com.sql
-badd +32 migration/0736_fix_default_privs_after_change_to_postgresql.sql
-badd +1 migration/0737_reassign_database_migrator_to_postgres.sql
-badd +95 migration/0737_fix_grants_dns.sql
-badd +96 migration/0738_support_a_records_for_ptr.sql
-badd +3 migration/0754_service_dns_should_have_a_service_shard.sql
-badd +4 migration/0772_create_dogado.de_brand.sql
-badd +2 migration/0776_create_dogado_de_brand.sql
-badd +1 migration/0778_change_ns_for_service_zone.sql
-badd +1 migration/0777_change_soa_for_service_zone.sql
-badd +60 migration/0785_disabled_cnames_blocks_only_cname.sql
-badd +3 migration/0786_rename_service_zone_brand.sql
-badd +35 migration/0787_change_soa_ns_for_mostly_unused_brands.sql
-badd +1 migration/0788_dnssec_bot.sql
-badd +1 migration/0111_support_ssl_for_cluster.sql
-badd +1 migration/0816_add_acme_challenge_to_cluster.sql
-badd +1 migration/0814_dnssec_bot.sql
-badd +1 migration/0999_fix_acme_challenge.sql
-badd +84 migration/0821_add_acme_challenge_to_cluster.sql
-badd +1 migration/0830_fix_acme_challenge.sql
-badd +1 migration/0830_update_ftp_acme_challenge_on_cluster.sql
-badd +34 ~/src/database-schema/coredb/migration/0837_dnssec_bot.sql
-badd +1 ~/src/database-schema/coredb/migration/0836_fix_acme_challenge.sql
-badd +11 migration/0838_dnssec_bot_v2.sql
-badd +56 migration/0840_dnssec_botv3.sql
-badd +543 migration/0841_zone_dnssec_key_set_changes.sql
-badd +1 migration/0844_dnssecbot_v4.sql
-badd +6 migration/0846_zone_dnssec_key_set_cryptokey_view.sql
-badd +1 migration/0850_change_bss_to_registry_zone_dnssec.sql
-badd +1 migration/0851_change_live_to_in_dns_for_dnssec.sql
-badd +9 migration/0857_key_set_queue.sql
-badd +1 migration/0856_zone_dns_active_records_view.sql
 badd +1 migration/0859_key_set_queue_index.sql
-badd +1 migration/0866_add_dns_export_trigger_on_domain2cluster_migration.sql
-badd +2 migration/0870_add_zone_dnssec_key_set_view.sql
+badd +551 migration/0866_add_dns_export_trigger_on_domain2cluster_migration.sql
+badd +10 migration/0873_add_service_zone_network.sql
+badd +1 migration/0579_zone_dns_export.sql
+badd +2 fyi/public/f_dns_reverse_inet.sql
+badd +1 migration/0874_default_expected_update_at.sql
+badd +1 fyi/public/t_zone_dnssec_key_set.sql
+badd +1 migration/0875_extend_zone_dnssec_key_set_view.sql
+badd +153 fyi/dns_export/f_change_trigger.sql
+badd +356 migration/0875_change_trigger_service_dns_ip_blacklist.sql
+badd +3 fyi/dnssecbot/type_error_type.sql
+badd +1 migration/0876_add_validation_error.sql
+badd +40 fyi/public/v_dns_zone_mail_records.sql
+badd +1 test/460_dns_get_cluster_records.t
+badd +33 fyi/dns_export/f_get_cluster_records.sql
+badd +2 fyi/public/v_dns_zone_cluster_service_records_view.sql
+badd +1 .verify-migration-names-ignore
+badd +2 fyi/dns_export/f_get_records_single_zone.sql
+badd +16 fyi/public/v_dns_zone_service_fqdn_records_view.sql
+badd +1 migration/0886_maillogin_fqdn_service_dns_in_cluster.sql
+badd +1 test/480_dns_change_trigger.test
+badd +1 migration/0887_fix_domain2cluster_migration_dns_export_priority.sql
+badd +3 fyi/dns_export/f_get_domain_records.sql
+badd +72 fyi/dns_export/f_get_records_single_domain.sql
+badd +2 migration/0888_add_zone_dns_signals.sql
+badd +2 fyi/public/v_zone_dnssec_key_set_cryptokey_view.sql
+badd +2 fyi/public/v_zone_service_dns_view.sql
+badd +86 abe.sql
+badd +26 ~/src/database-schema/coredb/migration/0894_fix_service_dns_view.sql
+badd +9 fyi/public/v_domain_service_dns_view.sql
+badd +1 ~/src/database-schema/coredb/migration/0895_fix_axfr_ip_being_set.sql
+badd +60 fyi/public/f_gprpc1_domain_service_get_settings_extended.sql
+badd +1 fyi/dns_export/f_get_zone_records.sql
+badd +1 fyi/dns_export/v_dns_zone_records_view.sql
+badd +16 fyi/public/v_dns_zone_service_records_view.sql
+badd +2 fyi/public/f_dns_get_zone_web_records.sql
+badd +4 fyi/public/f_dns_get_web_records.sql
+badd +35 ~/src/database-schema/coredb/migration/0909_change_website_parking_to_dns_service.sql
+badd +1 migration/0910_change_zone_delete_priority.sql
+badd +1 migration/0909_change_zone_delete_priority.sql
+badd +67 migration/0896_domain2cluster_migration_rework.sql
+badd +8 migration/0902_domain2cluster_fix_dns.sql
+badd +1 migration/0917_add_zone_dns_signals.sql
+badd +38 migration/0919_add_zone_dns_signals.sql
+badd +5 migration/0920_add_crypto_migration.sql
+badd +4 ~/src/database-schema/coredb/migration/0927_better_unique_index_on_service_dns.sql
+badd +2 ~/src/database-schema/coredb/migration/0929_cryptokey_migrate_default.sql
+badd +3 fixture/migration/9900_test_helpers.sql
+badd +2 fyi/dns_export/f_get_brand_ns.sql
+badd +8 ~/src/database-schema/coredb/migration/0941_get_brand_ns.sql
+badd +27 fyi/dns_export/f_get_zone_suspension_info.sql
+badd +1 ~/src/database-schema/coredb/migration/0977_zone_export.sql
+badd +98 fyi/public/v_certificate_request_view.sql
+badd +43 ~/src/database-schema/coredb/migration/0977_cert_request_view_order_by_fix.sql
+badd +1 migration/0978_disallow_service_zone_as_customer_zone.sql
+badd +2 fyi/dns_export/f_queue_zone.sql
+badd +21 migration/0980_disallow_service_zone_as_customer_zone.sql
+badd +23 migration/0988_disallow_service_zone_as_customer_zone.sql
+badd +182 migration/0978_promdress_migrate.sql
+badd +4 ~/src/database-schema/coredb/migration/0989_promdress_add_description.sql
+badd +2 ~/src/database-schema/coredb/migration/0990_promdress_dnssec.sql
+badd +13 ~/src/database-schema/coredb/migration/0992_handle_no_services.sql
+badd +45 ~/src/database-schema/coredb/migration/0993_no_cluster_service_usage_in_domain_model.sql
+badd +1 ~/src/database-schema/coredb/migration/0994_dnssec_cryptokeys_promdress.sql
+badd +2 ~/src/database-schema/coredb/migration/0995_dnssec_cryptokeys_promdress_comment.sql
+badd +4 ~/src/database-schema/coredb/migration/0996_dnssec_cryptokeys_promdress.sql
+badd +60 ~/src/database-schema/coredb/migration/0997_sync_registry_flags.sql
+badd +1 fyi/public/t_zone.sql
+badd +54 lint_config.pl
+badd +1 ~/src/database-schema/coredb/migration/1001_dns_suspension.sql
+badd +1 test/900_domain2cluster.t
+badd +6 ~/src/database-schema/coredb/migration/1002_fix_linting.sql
+badd +550 ~/src/database-schema/coredb/migration/1005_new_mysql_service_record.sql
+badd +1 ~/src/database-schema/coredb/migration/1004_move_views_into_dns_export.sql
+badd +1 ~/src/database-schema/coredb/migration/1006_dnssec_missing_index.sql
+badd +1 ~/src/database-schema/coredb/migration/1007_get_cluster_records.sql
+badd +242 ~/src/database-schema/coredb/migration/1008_only_dkim_when_needed.sql
+badd +326 migration/0939_identity_columns_new_identity.sql
+badd +2 fyi/dns_export/v_dns_zone_cluster_service_records_view.sql
+badd +10 ~/src/database-schema/coredb/migration/1011_dkim_helpers.sql
+badd +1 ~/src/database-schema/coredb/migration/1011_zone_mail_records.sql
+badd +1 ~/src/database-schema/coredb/migration/1012_remove_unused_idx.sql
+badd +1 ~/src/database-schema/coredb/migration/1015_fix_zone_mail_records_again.sql
 argglobal
 %argdel
 $argadd migration/0579_zone_dns_export.sql
-edit migration/0870_add_zone_dnssec_key_set_view.sql
+edit ~/src/database-schema/coredb/migration/1011_zone_mail_records.sql
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -129,10 +118,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
 argglobal
-balt migration/0866_add_dns_export_trigger_on_domain2cluster_migration.sql
+balt ~/src/database-schema/coredb/migration/1011_dkim_helpers.sql
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -143,38 +132,39 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 2 - ((1 * winheight(0) + 42) / 84)
+let s:l = 1 - ((0 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
-normal! 075|
-wincmd w
-argglobal
-if bufexists(fnamemodify("migration/0866_add_dns_export_trigger_on_domain2cluster_migration.sql", ":p")) | buffer migration/0866_add_dns_export_trigger_on_domain2cluster_migration.sql | else | edit migration/0866_add_dns_export_trigger_on_domain2cluster_migration.sql | endif
-if &buftype ==# 'terminal'
-  silent file migration/0866_add_dns_export_trigger_on_domain2cluster_migration.sql
-endif
-balt migration/0859_key_set_queue_index.sql
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 560 - ((14 * winheight(0) + 42) / 84)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 560
+keepjumps 1
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 223 + 181) / 362)
-exe 'vert 2resize ' . ((&columns * 138 + 181) / 362)
+argglobal
+if bufexists(fnamemodify("~/src/database-schema/coredb/migration/1015_fix_zone_mail_records_again.sql", ":p")) | buffer ~/src/database-schema/coredb/migration/1015_fix_zone_mail_records_again.sql | else | edit ~/src/database-schema/coredb/migration/1015_fix_zone_mail_records_again.sql | endif
+if &buftype ==# 'terminal'
+  silent file ~/src/database-schema/coredb/migration/1015_fix_zone_mail_records_again.sql
+endif
+balt ~/src/database-schema/coredb/migration/1011_zone_mail_records.sql
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 105 - ((84 * winheight(0) + 44) / 89)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 105
+normal! 0
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

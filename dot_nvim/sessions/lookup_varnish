@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/src/database-schema/coredb
+cd ~/src/database-schema/servicedb
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,28 +13,22 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +108 test/451_dns_records_view.t
-badd +183 test/lib/CoreDBTestHelper.pm
-badd +171 ../dbcommon/lib/DBTestHelper.pm
-badd +32 test/350_zones.t
-badd +25 test/800_domain_add.t
-badd +2 test/480_dns_change_trigger.t
-badd +403 test/702_lookup_mail_cluster.t
-badd +73 test/704_lookup_domain_dkim.t
-badd +101 test/405_service_network.t
-badd +132 test/460_dns_get_cluster_records.t
-badd +326 test/470_dns_export_get_zone_records.t
-badd +154 test/450_dns_get_records.t
-badd +23 test/410_dns_get_service_zone.t
-badd +156 test/420_domain_dns_record_list.t
-badd +43 test/475_dnssec.t
-badd +108 ../dbcommon/lint/100_table_indexes.t
-badd +74 ../dbcommon/lib/LintHelper.pm
-badd +69 lint_config.pl
+badd +230 fyi/public/f_lookup_cluster_varnish_http_v4.sql
+badd +2 fyi/public/f_lookup_cluster_varnish_http_v5.sql
+badd +1 fyi/public/f_lookup_domain_varnish_http_v4.sql
+badd +1 fyi/public/f_lookup_varnish_http.sql
+badd +10 migration/0436_varnish_http.sql
+badd +18 fyi/public/f_domain_update_trigger.sql
+badd +28 fyi/public/f_provision_fqdns.sql
+badd +6 ~/src/database-schema/servicedb/migration/0437_drop_unused.sql
 argglobal
 %argdel
-$argadd test/451_dns_records_view.t
-edit test/470_dns_export_get_zone_records.t
+$argadd fyi/public/f_lookup_cluster_varnish_http_v4.sql
+$argadd fyi/public/f_lookup_cluster_varnish_http_v5.sql
+$argadd fyi/public/f_lookup_domain_varnish_http_v4.sql
+$argadd fyi/public/f_lookup_varnish_http.sql
+$argadd migration/0436_varnish_http.sql
+edit migration/0436_varnish_http.sql
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -51,10 +45,14 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 argglobal
-balt test/lib/CoreDBTestHelper.pm
+if bufexists(fnamemodify("migration/0436_varnish_http.sql", ":p")) | buffer migration/0436_varnish_http.sql | else | edit migration/0436_varnish_http.sql | endif
+if &buftype ==# 'terminal'
+  silent file migration/0436_varnish_http.sql
+endif
+balt fyi/public/f_lookup_cluster_varnish_http_v5.sql
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -65,19 +63,19 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 598 - ((42 * winheight(0) + 44) / 89)
+let s:l = 10 - ((9 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 598
-normal! 05|
+keepjumps 10
+normal! 078|
 wincmd w
 argglobal
-if bufexists(fnamemodify("test/470_dns_export_get_zone_records.t", ":p")) | buffer test/470_dns_export_get_zone_records.t | else | edit test/470_dns_export_get_zone_records.t | endif
+if bufexists(fnamemodify("migration/0436_varnish_http.sql", ":p")) | buffer migration/0436_varnish_http.sql | else | edit migration/0436_varnish_http.sql | endif
 if &buftype ==# 'terminal'
-  silent file test/470_dns_export_get_zone_records.t
+  silent file migration/0436_varnish_http.sql
 endif
-balt test/460_dns_get_cluster_records.t
+balt fyi/public/f_provision_fqdns.sql
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -88,16 +86,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 349 - ((55 * winheight(0) + 44) / 89)
+let s:l = 51 - ((39 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 349
-normal! 05|
+keepjumps 51
+normal! 072|
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

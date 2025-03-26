@@ -13,40 +13,63 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +31 lua/config/telescope.lua
-badd +63 lua/config/init.vim
-badd +1 init.vim
-badd +1 _init.lua
-badd +123 lua/plugins.lua
-badd +4 lua/config/init.lua
-badd +9 lua/config/possession.lua
-badd +3 lua/config/sessions.lua
-badd +34 lua/config/indent_blankline.lua
-badd +1 init.lua
-badd +1 lua/config/lualine.lua
-badd +1 _init.vim
-badd +1 lua/config/treesitter.lua
-badd +1 .nvim/session
-badd +2 lua/config/toggleterm.lua
-badd +1 lua/config/leap.lua
-badd +2 lua/config/focus.lua
-badd +50 lua/config/lsp/null-ls.lua
-badd +4 lua/config/lsp/mason.lua
-badd +38 lua/config/lsp/lspconfig.lua
-badd +1 lua/config/lsp/lspsaga.lua
-badd +4 TODO
-badd +12 lua/config/neo-minimap.lua
-badd +1 lua/config/black.lua
-badd +15 lua/config/rainbow-delimiters.lua
-badd +1 lua/config/solarized.lua
-badd +1 lua/config/go.lua
+badd +8 init.lua
+badd +1 lua/catppuccin.lua
+badd +1 lua/keymaps.lua
+badd +1 lua/late-options.lua
+badd +1 lua/lazy-bootstrap.lua
+badd +1 lua/lazy-plugins.lua
+badd +1 lua/options.lua
+badd +1 lua/plugins/colorscheme.lua
+badd +1 lua/plugins/comment.lua
+badd +1 lua/plugins/committia.lua
+badd +60 lua/plugins/conform.lua
+badd +1 lua/plugins/focus.lua
+badd +1 lua/plugins/gitsigns.lua
+badd +1 lua/plugins/go.lua
+badd +1 lua/plugins/hlsearch.lua
+badd +1 lua/plugins/indent_line.lua
+badd +1 lua/plugins/lastplace.lua
+badd +1 lua/plugins/lualine.lua
+badd +5 lua/plugins/notifiy.lua
+badd +1 lua/plugins/plenary.lua
+badd +1 lua/plugins/sessions.lua
+badd +1 lua/plugins/telescope.lua
+badd +1 lua/plugins/toggleterm.lua
+badd +94 lua/plugins/treesitter.lua
+badd +1 lua/plugins/which-key.lua
+badd +1 HELP
+badd +272 lua/plugins/lspconfig.lua
+badd +8 lua/plugins/kulala.lua
 argglobal
 %argdel
-$argadd init.vim
-$argadd _init.lua
-$argadd lua/plugins.lua
-$argadd lua/config/init.lua
-edit lua/config/telescope.lua
+$argadd init.lua
+$argadd lua/catppuccin.lua
+$argadd lua/keymaps.lua
+$argadd lua/late-options.lua
+$argadd lua/lazy-bootstrap.lua
+$argadd lua/lazy-plugins.lua
+$argadd lua/options.lua
+$argadd lua/plugins/colorscheme.lua
+$argadd lua/plugins/comment.lua
+$argadd lua/plugins/committia.lua
+$argadd lua/plugins/conform.lua
+$argadd lua/plugins/focus.lua
+$argadd lua/plugins/gitsigns.lua
+$argadd lua/plugins/go.lua
+$argadd lua/plugins/hlsearch.lua
+$argadd lua/plugins/indent_line.lua
+$argadd lua/plugins/lastplace.lua
+$argadd lua/plugins/lualine.lua
+$argadd lua/plugins/notifiy.lua
+$argadd lua/plugins/plenary.lua
+$argadd lua/plugins/sessions.lua
+$argadd lua/plugins/telescope.lua
+$argadd lua/plugins/toggleterm.lua
+$argadd lua/plugins/treesitter.lua
+$argadd lua/plugins/which-key.lua
+$argadd HELP
+edit lua/plugins/treesitter.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -63,37 +86,12 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 271)
-exe 'vert 2resize ' . ((&columns * 103 + 135) / 271)
+exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
 argglobal
-2argu
-if bufexists(fnamemodify("lua/config/telescope.lua", ":p")) | buffer lua/config/telescope.lua | else | edit lua/config/telescope.lua | endif
+if bufexists(fnamemodify("lua/plugins/treesitter.lua", ":p")) | buffer lua/plugins/treesitter.lua | else | edit lua/plugins/treesitter.lua | endif
 if &buftype ==# 'terminal'
-  silent file lua/config/telescope.lua
-endif
-balt lua/config/toggleterm.lua
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 52 - ((27 * winheight(0) + 31) / 62)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 52
-normal! 015|
-wincmd w
-argglobal
-2argu
-if bufexists(fnamemodify("lua/plugins.lua", ":p")) | buffer lua/plugins.lua | else | edit lua/plugins.lua | endif
-if &buftype ==# 'terminal'
-  silent file lua/plugins.lua
+  silent file lua/plugins/treesitter.lua
 endif
 balt init.lua
 setlocal fdm=manual
@@ -106,15 +104,39 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 43 - ((41 * winheight(0) + 31) / 62)
+let s:l = 94 - ((44 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 43
-normal! 010|
+keepjumps 94
+normal! 014|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 271)
-exe 'vert 2resize ' . ((&columns * 103 + 135) / 271)
+argglobal
+if bufexists(fnamemodify("lua/plugins/kulala.lua", ":p")) | buffer lua/plugins/kulala.lua | else | edit lua/plugins/kulala.lua | endif
+if &buftype ==# 'terminal'
+  silent file lua/plugins/kulala.lua
+endif
+balt lua/plugins/conform.lua
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 8 - ((7 * winheight(0) + 44) / 89)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 8
+normal! 0
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
