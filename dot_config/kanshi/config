@@ -1,0 +1,12 @@
+profile home {
+  output eDP-1 enable
+  output "ViewSonic Corporation VP2458 VKR213640536" enable
+  exec ln -fs ~/.config/hypr/workspace_home.conf ~/.config/hypr/workspace.conf
+}
+
+profile work {
+  output eDP-1 enable
+  output "Dell Inc. DELL U2721DE 9Y4T023" enable
+  output "Dell Inc. DELL U2719DC F8BYX13" enable
+  exec ln -fs ~/.config/hypr/workspace_work.conf ~/.config/hypr/workspace.conf
+}
