@@ -3,6 +3,6 @@ use 5.038;
 
 my $file = shift @ARGV;
 
-my $dir = '{{ .chezmoi.homeDir }}/.nvim/sessions';
+#my $dir = '/home/fra/.nvim/sessions';
 #$ENV{NVIM_APPNAME}="nvim-own";
-system(qq!nvim -c "SessionsLoad $dir/$file"!);
+system(qq!nvim -c "SessionsLoad $file"!);
