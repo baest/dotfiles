@@ -170,3 +170,13 @@
     background: green;
     padding: 0 4px;
   }
+
+  #custom-uair.resumed {
+    color: #f87171;
+  }
+
+  #custom-uair {
+    color: green;
+    margin-right: 3px;
+  }
+

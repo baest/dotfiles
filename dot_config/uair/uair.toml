@@ -1,0 +1,27 @@
+[defaults]
+format = "{time}\n"
+paused_state_text = "paused"
+resumed_state_text = "resumed"
+
+#[[sessions]]
+#id = "quick"
+#name = "Quick"
+#duration = "15m"
+#time_format = "%M:%S"
+#command = "notify-send 'Quick Done!'"
+
+[[sessions]]
+id = "work"
+name = "Work"
+duration = "25m"
+time_format = "%M:%S"
+command = "notify-send 'Work Done!'"
+
+[[sessions]]
+id = "rest"
+name = "Rest"
+duration = "5m"
+time_format = "%M:%S"
+command = "notify-send 'Rest Done!'"
+
+#https://thenegation.com/posts/pomodoro-waybar-uair/

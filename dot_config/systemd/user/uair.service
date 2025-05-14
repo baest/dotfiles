@@ -1,0 +1,12 @@
+[Unit]
+Description=uair
+
+[Service]
+#Type=oneshot
+#RemainAfterExit=true
+ExecStart=/usr/bin/uair -q
+Restart=on-success
+
+
+[Install]
+WantedBy=default.target
