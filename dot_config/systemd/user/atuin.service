@@ -1,0 +1,10 @@
+[Unit]
+Description=Sync atuin
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStop=/usr/bin/atuin sync
+
+[Install]
+WantedBy=default.target

@@ -42,7 +42,7 @@ sync_frequency = "10m"
 
 ## which filter mode to use
 ## possible values: global, host, session, directory
-# filter_mode = "global"
+filter_mode = "global"
 
 ## With workspace filtering enabled, Atuin will filter for commands executed
 ## in any directory within a git repository tree (default: false)
@@ -93,15 +93,14 @@ filter_mode_shell_up_key_binding = "session"
 ## default history list format - can also be specified with the --format arg
 # history_format = "{time}\t{command}\t{duration}"
 
-## prevent commands matching any of these regexes from being written to history.
+history_filter = [
+  #  "^secret-cmd",
+  #  "^innocuous-cmd .*--secret=.+"
+] ## prevent commands matching any of these regexes from being written to history.
 ## Note that these regular expressions are unanchored, i.e. if they don't start
 ## with ^ or end with $, they'll match anywhere in the command.
 ## For details on the supported regular expression syntax, see
 ## https://docs.rs/regex/latest/regex/#syntax
-# history_filter = [
-#   "^secret-cmd",
-#   "^innocuous-cmd .*--secret=.+"
-# ]
 
 ## prevent commands run with cwd matching any of these regexes from being written
 ## to history. Note that these regular expressions are unanchored, i.e. if they don't
@@ -160,15 +159,31 @@ enter_accept = true
 
 #[stats]
 # Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
-#common_subcommands = [
-#  "cargo",
-#  "go",
-#  "git",
-#  "npm",
-#  "yarn",
-#  "pnpm",
-#  "kubectl",
-#]
+common_subcommands = [
+  "apt",
+  "cargo",
+  "composer",
+  "dnf",
+  "docker",
+  "git",
+  "go",
+  "ip",
+  "kubectl",
+  "jj",
+  "nix",
+  "nmcli",
+  "npm",
+  "pecl",
+  "pnpm",
+  "podman",
+  "port",
+  "systemctl",
+  "tmux",
+  "yarn",
+]
 #
 # Set commands that should be totally stripped and ignored from stats
 #common_prefix = ["sudo"]
+
+[sync]
+records = true
