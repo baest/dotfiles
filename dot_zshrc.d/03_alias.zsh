@@ -84,6 +84,7 @@ alias jjpull="jj git fetch && jj rebase --branch 'all:myb' -d 'trunk()'"
 alias jjp="jj git fetch && jj rebase --branch 'all:mutable()' -d 'trunk()'"
 alias jjs="jj status"
 alias jjpmb="jj git push -r myb"
+alias jjppmb="jj git fetch && jj rebase --branch 'all:mutable()' -d 'trunk()' && jj git push -r myb"
 #alias jjd='LESS="-RXQ" jj diff'
 jjd() {
     LESS="-RXQ"
