@@ -46,6 +46,7 @@ return {
         'jsonls',
         'lua_ls',
         'perlnavigator',
+        'postgres_lsp',
         'pylsp',
         'pyright',
         'solargraph',

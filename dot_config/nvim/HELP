@@ -22,6 +22,7 @@ Join lines
 
 Delete line match abe
  :g/abe/d
+ :g!/abe/d (delete lines not matching abe)
 
 Paste in insert mode
  ctrl+o p (ctrl exits insert mode for one command)

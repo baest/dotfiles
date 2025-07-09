@@ -18,15 +18,15 @@ badd +133 src/coredb/v_zone_dnssec_key_set_view.json
 badd +44 src/api3/error/errors.txt
 badd +195 src/api3/error/errors.go
 badd +657 src/models3/backup/backup.go
-badd +79 test/v3/395_dnssec_key_set_queue.t
+badd +106 test/v3/395_dnssec_key_set_queue.t
 badd +23 src/coredb/t_zone_dnssec_key_set.go
 badd +59 src/api3/dnssec_key_sets.go
-badd +68 src/models3/dnssec_key_set_queue/dnssec_key_set_queue.go
+badd +102 src/models3/dnssec_key_set_queue/dnssec_key_set_queue.go
 badd +58 src/api3/dnssec_key_set_queue.go
 badd +97 test/v3/391_dnssec_key_set.t
 badd +29 src/coredb/t_dnssec_key_set_queue.json
 badd +41 src/api3/zone_dnssec_key_sets.go
-badd +140 src/coredb/t_dnssec_key_set_queue.go
+badd +32 src/coredb/t_dnssec_key_set_queue.go
 badd +473 src/models3/zone_dnssec_key_set/zone_dnssec_key_set.go
 badd +178 src/api3/api3.go
 badd +68 test/v3/390_zone_dnssec_key_set.t
@@ -77,9 +77,9 @@ badd +86 test/v2/705_domain2cluster_errors.t
 badd +211 src/cmd/systems-api-server/main.go
 badd +17 ~/src/systems-api/src/diskusage_consumer/diskusage_consumer.go
 badd +141 ~/src/systems-api/src/db3/tx.go
-badd +521 ~/src/systems-api/src/vendor/github.com/doug-martin/goqu/v9/database.go
+badd +470 ~/src/systems-api/src/vendor/github.com/doug-martin/goqu/v9/database.go
 badd +17 /usr/lib/go/src/time/tick.go
-badd +227 src/dnssec_migrate/migrate.go
+badd +149 src/dnssec_migrate/migrate.go
 badd +55 src/db_handles/db_handles.go
 badd +55 ~/src/systems-api/src/models/acl/acl.go
 badd +89 ~/src/systems-api/src/config/config.go
@@ -115,7 +115,7 @@ badd +21 ~/src/systems-api/src/vendor/github.com/doug-martin/goqu/v9/exp/exp_map
 argglobal
 %argdel
 $argadd src/coredb/t_zone_dnssec_key_set.go
-edit src/models3/zone_dnssec_key_set/zone_dnssec_key_set.go
+edit src/models3/dnssec_key_set_queue/dnssec_key_set_queue.go
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -132,52 +132,52 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 222 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 138 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 argglobal
-balt test/lib/TestHelper/DNSSECKeySet.pm
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+balt src/coredb/t_dnssec_key_set_queue.go
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 473 - ((59 * winheight(0) + 44) / 89)
+let s:l = 102 - ((47 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 473
-normal! 026|
+keepjumps 102
+normal! 049|
 wincmd w
 argglobal
-if bufexists(fnamemodify("test/v3/396_migrate_cryptokeys.t", ":p")) | buffer test/v3/396_migrate_cryptokeys.t | else | edit test/v3/396_migrate_cryptokeys.t | endif
+if bufexists(fnamemodify("test/v3/395_dnssec_key_set_queue.t", ":p")) | buffer test/v3/395_dnssec_key_set_queue.t | else | edit test/v3/395_dnssec_key_set_queue.t | endif
 if &buftype ==# 'terminal'
-  silent file test/v3/396_migrate_cryptokeys.t
+  silent file test/v3/395_dnssec_key_set_queue.t
 endif
-balt ~/src/systems-api/src/vendor/github.com/doug-martin/goqu/v9/expressions.go
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+balt src/dnssec_migrate/migrate.go
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 72 - ((0 * winheight(0) + 44) / 89)
+let s:l = 137 - ((0 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 72
-normal! 02|
+keepjumps 137
+normal! 09|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 222 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 138 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

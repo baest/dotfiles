@@ -32,6 +32,15 @@ unless ($session_dir->is_dir) {
 	mkdir "$session_dir" or die "Couldn't create $session_dir: $!";
 }
 
+if ($cfg->{$service}{label} eq '$service') {
+	$cfg->{$service}{label} = $service;
+}
+
+if ($cfg->{$service}{host} =~ /\$num/ && $service =~ /(\d+)/) {
+	my $num = $1;
+	$cfg->{$service}{host} =~ s/\$num/$num/;
+}
+
 my $ssh_host = $cfg->{$service}{host};
 my $port = $cfg->{$service}{port} // 5432;
 my $socket = $cfg->{all}{socket};
@@ -39,6 +48,11 @@ my $psql_host = 'localhost';
 my ($local_sock, $remote_sock);
 
 $ENV{SSH_REAL_HOST} = $cfg->{$service}{label} // $ssh_host;
+
+if ($ENV{DEBUG}) {
+	warn $ENV{SSH_REAL_HOST};
+	use DDP; p $cfg->{$service};
+}
 
 if ($ssh_host eq 'localhost') {
 	$ENV{PGSERVICE} = $service;
@@ -90,7 +104,10 @@ if ($has_connection) {
 else {
 	push @args, '-f', '-N';
 }
-run_command(@args, '-L', get_ssh_forward_string(), $ssh_host);
+my (undef, $stderr, $exit) = run_command(@args, '-L', get_ssh_forward_string(), $ssh_host);
+if ($exit != 0 && $stderr) {
+	die "Couldn't connect: $stderr";
+}
 
 $session_file->spew(encode_json({ host => $ssh_host, psql_host => $psql_host, port => $port, local_port => $local_port, local_sock => $local_sock, remote_sock => $remote_sock }));
 

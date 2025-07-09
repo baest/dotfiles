@@ -1,0 +1,1 @@
+export PGSERVICE=lweb15; dropdb --if-exists -f webdb15 && createdb webdb15 && pg_restore -j 8 --dbname webdb15 webpod15-servicedb-webdb.20250515-02.dump && vacuumdb webdb15 --analyze-in-stages;

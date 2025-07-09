@@ -13,7 +13,7 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +108 test/451_dns_records_view.t
+badd +158 test/451_dns_records_view.t
 badd +183 test/lib/CoreDBTestHelper.pm
 badd +171 ../dbcommon/lib/DBTestHelper.pm
 badd +32 test/350_zones.t
@@ -22,19 +22,20 @@ badd +2 test/480_dns_change_trigger.t
 badd +403 test/702_lookup_mail_cluster.t
 badd +73 test/704_lookup_domain_dkim.t
 badd +101 test/405_service_network.t
-badd +132 test/460_dns_get_cluster_records.t
-badd +326 test/470_dns_export_get_zone_records.t
-badd +154 test/450_dns_get_records.t
+badd +233 test/460_dns_get_cluster_records.t
+badd +35 test/470_dns_export_get_zone_records.t
+badd +32 test/450_dns_get_records.t
 badd +23 test/410_dns_get_service_zone.t
 badd +156 test/420_domain_dns_record_list.t
-badd +43 test/475_dnssec.t
+badd +74 test/475_dnssec.t
 badd +108 ../dbcommon/lint/100_table_indexes.t
 badd +74 ../dbcommon/lib/LintHelper.pm
 badd +69 lint_config.pl
+badd +1 ~/src/database-schema/servicedb/test/709_lookup_certificate.t
 argglobal
 %argdel
 $argadd test/451_dns_records_view.t
-edit test/470_dns_export_get_zone_records.t
+edit test/450_dns_get_records.t
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -51,53 +52,52 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
 argglobal
-balt test/lib/CoreDBTestHelper.pm
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+balt test/470_dns_export_get_zone_records.t
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 598 - ((42 * winheight(0) + 44) / 89)
+let s:l = 32 - ((23 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 598
-normal! 05|
+keepjumps 32
+normal! 093|
 wincmd w
 argglobal
-if bufexists(fnamemodify("test/470_dns_export_get_zone_records.t", ":p")) | buffer test/470_dns_export_get_zone_records.t | else | edit test/470_dns_export_get_zone_records.t | endif
+if bufexists(fnamemodify("test/460_dns_get_cluster_records.t", ":p")) | buffer test/460_dns_get_cluster_records.t | else | edit test/460_dns_get_cluster_records.t | endif
 if &buftype ==# 'terminal'
-  silent file test/470_dns_export_get_zone_records.t
+  silent file test/460_dns_get_cluster_records.t
 endif
-balt test/460_dns_get_cluster_records.t
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+balt test/450_dns_get_records.t
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 349 - ((55 * winheight(0) + 44) / 89)
+let s:l = 286 - ((0 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 349
-normal! 05|
+keepjumps 286
+normal! 0
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

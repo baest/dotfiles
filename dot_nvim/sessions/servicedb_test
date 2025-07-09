@@ -13,13 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +142 test/904_lookup_varnish_v4.t
-badd +59 test/709_lookup_certificate.t
-badd +98 test/lib/ServiceDBTestHelper.pm
+badd +1 test/904_lookup_varnish_v4.t
+badd +248 test/709_lookup_certificate.t
+badd +100 test/lib/ServiceDBTestHelper.pm
+badd +233 test/909_performance_lookup_varnish.t
+badd +1 ~/src/systems-api/private_key.pem
+badd +114 test/709_lookup_webconfig.t
+badd +564 test/906_lookup_varnish_v6.t
+badd +512 test/905_lookup_varnish_v5.t
 argglobal
 %argdel
 $argadd test/904_lookup_varnish_v4.t
-edit test/709_lookup_certificate.t
+edit test/709_lookup_webconfig.t
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -36,53 +41,52 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
 argglobal
-balt test/lib/ServiceDBTestHelper.pm
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+balt test/909_performance_lookup_varnish.t
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 59 - ((44 * winheight(0) + 44) / 89)
+let s:l = 115 - ((63 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 59
-normal! 036|
+keepjumps 115
+normal! 015|
 wincmd w
 argglobal
-if bufexists(fnamemodify("test/lib/ServiceDBTestHelper.pm", ":p")) | buffer test/lib/ServiceDBTestHelper.pm | else | edit test/lib/ServiceDBTestHelper.pm | endif
+if bufexists(fnamemodify("test/906_lookup_varnish_v6.t", ":p")) | buffer test/906_lookup_varnish_v6.t | else | edit test/906_lookup_varnish_v6.t | endif
 if &buftype ==# 'terminal'
-  silent file test/lib/ServiceDBTestHelper.pm
+  silent file test/906_lookup_varnish_v6.t
 endif
-balt test/709_lookup_certificate.t
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+balt test/909_performance_lookup_varnish.t
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 98 - ((47 * winheight(0) + 44) / 89)
+let s:l = 563 - ((0 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 98
-normal! 0
+keepjumps 563
+normal! 061|
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

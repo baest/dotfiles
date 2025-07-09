@@ -9,6 +9,8 @@ return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
+    priority = 1000,
+    lazy = false,
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -53,9 +55,9 @@ return {
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
 
-      local sorters = require('telescope.sorters')
-      local actions = require('telescope.actions')
-      local action_state = require('telescope.actions.state')
+      local sorters = require 'telescope.sorters'
+      local actions = require 'telescope.actions'
+      local action_state = require 'telescope.actions.state'
       require('telescope').setup {
         defaults = {
           file_ignore_patterns = { '.git/', '.cache/', 'vendor', '.local', '.jj/' },
@@ -115,14 +117,14 @@ return {
         },
       }
 
-      local ts = require('telescope') 
+      local ts = require 'telescope'
       -- Enable telescope extensions, if they are installed
       pcall(ts.load_extension, 'fzf')
       pcall(ts.load_extension, 'ui-select')
       pcall(ts.load_extension, 'chezmoi')
 
       -- See `:help telescope.builtin`
-      local builtin = require('telescope.builtin')
+      local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
@@ -155,22 +157,21 @@ return {
         }
       end, { noremap = true, silent = true, desc = 'Search files' })
       vim.keymap.set('n', '<Tab>', function()
-        builtin.buffers({
-            --initial_mode = "normal",
-            attach_mappings = function(prompt_bufnr, map)
-              local delete_buf = function()
-                local current_picker = action_state.get_current_picker(prompt_bufnr)
-                current_picker:delete_selection(function(selection)
-                  vim.api.nvim_buf_delete(selection.bufnr, { force = true })
-                end)
-              end
-
-              map('i', '<c-x>', delete_buf)
-
-              return true
+        builtin.buffers {
+          --initial_mode = "normal",
+          attach_mappings = function(prompt_bufnr, map)
+            local delete_buf = function()
+              local current_picker = action_state.get_current_picker(prompt_bufnr)
+              current_picker:delete_selection(function(selection)
+                vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+              end)
             end
-          }
-        )
+
+            map('i', '<c-x>', delete_buf)
+
+            return true
+          end,
+        }
       end, { noremap = true, silent = true, desc = 'Show buffers' })
 
       -- setup chezmoi

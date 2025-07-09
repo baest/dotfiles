@@ -88,7 +88,7 @@ alias jjppmb="jj git fetch && jj rebase --branch 'all:mutable()' -d 'trunk()' &&
 #alias jjd='LESS="-RXQ" jj diff'
 jjd() {
     LESS="-RXQ"
-    jj diff "$@"
+    jj diff --git "$@"
 }
 jjpm() {
     ## jj push master/main

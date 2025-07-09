@@ -44,8 +44,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 223 + 180) / 361)
 argglobal
 balt pdns/backends/gsql/gsqlbackend.cc
 setlocal fdm=manual
@@ -58,7 +58,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 168 - ((0 * winheight(0) + 44) / 89)
+let s:l = 168 - ((74 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -89,8 +89,8 @@ keepjumps 185
 normal! 025|
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 223 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

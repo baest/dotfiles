@@ -1,0 +1,1 @@
+export PGSERVICE=l_lookupdb; dropdb --if-exists -f lookupdb && createdb lookupdb && pg_restore -j 8 --dbname lookupdb ~/lookupdb1*.dump; vacuumdb lookupdb --analyze-in-stages;

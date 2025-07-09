@@ -39,4 +39,10 @@
 
 \unset QUIET
 
+--SELECT CASE WHEN pg_is_in_recovery()
+--    THEN '%[%033[33;1m%]%x%[%033[0m%]%[%033[34m%]%/%[%033[0m%]%R%# '
+--    ELSE '%[%033[33;1m%]%x%[%033[0m%]%[%033[31m%]%/%[%033[0m%]%R%# '
+--END AS pr1 \gset
+--\set PROMPT1 :pr1
+
 -- \echo pspg is DISABLED for now

@@ -23,7 +23,7 @@ badd +1 lua/options.lua
 badd +1 lua/plugins/colorscheme.lua
 badd +1 lua/plugins/comment.lua
 badd +1 lua/plugins/committia.lua
-badd +60 lua/plugins/conform.lua
+badd +5 lua/plugins/conform.lua
 badd +1 lua/plugins/focus.lua
 badd +1 lua/plugins/gitsigns.lua
 badd +1 lua/plugins/go.lua
@@ -33,13 +33,13 @@ badd +1 lua/plugins/lastplace.lua
 badd +1 lua/plugins/lualine.lua
 badd +5 lua/plugins/notifiy.lua
 badd +1 lua/plugins/plenary.lua
-badd +1 lua/plugins/sessions.lua
+badd +7 lua/plugins/sessions.lua
 badd +1 lua/plugins/telescope.lua
 badd +1 lua/plugins/toggleterm.lua
-badd +94 lua/plugins/treesitter.lua
+badd +1 lua/plugins/treesitter.lua
 badd +1 lua/plugins/which-key.lua
 badd +1 HELP
-badd +272 lua/plugins/lspconfig.lua
+badd +129 lua/plugins/lspconfig.lua
 badd +8 lua/plugins/kulala.lua
 argglobal
 %argdel
@@ -86,57 +86,57 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 103 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 166 + 135) / 270)
 argglobal
 if bufexists(fnamemodify("lua/plugins/treesitter.lua", ":p")) | buffer lua/plugins/treesitter.lua | else | edit lua/plugins/treesitter.lua | endif
 if &buftype ==# 'terminal'
   silent file lua/plugins/treesitter.lua
 endif
 balt init.lua
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 94 - ((44 * winheight(0) + 44) / 89)
+let s:l = 57 - ((0 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 94
-normal! 014|
+keepjumps 57
+normal! 07|
 wincmd w
 argglobal
-if bufexists(fnamemodify("lua/plugins/kulala.lua", ":p")) | buffer lua/plugins/kulala.lua | else | edit lua/plugins/kulala.lua | endif
+if bufexists(fnamemodify("lua/plugins/conform.lua", ":p")) | buffer lua/plugins/conform.lua | else | edit lua/plugins/conform.lua | endif
 if &buftype ==# 'terminal'
-  silent file lua/plugins/kulala.lua
+  silent file lua/plugins/conform.lua
 endif
-balt lua/plugins/conform.lua
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+balt lua/plugins/lspconfig.lua
+setlocal foldmethod=manual
+setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 8 - ((7 * winheight(0) + 44) / 89)
+let s:l = 5 - ((4 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 8
+keepjumps 5
 normal! 0
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 103 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 166 + 135) / 270)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

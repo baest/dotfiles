@@ -14,13 +14,13 @@ else
   set shortmess=aoO
 endif
 badd +817 vendor/go.temporal.io/sdk/internal/workflow_testsuite.go
-badd +184 internal/temporal/workflows/dnssecbot/sign.go
-badd +26 pkg/sysapi.v3/dnssec_key_set_queue.go
-badd +80 internal/dns/resolver.go
+badd +37 internal/temporal/workflows/dnssecbot/sign.go
+badd +33 pkg/sysapi.v3/dnssec_key_set_queue.go
+badd +119 internal/dns/resolver.go
 badd +56 test.go
 badd +91 internal/temporal/workflows/base_workflow.go
 badd +148 internal/temporal/activities/dnssecbot/activities.go
-badd +12 internal/temporal/activities/sysapi.v3/activities.go
+badd +106 internal/temporal/activities/sysapi.v3/activities.go
 badd +16 internal/temporal/activities/sysapi.v3/sysapi.go
 badd +30 internal/temporal/activities/dnssecbot/dnssecbot.go
 badd +947 vendor/github.com/miekg/dns/types.go
@@ -29,13 +29,13 @@ badd +177 vendor/github.com/miekg/dns/dnssec.go
 badd +56 internal/dns/keys.go
 badd +21 vendor/github.com/miekg/dns/dnssec_privkey.go
 badd +53 internal/temporal/validator/validator.go
-badd +157 cmd/worker/main.go
+badd +100 cmd/worker/main.go
 badd +78 scripts/examples.py
 badd +29 vendor/go.temporal.io/sdk/log/logger.go
 badd +26 internal/config/config.go
 badd +59 vendor/go.temporal.io/sdk/activity/activity.go
 badd +203 vendor/go.temporal.io/sdk/internal/activity.go
-badd +221 vendor/go.temporal.io/sdk/internal/interceptor.go
+badd +340 vendor/go.temporal.io/sdk/internal/interceptor.go
 badd +149 pkg/sysapi.v3/sysapi.go
 badd +21 internal/temporal/config.go
 badd +158 vendor/golang.org/x/exp/slog/level.go
@@ -50,7 +50,7 @@ badd +158 ~/src/temporal-workflows-dns/vendor/go.temporal.io/sdk/workflow/determ
 badd +1132 ~/src/temporal-workflows-dns/vendor/go.temporal.io/sdk/internal/workflow.go
 badd +119 Makefile
 badd +19 internal/temporal/workflows/dnssecbot/cleanup_deleted_keysets.go
-badd +24 internal/temporal/workflows/dnssecbot/common.go
+badd +87 internal/temporal/workflows/dnssecbot/common.go
 badd +114 vendor/go.temporal.io/sdk/workflow/activity_options.go
 badd +120 vendor/go.temporal.io/sdk/temporal/error.go
 badd +535 vendor/go.temporal.io/sdk/internal/error.go
@@ -61,13 +61,13 @@ badd +51 vendor/github.com/go-playground/validator/v10/validator_instance.go
 badd +51 vendor/github.com/stretchr/testify/assert/assertion_forward.go
 badd +61 vendor/github.com/miekg/dns/dnssec_keyscan.go
 badd +24 vendor/github.com/miekg/dns/reverse.go
-badd +196 vendor/go.temporal.io/sdk/workflow/workflow.go
+badd +297 vendor/go.temporal.io/sdk/workflow/workflow.go
 badd +164 internal/temporal/workflows/dnssecbot/unsign.go
 badd +13 pkg/sysapi.v3/dnssec_key_set_find.go
 badd +240 vendor/go.temporal.io/sdk/worker/worker.go
 badd +27 internal/temporal/workflows/dnssecbot/verify_active_ds.go
 badd +62 pkg/sysapi.v3/dnssec_key_set_expired.go
-badd +1192 vendor/go.temporal.io/sdk/internal/workflow.go
+badd +1416 vendor/go.temporal.io/sdk/internal/workflow.go
 badd +36 ~/src/maestro-worker-dns/vendor/github.com/oapi-codegen/nullable/nullable.go
 badd +1 internal/temporal/workflows/mysql_restore/mysql_restore_cluster_databases.go
 badd +55 pkg/sysapi.v3/dnssec_key_set.go
@@ -89,15 +89,16 @@ badd +237 /usr/lib/go/src/fmt/print.go
 badd +111 ~/src/maestro-worker-dns/vendor/github.com/miekg/dns/scan.go
 badd +97 /usr/lib/go/src/encoding/json/decode.go
 badd +34 test/temporal_test_suite.go
-badd +143 internal/temporal/workflows/dnssecbot/sign_test.go
-badd +68 internal/temporal/workflows/dnssecbot/verify_active_ds_test.go
+badd +66 internal/temporal/workflows/dnssecbot/sign_test.go
+badd +60 internal/temporal/workflows/dnssecbot/verify_active_ds_test.go
 badd +32 internal/temporal/workflows/dnssecbot/replay_test.go
 badd +19 ~/src/maestro-worker-dns/vendor/github.com/baest/dns/dnssec_keyscan.go
-badd +69 ~/src/maestro-worker-dns/vendor/github.com/baest/dns/dnssec_privkey.go
+badd +77 ~/src/maestro-worker-dns/vendor/github.com/baest/dns/dnssec_privkey.go
+badd +147 ~/src/maestro-worker-dns/vendor/github.com/baest/dns/client.go
 argglobal
 %argdel
 $argadd internal/temporal/workflows/mysql_restore/mysql_restore_cluster_databases.go
-edit internal/temporal/workflows/dnssecbot/sign.go
+edit cmd/worker/main.go
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -114,53 +115,52 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
 argglobal
-balt test.go
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+balt internal/temporal/workflows/dnssecbot/sign_test.go
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 184 - ((44 * winheight(0) + 44) / 89)
+let s:l = 100 - ((53 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 184
-normal! 052|
+keepjumps 100
+normal! 038|
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/src/maestro-worker-dns/vendor/github.com/baest/dns/dnssec_privkey.go", ":p")) | buffer ~/src/maestro-worker-dns/vendor/github.com/baest/dns/dnssec_privkey.go | else | edit ~/src/maestro-worker-dns/vendor/github.com/baest/dns/dnssec_privkey.go | endif
+if bufexists(fnamemodify("internal/temporal/workflows/dnssecbot/sign.go", ":p")) | buffer internal/temporal/workflows/dnssecbot/sign.go | else | edit internal/temporal/workflows/dnssecbot/sign.go | endif
 if &buftype ==# 'terminal'
-  silent file ~/src/maestro-worker-dns/vendor/github.com/baest/dns/dnssec_privkey.go
+  silent file internal/temporal/workflows/dnssecbot/sign.go
 endif
-balt internal/dns/keys.go
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+balt vendor/go.temporal.io/sdk/workflow/workflow.go
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 69 - ((68 * winheight(0) + 44) / 89)
+let s:l = 37 - ((0 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 69
-normal! 028|
+keepjumps 37
+normal! 031|
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 138 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 222 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

@@ -42,8 +42,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 180 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 180 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 223 + 180) / 361)
 argglobal
 if bufexists(fnamemodify("docs/source/v3/dnssec/migrate.md", ":p")) | buffer docs/source/v3/dnssec/migrate.md | else | edit docs/source/v3/dnssec/migrate.md | endif
 if &buftype ==# 'terminal'
@@ -91,8 +91,8 @@ keepjumps 30
 normal! 0
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 180 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 180 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 223 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
