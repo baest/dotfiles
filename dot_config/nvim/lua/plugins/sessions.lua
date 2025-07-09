@@ -1,6 +1,7 @@
 return {
-  'natecraddock/sessions.nvim',
+  'baest/sessions.nvim',
   opts = {
     events = { 'WinEnter', 'VimLeavePre', 'BufEnter', 'BufWinEnter' },
+    session_filepath = vim.env.HOME .. '/.nvim/sessions',
   },
 }

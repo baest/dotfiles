@@ -1,0 +1,1 @@
+kubectl -n systems-certificate-bot logs -f $(kubectl -n systems-certificate-bot get pods -o name)

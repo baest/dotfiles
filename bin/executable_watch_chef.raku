@@ -21,8 +21,9 @@ react whenever $supply {
 sub get-nodes () {
 	my @output = ();
 	my $output;
+	my $cnodes = "{%*ENV<HOME>}/bin/cnodes";
 
-	my $proc = Proc::Async.new(<<./scripts/cnodes>>);
+	my $proc = Proc::Async.new($cnodes);
 	$proc.stdout.tap( -> $str {
 		$output ~= $str;
 	});

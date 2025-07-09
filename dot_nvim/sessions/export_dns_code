@@ -14,9 +14,9 @@ else
   set shortmess=aoO
 endif
 badd +5 ~/src/database-schema/coredb/migration/0537_add_soa_serial_to_zone.sql
-badd +14 scripts/one.com-dns-exporter
-badd +470 test/lib/TestHelper.pm
-badd +171 test/020_cluster_records.t
+badd +12 scripts/one.com-dns-exporter
+badd +411 test/lib/TestHelper.pm
+badd +173 test/020_cluster_records.t
 badd +117 ~/src/database-schema/dnsdb/migration/0221_soa_in_coredb.sql
 badd +3 ~/src/database-schema/dnsdb/migration/0222_dns_record_uniq_index.sql
 badd +1 container/coredb/migration/0530_add_soa_serial.sql
@@ -44,10 +44,10 @@ badd +4 .gitlab-ci.yml
 badd +24 container/test-runner/Dockerfile
 badd +1 docker-compose.yml
 badd +79 Makefile
-badd +570 test/025_zone_records.t
-badd +129 ../dns-utilities/test/005_service_zone.t
-badd +650 test/010_domain_records.t
-badd +216 test/050_integration.t
+badd +39 test/025_zone_records.t
+badd +103 ../dns-utilities/test/005_service_zone.t
+badd +31 test/010_domain_records.t
+badd +95 test/050_integration.t
 badd +16 test/100_clean_up_ent_records.t
 badd +8 container/pdns/pdns.d/pdns-hostnet.nl.conf
 badd +105 test/015_domain_migration.t
@@ -55,7 +55,7 @@ argglobal
 %argdel
 $argadd scripts/one.com-dns-exporter
 $argadd container/coredb/migration/0530_add_soa_serial.sql
-edit scripts/one.com-dns-exporter
+edit test/025_zone_records.t
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -72,56 +72,57 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 102 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 167 + 135) / 270)
+argglobal
+if bufexists(fnamemodify("test/025_zone_records.t", ":p")) | buffer test/025_zone_records.t | else | edit test/025_zone_records.t | endif
+if &buftype ==# 'terminal'
+  silent file test/025_zone_records.t
+endif
+balt ../dns-utilities/test/005_service_zone.t
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 39 - ((28 * winheight(0) + 32) / 65)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 39
+normal! 068|
+wincmd w
 argglobal
 if bufexists(fnamemodify("scripts/one.com-dns-exporter", ":p")) | buffer scripts/one.com-dns-exporter | else | edit scripts/one.com-dns-exporter | endif
 if &buftype ==# 'terminal'
   silent file scripts/one.com-dns-exporter
 endif
 balt test/lib/TestHelper.pm
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 44) / 89)
+let s:l = 12 - ((8 * winheight(0) + 32) / 65)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
+keepjumps 12
 normal! 0
 wincmd w
-argglobal
-if bufexists(fnamemodify("test/020_cluster_records.t", ":p")) | buffer test/020_cluster_records.t | else | edit test/020_cluster_records.t | endif
-if &buftype ==# 'terminal'
-  silent file test/020_cluster_records.t
-endif
-balt test/003_brand.t
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 173 - ((15 * winheight(0) + 44) / 89)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 173
-normal! 05|
-wincmd w
-exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 102 + 135) / 270)
+exe 'vert 2resize ' . ((&columns * 167 + 135) / 270)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
