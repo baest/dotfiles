@@ -88,7 +88,7 @@ cfg_update() {
 }
 
 nvl() {
-	dir="{{ .chezmoi.homeDir }}/.nvim/sessions"
+	dir="{{ .chezmoi.homeDir }}/.config/nvim/sessions"
 	command_ex=""
 	if [[ ! -z "$1" ]]; then
 		command_ex="-q $1"
