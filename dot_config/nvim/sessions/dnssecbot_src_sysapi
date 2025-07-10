@@ -14,12 +14,12 @@ else
   set shortmess=aoO
 endif
 badd +7 src/api3/routes.go
-badd +133 src/coredb/v_zone_dnssec_key_set_view.json
+badd +130 src/coredb/v_zone_dnssec_key_set_view.json
 badd +44 src/api3/error/errors.txt
 badd +195 src/api3/error/errors.go
 badd +657 src/models3/backup/backup.go
-badd +106 test/v3/395_dnssec_key_set_queue.t
-badd +23 src/coredb/t_zone_dnssec_key_set.go
+badd +137 test/v3/395_dnssec_key_set_queue.t
+badd +17 src/coredb/t_zone_dnssec_key_set.go
 badd +59 src/api3/dnssec_key_sets.go
 badd +102 src/models3/dnssec_key_set_queue/dnssec_key_set_queue.go
 badd +58 src/api3/dnssec_key_set_queue.go
@@ -27,7 +27,7 @@ badd +97 test/v3/391_dnssec_key_set.t
 badd +29 src/coredb/t_dnssec_key_set_queue.json
 badd +41 src/api3/zone_dnssec_key_sets.go
 badd +32 src/coredb/t_dnssec_key_set_queue.go
-badd +473 src/models3/zone_dnssec_key_set/zone_dnssec_key_set.go
+badd +590 src/models3/zone_dnssec_key_set/zone_dnssec_key_set.go
 badd +178 src/api3/api3.go
 badd +68 test/v3/390_zone_dnssec_key_set.t
 badd +850 test/lib/TestHelper.pm
@@ -40,9 +40,9 @@ badd +160 src/api3/find.go
 badd +151 test/v3/394_find_keyset.t
 badd +24 test/v3/393_keyset_expired.t
 badd +79 test/lib/TestHelper/DNSSECKeySet.pm
-badd +41 src/coredb/t_zone_dnssec_key_set.json
-badd +148 src/coredb/coredb.go
-badd +17 src/coredb/v_zone_dnssec_key_set_view.go
+badd +112 src/coredb/t_zone_dnssec_key_set.json
+badd +156 src/coredb/coredb.go
+badd +41 src/coredb/v_zone_dnssec_key_set_view.go
 badd +16 src/api3/error/error.go
 badd +16 src/db3/helpers.go
 badd +20 src/models3/zone/zone.go
@@ -56,7 +56,7 @@ badd +101 src/models3/domain_dnssec_cryptokey/domain_dnssec_cryptokey.go
 badd +21 src/coredb/v_domain_view.go
 badd +14 src/coredb/t_domain_dnssec_cryptokeys.go
 badd +16 src/models3/domain2cluster/migration_state.go
-badd +23 src/coredb/t_cluster.go
+badd +215 src/coredb/t_cluster.go
 badd +704 test/v2/702_domain2cluster_with_everything.t
 badd +226 test/v2/701_domain2cluster.t
 badd +325 test/v2/703_domain2cluster_dns.t
@@ -78,14 +78,13 @@ badd +211 src/cmd/systems-api-server/main.go
 badd +17 ~/src/systems-api/src/diskusage_consumer/diskusage_consumer.go
 badd +141 ~/src/systems-api/src/db3/tx.go
 badd +470 ~/src/systems-api/src/vendor/github.com/doug-martin/goqu/v9/database.go
-badd +17 /usr/lib/go/src/time/tick.go
-badd +149 src/dnssec_migrate/migrate.go
+badd +233 src/dnssec_migrate/migrate.go
 badd +55 src/db_handles/db_handles.go
 badd +55 ~/src/systems-api/src/models/acl/acl.go
 badd +89 ~/src/systems-api/src/config/config.go
 badd +68 ~/src/systems-api/src/api3/domain2clusters.go
-badd +17 src/coredb/t_dnssec_cryptokey_migrate.json
-badd +208 src/coredb/t_dnssec_cryptokey_migrate.go
+badd +32 src/coredb/t_dnssec_cryptokey_migrate.json
+badd +184 src/coredb/t_dnssec_cryptokey_migrate.go
 badd +230 src/coredb/t_zone_dnssec_cryptokey.go
 badd +27 src/models3/domain2cluster/check.go
 badd +106 ~/src/systems-api/src/vendor/github.com/miekg/dns/client.go
@@ -112,10 +111,13 @@ badd +56 ~/src/systems-api/src/coredb/functions.go
 badd +172 ~/src/systems-api/src/coredb/t_zone_powerdns_metadata.go
 badd +79 ~/src/systems-api/src/vendor/github.com/doug-martin/goqu/v9/expressions.go
 badd +21 ~/src/systems-api/src/vendor/github.com/doug-martin/goqu/v9/exp/exp_map.go
+badd +55 src/api3/job_queue_tsts.go
+badd +196 src/models3/job_queue_tst/job_queue_tst.go
+badd +99 ~/src/systems-api/src/types/json_object.go
 argglobal
 %argdel
 $argadd src/coredb/t_zone_dnssec_key_set.go
-edit src/models3/dnssec_key_set_queue/dnssec_key_set_queue.go
+edit src/models3/zone_dnssec_key_set/zone_dnssec_key_set.go
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -132,10 +134,9 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
+wincmd =
 argglobal
-balt src/coredb/t_dnssec_key_set_queue.go
+balt src/coredb/t_dnssec_cryptokey_migrate.go
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -146,19 +147,19 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 102 - ((47 * winheight(0) + 44) / 89)
+let s:l = 590 - ((44 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 102
-normal! 049|
+keepjumps 590
+normal! 058|
 wincmd w
 argglobal
-if bufexists(fnamemodify("test/v3/395_dnssec_key_set_queue.t", ":p")) | buffer test/v3/395_dnssec_key_set_queue.t | else | edit test/v3/395_dnssec_key_set_queue.t | endif
+if bufexists(fnamemodify("src/dnssec_migrate/migrate.go", ":p")) | buffer src/dnssec_migrate/migrate.go | else | edit src/dnssec_migrate/migrate.go | endif
 if &buftype ==# 'terminal'
-  silent file test/v3/395_dnssec_key_set_queue.t
+  silent file src/dnssec_migrate/migrate.go
 endif
-balt src/dnssec_migrate/migrate.go
+balt src/coredb/t_dnssec_cryptokey_migrate.json
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -169,15 +170,15 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 137 - ((0 * winheight(0) + 44) / 89)
+let s:l = 233 - ((66 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 137
-normal! 09|
+keepjumps 233
+normal! 0147|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
+2wincmd w
+wincmd =
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

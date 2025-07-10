@@ -28,7 +28,7 @@ badd +356 migration/0875_change_trigger_service_dns_ip_blacklist.sql
 badd +3 fyi/dnssecbot/type_error_type.sql
 badd +1 migration/0876_add_validation_error.sql
 badd +40 fyi/public/v_dns_zone_mail_records.sql
-badd +153 fyi/dns_export/f_get_cluster_records.sql
+badd +2 fyi/dns_export/f_get_cluster_records.sql
 badd +2 fyi/public/v_dns_zone_cluster_service_records_view.sql
 badd +1 .verify-migration-names-ignore
 badd +2 fyi/dns_export/f_get_records_single_zone.sql
@@ -66,7 +66,7 @@ badd +2 fyi/dns_export/f_get_brand_ns.sql
 badd +8 ~/src/database-schema/coredb/migration/0941_get_brand_ns.sql
 badd +27 fyi/dns_export/f_get_zone_suspension_info.sql
 badd +1 ~/src/database-schema/coredb/migration/0977_zone_export.sql
-badd +128 fyi/public/v_certificate_request_view.sql
+badd +2 fyi/public/v_certificate_request_view.sql
 badd +43 ~/src/database-schema/coredb/migration/0977_cert_request_view_order_by_fix.sql
 badd +1 migration/0978_disallow_service_zone_as_customer_zone.sql
 badd +2 fyi/dns_export/f_queue_zone.sql
@@ -106,7 +106,7 @@ badd +43 fyi/public/f_domain_service_get_info.sql
 badd +1 ~/src/database-schema/coredb/migration/1026_dnssec_better_stat.sql
 badd +35 ~/src/database-schema/coredb/migration/1027_add_options_to_dnssec_keyset.sql
 badd +55 ~/src/database-schema/coredb/migration/1035_acme_record.sql
-badd +151 tmp/test.sql
+badd +142 tmp/test.sql
 badd +98 fyi/dns_export/v_zone_cluster_service_records_view.sql
 badd +1 fyi/dns_export/v_zone_service_records_view.sql
 badd +1 ~/src/database-schema/coredb/migration/1046_service_dns_simplify.sql
@@ -114,10 +114,13 @@ badd +13 ~/src/database-schema/coredb/migration/1047_empty_acme-challenge.sql
 badd +130 ~/src/database-schema/coredb/migration/1048_change_negative_ttl_soa.sql
 badd +3 ~/src/database-schema/coredb/migration/1050_cert_for_webforward.sql
 badd +96 ~/src/database-schema/coredb/migration/1055_cert_for_webforward_fix.sql
+badd +1 migration/1059_add_options_to_dnssec_keyset.sql
+badd +33 ~/src/database-schema/coredb/migration/1060_add_migrate_field_dnssec.sql
+badd +1 ~/src/database-schema/coredb/migration/1061_certificate_request_view_fix.sql
 argglobal
 %argdel
 $argadd migration/0579_zone_dns_export.sql
-edit tmp/test.sql
+edit ~/src/database-schema/coredb/migration/1061_certificate_request_view_fix.sql
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -134,10 +137,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 argglobal
-balt fyi/dns_export/f_queue_zone.sql
+balt fyi/public/v_certificate_request_view.sql
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -148,19 +151,19 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 151 - ((32 * winheight(0) + 32) / 65)
+let s:l = 1 - ((0 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 151
-normal! 029|
+keepjumps 1
+normal! 011|
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/src/database-schema/coredb/migration/1055_cert_for_webforward_fix.sql", ":p")) | buffer ~/src/database-schema/coredb/migration/1055_cert_for_webforward_fix.sql | else | edit ~/src/database-schema/coredb/migration/1055_cert_for_webforward_fix.sql | endif
+if bufexists(fnamemodify("tmp/test.sql", ":p")) | buffer tmp/test.sql | else | edit tmp/test.sql | endif
 if &buftype ==# 'terminal'
-  silent file ~/src/database-schema/coredb/migration/1055_cert_for_webforward_fix.sql
+  silent file tmp/test.sql
 endif
-balt ~/src/database-schema/coredb/migration/1050_cert_for_webforward.sql
+balt migration/1059_add_options_to_dnssec_keyset.sql
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -171,15 +174,15 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 96 - ((0 * winheight(0) + 32) / 65)
+let s:l = 144 - ((0 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 96
-normal! 0109|
+keepjumps 144
+normal! 09|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

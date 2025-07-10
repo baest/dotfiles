@@ -14,28 +14,28 @@ else
   set shortmess=aoO
 endif
 badd +63 lib/config/definition/definition.go
-badd +238 ~/src/cthulhu/services/certificate-bot/lib/client/client.go
-badd +396 lib/systems/systems.go
-badd +582 lib/systems/systems.gen.go
-badd +91 cmd/certificate-bot/main.go
+badd +140 ~/src/cthulhu/services/certificate-bot/lib/client/client.go
+badd +159 lib/systems/systems.go
+badd +584 lib/systems/systems.gen.go
+badd +49 cmd/certificate-bot/main.go
 badd +23 kubernetes/config.common.yaml
 badd +29 ~/src/cthulhu/services/certificate-bot/lib/worker/worker.go
-badd +18 ~/src/cthulhu/services/certificate-bot/lib/client/preflight.go
+badd +126 ~/src/cthulhu/services/certificate-bot/lib/client/preflight.go
 badd +228 /usr/lib/go/src/log/slog/logger.go
 badd +115 ~/src/cthulhu/services/certificate-bot/lib/metrics/sliding_window/sliding_window.go
 badd +82 lib/systems/callback_server.go
 badd +18 ~/src/cthulhu/services/certificate-bot/lib/metrics/metrics.go
 badd +256 ~/go/pkg/mod/github.com/go-acme/lego/v4@v4.22.2/certificate/certificates.go
 badd +53 ~/src/cthulhu/services/certificate-bot/lib/provider/dns_01.go
-badd +34 ~/src/cthulhu/services/certificate-bot/lib/dns_resolver/dns_resolver.go
-badd +468 /usr/lib/go/src/net/lookup.go
-badd +44 test.go
+badd +29 ~/src/cthulhu/services/certificate-bot/lib/dns_resolver/dns_resolver.go
+badd +594 /usr/lib/go/src/net/lookup.go
+badd +21 test.go
 badd +12 ~/src/cthulhu/services/certificate-bot/lib/error/error.go
-badd +96 /usr/lib/go/src/net/lookup_unix.go
+badd +108 /usr/lib/go/src/net/lookup_unix.go
 badd +69 ~/go/pkg/mod/github.com/go-acme/lego/v4@v4.22.2/challenge/dns01/dns_challenge.go
 badd +229 ~/go/pkg/mod/github.com/go-acme/lego/v4@v4.22.2/challenge/dns01/nameserver.go
 badd +53 ~/go/pkg/mod/github.com/go-acme/lego/v4@v4.22.2/lego/client_config.go
-badd +822 /usr/lib/go/src/net/dnsclient_unix.go
+badd +441 /usr/lib/go/src/net/dnsclient_unix.go
 badd +37 ~/src/cthulhu/services/certificate-bot/lib/provider/http_01.go
 badd +52 ~/go/pkg/mod/github.com/go-acme/lego/v4@v4.22.2/challenge/resolver/solver_manager.go
 badd +23 ~/go/pkg/mod/github.com/miekg/dns@v1.1.62/clientconfig.go
@@ -44,10 +44,13 @@ badd +47 ~/go/pkg/mod/github.com/go-acme/lego/v4@v4.22.2/challenge/dns01/prechec
 badd +11 ~/src/cthulhu/services/certificate-bot/lib/types/duration.go
 badd +161 /usr/lib/go/src/builtin/builtin.go
 badd +199 ~/go/pkg/mod/github.com/go-acme/lego/v4@v4.23.1/challenge/dns01/dns_challenge.go
+badd +237 /usr/lib/go/src/net/dnsclient.go
+badd +322 ~/go/pkg/mod/github.com/miekg/dns@v1.1.64/defaults.go
+badd +18 ~/src/cthulhu/services/certificate-bot/lib/config/config.go
 argglobal
 %argdel
 $argadd lib/config/definition/definition.go
-edit lib/systems/systems.gen.go
+edit test.go
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -64,10 +67,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 223 + 180) / 361)
 argglobal
-balt lib/systems/systems.go
+balt ~/src/cthulhu/services/certificate-bot/lib/dns_resolver/dns_resolver.go
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -78,19 +81,19 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 582 - ((40 * winheight(0) + 32) / 65)
+let s:l = 21 - ((20 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 582
-normal! 0
+keepjumps 21
+normal! 035|
 wincmd w
 argglobal
-if bufexists(fnamemodify("lib/systems/systems.go", ":p")) | buffer lib/systems/systems.go | else | edit lib/systems/systems.go | endif
+if bufexists(fnamemodify("~/src/cthulhu/services/certificate-bot/lib/client/preflight.go", ":p")) | buffer ~/src/cthulhu/services/certificate-bot/lib/client/preflight.go | else | edit ~/src/cthulhu/services/certificate-bot/lib/client/preflight.go | endif
 if &buftype ==# 'terminal'
-  silent file lib/systems/systems.go
+  silent file ~/src/cthulhu/services/certificate-bot/lib/client/preflight.go
 endif
-balt test.go
+balt ~/src/cthulhu/services/certificate-bot/lib/dns_resolver/dns_resolver.go
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -101,15 +104,16 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 576 - ((0 * winheight(0) + 32) / 65)
+let s:l = 126 - ((53 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 576
-normal! 015|
+keepjumps 126
+normal! 017|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 223 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

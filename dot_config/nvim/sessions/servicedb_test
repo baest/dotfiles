@@ -18,13 +18,13 @@ badd +248 test/709_lookup_certificate.t
 badd +100 test/lib/ServiceDBTestHelper.pm
 badd +233 test/909_performance_lookup_varnish.t
 badd +1 ~/src/systems-api/private_key.pem
-badd +114 test/709_lookup_webconfig.t
+badd +115 test/709_lookup_webconfig.t
 badd +564 test/906_lookup_varnish_v6.t
 badd +512 test/905_lookup_varnish_v5.t
 argglobal
 %argdel
 $argadd test/904_lookup_varnish_v4.t
-edit test/709_lookup_webconfig.t
+edit test/709_lookup_certificate.t
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -41,10 +41,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 argglobal
-balt test/909_performance_lookup_varnish.t
+balt test/709_lookup_webconfig.t
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -55,12 +55,12 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 115 - ((63 * winheight(0) + 32) / 65)
+let s:l = 214 - ((10 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 115
-normal! 015|
+keepjumps 214
+normal! 0
 wincmd w
 argglobal
 if bufexists(fnamemodify("test/906_lookup_varnish_v6.t", ":p")) | buffer test/906_lookup_varnish_v6.t | else | edit test/906_lookup_varnish_v6.t | endif
@@ -78,15 +78,15 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 563 - ((0 * winheight(0) + 32) / 65)
+let s:l = 563 - ((0 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 563
 normal! 061|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

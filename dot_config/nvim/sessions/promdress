@@ -17,11 +17,11 @@ badd +3 docker-compose.yml
 badd +90 src/cmd/one.com-promdress/main.go
 badd +38 Makefile
 badd +1 container/test-runner/Dockerfile
-badd +35 src/metric/metric.go
-badd +21 test/001_hello.t
-badd +158 test/lib/TestHelper.pm
+badd +264 src/metric/metric.go
+badd +56 test/001_hello.t
+badd +181 test/lib/TestHelper.pm
 badd +14 container/promdress/promdress.toml
-badd +123 test/002_update.t
+badd +91 test/002_update.t
 badd +27 container/testdb/initdb/0200_fixtures.sql
 badd +49 .gitlab-ci.yml
 badd +1 container/testdb/initdb/0100_schema.sql
@@ -31,7 +31,7 @@ badd +55 ~/src/promdress/src/vendor/github.com/prometheus/client_golang/promethe
 badd +117 ~/src/promdress/src/vendor/github.com/prometheus/client_golang/prometheus/metric.go
 badd +399 ~/src/promdress/src/vendor/github.com/jackc/pgx/v5/rows.go
 badd +91 ~/src/promdress/src/vendor/github.com/jackc/pgx/v5/pgxpool/pool.go
-badd +34 src/metric/metric_test.go
+badd +98 src/metric/metric_test.go
 badd +1 ~/src/promdress/src/go.mod
 badd +1 test/003_convert.t
 badd +10 abe.go
@@ -81,52 +81,53 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 1resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 223 + 180) / 361)
 argglobal
 balt src/cmd/one.com-promdress/main.go
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 35 - ((34 * winheight(0) + 44) / 89)
+let s:l = 265 - ((48 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 35
-normal! 05|
+keepjumps 265
+normal! 09|
 wincmd w
 argglobal
-if bufexists(fnamemodify("src/metric/metric.go", ":p")) | buffer src/metric/metric.go | else | edit src/metric/metric.go | endif
+if bufexists(fnamemodify("test/001_hello.t", ":p")) | buffer test/001_hello.t | else | edit test/001_hello.t | endif
 if &buftype ==# 'terminal'
-  silent file src/metric/metric.go
+  silent file test/001_hello.t
 endif
-balt ~/src/promdress/src/vendor/github.com/prometheus/client_golang/prometheus/vec.go
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
+balt test/lib/TestHelper.pm
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 34 - ((0 * winheight(0) + 44) / 89)
+let s:l = 56 - ((55 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 34
-normal! 0
+keepjumps 56
+normal! 05|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
-exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 137 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 223 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

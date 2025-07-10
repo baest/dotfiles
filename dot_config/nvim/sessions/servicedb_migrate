@@ -76,7 +76,7 @@ badd +11 fyi/lookup/v_certificate_name_by_fqdn_no_replacing_certificate_view.sql
 badd +3 fyi/lookup/f_refresh_certificate_name_by_fqdn_cache.sql
 badd +2 fyi/lookup/f_cluster_varnish_http_v5.sql
 badd +12 fyi/lookup/v_varnish_http_fqdn_by_fqdn_view.sql
-badd +1 ~/src/database-schema/servicedb/migration/0464_varnish_http_prioritise_domain_over_cluster_fqdn.sql
+badd +127 ~/src/database-schema/servicedb/migration/0464_varnish_http_prioritise_domain_over_cluster_fqdn.sql
 badd +52 ~/src/database-schema/servicedb/migration/0465_cleanup_v5_varnish.sql
 argglobal
 %argdel
@@ -85,7 +85,7 @@ $argadd fyi/public/f_lookup_cluster_varnish_http_v5.sql
 $argadd fyi/public/f_lookup_domain_varnish_http_v4.sql
 $argadd fyi/public/f_lookup_varnish_http.sql
 $argadd migration/0436_varnish_http.sql
-edit ~/src/database-schema/servicedb/migration/0464_varnish_http_prioritise_domain_over_cluster_fqdn.sql
+edit ~/src/database-schema/servicedb/migration/0461_integrate_v2_and_v3_cert_lookup.sql
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -102,14 +102,14 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 102 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 167 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 argglobal
-if bufexists(fnamemodify("~/src/database-schema/servicedb/migration/0464_varnish_http_prioritise_domain_over_cluster_fqdn.sql", ":p")) | buffer ~/src/database-schema/servicedb/migration/0464_varnish_http_prioritise_domain_over_cluster_fqdn.sql | else | edit ~/src/database-schema/servicedb/migration/0464_varnish_http_prioritise_domain_over_cluster_fqdn.sql | endif
+if bufexists(fnamemodify("~/src/database-schema/servicedb/migration/0461_integrate_v2_and_v3_cert_lookup.sql", ":p")) | buffer ~/src/database-schema/servicedb/migration/0461_integrate_v2_and_v3_cert_lookup.sql | else | edit ~/src/database-schema/servicedb/migration/0461_integrate_v2_and_v3_cert_lookup.sql | endif
 if &buftype ==# 'terminal'
-  silent file ~/src/database-schema/servicedb/migration/0464_varnish_http_prioritise_domain_over_cluster_fqdn.sql
+  silent file ~/src/database-schema/servicedb/migration/0461_integrate_v2_and_v3_cert_lookup.sql
 endif
-balt fyi/lookup/f_domain_change_trigger.sql
+balt ~/src/database-schema/servicedb/migration/0464_varnish_http_prioritise_domain_over_cluster_fqdn.sql
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -120,12 +120,12 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 127 - ((0 * winheight(0) + 32) / 65)
+let s:l = 27 - ((26 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 127
-normal! 057|
+keepjumps 27
+normal! 055|
 wincmd w
 argglobal
 if bufexists(fnamemodify("~/src/database-schema/servicedb/migration/0465_cleanup_v5_varnish.sql", ":p")) | buffer ~/src/database-schema/servicedb/migration/0465_cleanup_v5_varnish.sql | else | edit ~/src/database-schema/servicedb/migration/0465_cleanup_v5_varnish.sql | endif
@@ -143,16 +143,15 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 52 - ((37 * winheight(0) + 32) / 65)
+let s:l = 52 - ((0 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 52
 normal! 03|
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 102 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 167 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -168,7 +167,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

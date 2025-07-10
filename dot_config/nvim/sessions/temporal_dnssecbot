@@ -14,12 +14,12 @@ else
   set shortmess=aoO
 endif
 badd +817 vendor/go.temporal.io/sdk/internal/workflow_testsuite.go
-badd +37 internal/temporal/workflows/dnssecbot/sign.go
+badd +120 internal/temporal/workflows/dnssecbot/sign.go
 badd +33 pkg/sysapi.v3/dnssec_key_set_queue.go
-badd +119 internal/dns/resolver.go
-badd +56 test.go
+badd +71 internal/dns/resolver.go
+badd +73 test.go
 badd +91 internal/temporal/workflows/base_workflow.go
-badd +148 internal/temporal/activities/dnssecbot/activities.go
+badd +60 internal/temporal/activities/dnssecbot/activities.go
 badd +106 internal/temporal/activities/sysapi.v3/activities.go
 badd +16 internal/temporal/activities/sysapi.v3/sysapi.go
 badd +30 internal/temporal/activities/dnssecbot/dnssecbot.go
@@ -50,7 +50,7 @@ badd +158 ~/src/temporal-workflows-dns/vendor/go.temporal.io/sdk/workflow/determ
 badd +1132 ~/src/temporal-workflows-dns/vendor/go.temporal.io/sdk/internal/workflow.go
 badd +119 Makefile
 badd +19 internal/temporal/workflows/dnssecbot/cleanup_deleted_keysets.go
-badd +87 internal/temporal/workflows/dnssecbot/common.go
+badd +26 internal/temporal/workflows/dnssecbot/common.go
 badd +114 vendor/go.temporal.io/sdk/workflow/activity_options.go
 badd +120 vendor/go.temporal.io/sdk/temporal/error.go
 badd +535 vendor/go.temporal.io/sdk/internal/error.go
@@ -88,17 +88,18 @@ badd +90 ~/src/maestro-worker-dns/vendor/github.com/miekg/dns/dns.go
 badd +237 /usr/lib/go/src/fmt/print.go
 badd +111 ~/src/maestro-worker-dns/vendor/github.com/miekg/dns/scan.go
 badd +97 /usr/lib/go/src/encoding/json/decode.go
-badd +34 test/temporal_test_suite.go
+badd +54 test/temporal_test_suite.go
 badd +66 internal/temporal/workflows/dnssecbot/sign_test.go
 badd +60 internal/temporal/workflows/dnssecbot/verify_active_ds_test.go
 badd +32 internal/temporal/workflows/dnssecbot/replay_test.go
 badd +19 ~/src/maestro-worker-dns/vendor/github.com/baest/dns/dnssec_keyscan.go
 badd +77 ~/src/maestro-worker-dns/vendor/github.com/baest/dns/dnssec_privkey.go
 badd +147 ~/src/maestro-worker-dns/vendor/github.com/baest/dns/client.go
+badd +454 ~/src/maestro-worker-dns/vendor/github.com/baest/dns/types.go
 argglobal
 %argdel
 $argadd internal/temporal/workflows/mysql_restore/mysql_restore_cluster_databases.go
-edit cmd/worker/main.go
+edit internal/temporal/workflows/dnssecbot/unsign.go
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -115,10 +116,10 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 argglobal
-balt internal/temporal/workflows/dnssecbot/sign_test.go
+balt internal/dns/resolver.go
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -129,19 +130,19 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 100 - ((53 * winheight(0) + 32) / 65)
+let s:l = 93 - ((78 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 100
-normal! 038|
+keepjumps 93
+normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("internal/temporal/workflows/dnssecbot/sign.go", ":p")) | buffer internal/temporal/workflows/dnssecbot/sign.go | else | edit internal/temporal/workflows/dnssecbot/sign.go | endif
+if bufexists(fnamemodify("test.go", ":p")) | buffer test.go | else | edit test.go | endif
 if &buftype ==# 'terminal'
-  silent file internal/temporal/workflows/dnssecbot/sign.go
+  silent file test.go
 endif
-balt vendor/go.temporal.io/sdk/workflow/workflow.go
+balt internal/dns/resolver.go
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -152,15 +153,15 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 37 - ((0 * winheight(0) + 32) / 65)
+let s:l = 73 - ((38 * winheight(0) + 44) / 89)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 37
-normal! 031|
+keepjumps 73
+normal! 040|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 167 + 135) / 270)
-exe 'vert 2resize ' . ((&columns * 102 + 135) / 270)
+exe 'vert 1resize ' . ((&columns * 223 + 180) / 361)
+exe 'vert 2resize ' . ((&columns * 137 + 180) / 361)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
