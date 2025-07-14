@@ -59,10 +59,13 @@ export REQUESTS_CA_BUNDLE=/etc/ssl/cert.pem
 {{ end }}
 
 # XDG -- https://wiki.archlinux.org/title/XDG_Base_Directory
-export PSQLRC_DOCKER="$XDG_CONFIG_HOME/pg/.psqlrc_docker"
+export PSQLRC_DOCKER="$XDG_CONFIG_HOME/pg/psqlrc_docker"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg.rc"
 export GOPATH="$XDG_DATA_HOME/go"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export LESSHISTFILE="$XDG_CONFIG_HOME/less/hist"
 export LESSKEY="$XDG_CONFIG_HOME/less/key"
+export PERL_CPANM_HOME="$XDG_CACHE_HOME"/cpanm
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export XCOMPOSEFILE="$XDG_CONFIG_HOME"/X11/xcompose
