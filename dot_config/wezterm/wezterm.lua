@@ -12,6 +12,9 @@ config.check_for_updates = false
 config.hide_tab_bar_if_only_one_tab = true
 config.warn_about_missing_glyphs = false
 
+-- add │ (pipeish sep for tmux) to default values (all the rest)
+config.selection_word_boundary = " \t\n{}[]()\"'`│"
+
 -- disable ligatures
 --config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
