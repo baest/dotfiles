@@ -1,12 +1,15 @@
+(* means installed)
+
 Tool to handle dotfiles:
-    https://github.com/codejamninja/dotstow
-	https://www.chezmoi.io
+	https://github.com/codejamninja/dotstow
+	* https://www.chezmoi.io
 
 Curl replacement:
-    https://github.com/jakubroztocil/httpie
+	* https://github.com/jakubroztocil/httpie
+	https://github.com/rs/curlie
 
 Autocomplete
-    https://github.com/marlonrichert/zsh-autocomplete
+	* https://github.com/marlonrichert/zsh-autocomplete
 
 cli tool to make json output of tools
 	https://github.com/kellyjonbrazil/jc
@@ -23,8 +26,29 @@ json viewer
 macos vim keyboard stuff
 	https://github.com/godbout/kindaVim.theapp
 
-Git Interactive Rebase Tool
-	https://github.com/MitMaro/git-interactive-rebase-tool/blob/master/README.md#features
-
 json grepable
 	https://github.com/tomnomnom/gron
+
+run go test
+	* gotip
+
+SSL
+	* https://github.com/fabio42/ssl-checker
+	* https://github.com/robjtede/inspect-cert-chain
+
+tutorials
+	exercism
+	https://github.com/antoniorodr/lexy
+
+
+search/replace
+	https://github.com/alexpovel/srgn (code aware search/replace)
+	https://github.com/yassinebridi/serpl (tui)
+	
+bulk rename files
+	https://github.com/andrianllmm/renux
+
+https://terminaltrove.com/mult/
+https://terminaltrove.com/yatto/
+https://terminaltrove.com/apisnip/
+https://terminaltrove.com/hygg/
