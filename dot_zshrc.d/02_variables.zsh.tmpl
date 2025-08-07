@@ -13,7 +13,7 @@ export PS1="%*:%n@%m:%~%{${fg[red]}%}%B%(?..(%?%))%b%#";
 {{ if eq .chezmoi.os "darwin" }}
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/opt/make/libexec/gnubin:/opt/homebrew/opt/ruby/bin:/sbin:/usr/local/bin:/bin:/usr/sbin:/usr/bin:/opt/src:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/install_src/git-fuzzy/bin:/opt/homebrew/Cellar/perl/5.34.0/bin:/opt/homebrew/Library/Homebrew/shims/gems:/opt/homebrew/Cellar/rakudo/current/share/perl6/site/bin
 {{ else }}
-export PATH=/usr/local/bin:/usr/bin:/usr/bin/core_perl:/usr/sbin:/sbin:/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/install_src/git-fuzzy/bin:/usr/bin/vendor_perl:/usr/share/perl6/site/bin/:/home/fra/.raku/bin:/home/fra/go/bin:/opt/cinc-workstation/embedded/bin
+export PATH=/usr/local/bin:/usr/bin:/usr/bin/core_perl:/usr/sbin:/sbin:/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/install_src/git-fuzzy/bin:/usr/bin/vendor_perl:/usr/share/perl6/site/bin/:/home/fra/.raku/bin:/home/fra/go/bin:/opt/cinc-workstation/embedded/bin:$XDG_DATA_HOME/go/bin:$XDG_DATA_HOME/cargo/bin
 {{ end }}
 
 export SSH_REAL_HOST=`hostname`
@@ -69,3 +69,4 @@ export LESSKEY="$XDG_CONFIG_HOME/less/key"
 export PERL_CPANM_HOME="$XDG_CACHE_HOME"/cpanm
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export XCOMPOSEFILE="$XDG_CONFIG_HOME"/X11/xcompose
+export XCOMPOSECACHE="$XDG_CACHE_HOME"/X11/xcompose
