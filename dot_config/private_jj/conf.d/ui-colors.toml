@@ -1,0 +1,16 @@
+#:schema https://jj-vcs.github.io/jj/prerelease/config-schema.json
+[ui]
+editor = "/usr/bin/nvim"
+
+pager = "delta"
+paginate = "auto"
+diff-formater = ":git"
+#diff = "git"
+#diff.tool = "delta"
+default-command = "log"
+#conflict-marker-style = "snapshot"
+#diff-editor = "scm-diff-editor $left $right"
+
+[colors]
+# used in log_compact template
+"todo" = { bg = "yellow", fg = "black" }

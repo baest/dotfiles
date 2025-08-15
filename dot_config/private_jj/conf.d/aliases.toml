@@ -1,0 +1,31 @@
+#:schema https://jj-vcs.github.io/jj/prerelease/config-schema.json
+[aliases]
+
+rebase-all = [
+  'rebase',
+  '--branch',
+  'mutable() & mine()',
+  '--destination',
+  'main@origin',
+]
+
+# abbreviations
+b = ["bookmark"]
+sq = ["squash"]
+
+# viewing history
+open = ["log", "-r", "open(mine())"]
+ropen = ["log", "-r", "ropen()"]
+recent = ["log", "-r", "recent()"]
+
+push = ['git', 'push']
+clone = ["git", "clone"]
+init = ["git", "init"]
+fetch = ["git", "fetch"]
+p = ['push']
+
+# move the latest ancestor bookmark to the current change
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@"]
+
+nt = ["new", "trunk()"]
+cat = ["file", "show"]

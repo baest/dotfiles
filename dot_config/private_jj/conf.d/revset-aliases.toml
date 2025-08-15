@@ -1,0 +1,41 @@
+#:schema https://jj-vcs.github.io/jj/prerelease/config-schema.json
+[revset-aliases]
+
+'myb' = 'bookmarks(glob:"fra/*")'
+'user(x)' = 'author(x) | committer(x)'
+'m()' = 'trunk()'
+"lagging_bookmarks" = '''::bookmarks() & mutable() & mine() ~ trunk()::'''
+
+'default()' = 'default(2)'
+'default(n)' = '@ | trunk() | ancestors(immutable_heads().., n)'
+
+# View the entire branch being worked on
+'slice()' = 'slice(@)'
+'slice(from)' = 'ancestors(reachable(from, mutable()), 2)'
+
+# All my commits that haven't landed yet. This is the workhorse.
+'open()' = 'open(mine())'
+'open(domain)' = 'domain ~ ::immutable_heads()'
+
+# All open remote branches
+'ropen()' = 'ancestors(::remote_bookmarks() ~ immutable(), 2)'
+
+# history leading up to the working copy, like git log
+'last()' = 'p(@, 20)'
+'last(n)' = 'p(@, n)'
+'p(r, n)' = 'roots(r | ancestors(r-, n))'
+
+# Shows recent work with a little bit of context
+'recent()' = 'recent(after:"14 days ago")'
+'recent(when)' = '''
+    ancestors(
+        reachable(
+            immutable_heads()..(@ | committer_date(when)::),
+            mutable()),
+        2)
+    | trunk()
+'''
+
+# used from shell function because of the arguments (jjsm jjsa)
+'search_mutable(x)' = 'mutable() & diff_contains(x)'
+'search_all(x)' = 'diff_contains(x)'
