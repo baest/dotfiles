@@ -46,6 +46,7 @@ format = "$symbol [${ram}( | ${swap})]($style) "
 
 [git_branch]
 style = "bold yellow"
+only_attached = true
 
 [git_status]
 conflicted = "⚔️ "
@@ -60,14 +61,17 @@ conflicted = "⚔️ "
 style = "black"
 ahead = "⇡${count}"
 behind = "⇣${count}"
+disabled = true
 
 [git_commit]
 #commit_hash_length = 7
 only_detached = false
 format = "[\\($hash\\)]($style) "
+disabled = true
 
 [git_state]
 format = "[\\($state( $progress_current of $progress_total)\\)]($style) "
+disabled = true
 #cherry_pick = "[🍒 PICKING](bold red)"
 
 [python]
@@ -87,31 +91,11 @@ detect_env_vars = ['K8S']
 [custom.jj]
 ignore_timeout = true
 description = "current jj status"
+detect_folders = [".jj"]
 symbol = "🥋 "
 when = true
-command = '''
-jj root > /dev/null && jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
-  separate(" ",
-    change_id.shortest(4),
-    bookmarks,
-    "|",
-    concat(
-      if(conflict, "💥"),
-      if(divergent, "🚧"),
-      if(hidden, "👻"),
-      if(immutable, "🔒"),
-    ),
-    raw_escape_sequence("\x1b[1;32m") ++ if(empty, "(empty)"),
-    raw_escape_sequence("\x1b[1;32m") ++ if(description.first_line().len() == 0,
-      "(no description set)",
-      if(description.first_line().substr(0, 29) == description.first_line(),
-        description.first_line(),
-        description.first_line().substr(0, 29) ++ "…",
-      )
-    ) ++ raw_escape_sequence("\x1b[0m"),
-  )
-'
-'''
+command = 'jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template prompt'
+
 #command = '''
 #jj log -r@ -l1 --ignore-working-copy --no-graph --color always  -T '
 #  separate(" ",
