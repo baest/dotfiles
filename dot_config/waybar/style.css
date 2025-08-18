@@ -175,6 +175,10 @@
     color: #f87171;
   }
 
+  #custom-uair.resumed.Rest {
+    color: #add8e6;
+  }
+
   #custom-uair {
     color: green;
     margin-right: 3px;
