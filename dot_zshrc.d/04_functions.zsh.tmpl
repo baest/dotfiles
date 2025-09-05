@@ -279,11 +279,3 @@ function os-dashboard(){
   local SERIAL=$(sudo osqueryi --csv --noheader 'select hardware_serial from system_info')
   xdg-open "https://grafana.one.com/d/fdjhk7tm8x9tsb/osquery-laptop-compliance?var-SERIAL=${SERIAL}"
 }
-
-function jjsm() {
-    jj log -r "search_mutable(\"@$\")"
-}
-
-function jjsa() {
-    jj log -r "search_all(\"@$\")"
-}

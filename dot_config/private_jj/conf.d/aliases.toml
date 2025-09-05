@@ -27,5 +27,9 @@ p = ['push']
 # move the latest ancestor bookmark to the current change
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@"]
 
+# check aliases for more
+# jjpm (push master/main)
+# jjppmb
+
 nt = ["new", "trunk()"]
 cat = ["file", "show"]

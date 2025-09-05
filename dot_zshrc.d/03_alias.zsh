@@ -100,4 +100,10 @@ jjpm() {
     jj git push -b 'regex:^(main|master)$'
 }
 alias jjl="jj log --stat"
+function jjsm() {
+    jj log -r "search_mutable(\"@$\")"
+}
+function jjsa() {
+    jj log -r "search_all(\"@$\")"
+}
 alias doggo="doggo --strategy=random"
