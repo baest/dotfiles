@@ -107,7 +107,7 @@ set -g @plugin 'laktak/extrakto'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'openjck/tmux-one'
-#set -g @plugin 'git@github.com:christoomey/vim-tmux-navigator'
+set -g @plugin 'christoomey/vim-tmux-navigator'
 #set -g @plugin 'seebi/tmux-colors-solarized'
 #set -g @plugin 'jtbairdsr/tmux-inactive-panes'
 
@@ -142,6 +142,11 @@ set -g @fingers-pattern-0 '(pbi[[:digit:]]+)'
 set -g @fingers-pattern-1 'git rebase --(abort|continue)'
 
 
+set -g @vim_navigator_mapping_left "C-Left C-h"  # use C-h and C-Left
+set -g @vim_navigator_mapping_right "C-Right C-l"
+set -g @vim_navigator_mapping_up "C-k"
+set -g @vim_navigator_mapping_down "C-j"
+set -g @vim_navigator_mapping_prev ""  # removes the C-\ binding
 is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?x?)(diff)?$"'
 #bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"
 #bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"

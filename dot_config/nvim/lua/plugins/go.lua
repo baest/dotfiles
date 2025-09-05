@@ -2,16 +2,13 @@ return {
   'ray-x/go.nvim',
   ft = { 'go', 'gomod' },
   dependencies = { 'ray-x/guihua.lua', 'neovim/nvim-lspconfig', 'nvim-treesitter/nvim-treesitter' },
+  event = { 'CmdlineEnter' },
   build = ':lua require("go.install").update_all_sync()',
   opts = {
-    max_line_len = 190,
     dap_debug = true,
     dap_debug_gui = true,
-    lsp_inlay_hints = { enable = false },
+    lsp_inlay_hints = { enable = true },
     diagnostic = { virtual_text = { spacing = 2, prefix = '' } },
     luasnip = true,
   },
-  config = function(_, opts)
-    require('go').setup(opts)
-  end,
 }
