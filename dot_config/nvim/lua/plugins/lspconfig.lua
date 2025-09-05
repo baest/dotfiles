@@ -40,6 +40,7 @@ return {
       ensure_installed = {
         'bashls',
         'clangd',
+        --        'cspell',
         'dockerls',
         'glsl_analyzer',
         'gopls',

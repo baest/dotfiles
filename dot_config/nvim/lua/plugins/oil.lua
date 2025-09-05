@@ -1,7 +1,20 @@
 return {
   'stevearc/oil.nvim',
-  opts = {},
+  lazy = false,
+  opts = {
+    view_options = {
+      show_hidden = true,
+    },
+  },
+  keys = {
+    {
+      '<leader>ne',
+      '<cmd>Oil --float<CR>',
+      desc = 'Browse files/dirs',
+    },
+  },
+  cmd = { 'Oil' },
   -- Optional dependencies
-  dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  dependencies = { { 'echasnovski/mini.icons', opts = {} } },
   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 }

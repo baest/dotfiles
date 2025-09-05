@@ -12,6 +12,14 @@ return {
       mode = '',
       desc = 'Format buffer',
     },
+    {
+      '<leader>tf',
+      function()
+        vim.b.disable_autoformat = not vim.b.disable_autoformat
+      end,
+      mode = '',
+      desc = 'Toggle autoformat for buffer',
+    },
   },
   -- Everything in opts will be passed to setup()
   opts = {
@@ -59,8 +67,12 @@ return {
       bang = true,
     })
     vim.api.nvim_create_user_command('FormatEnable', function()
-      vim.b.disable_autoformat = false
-      vim.g.disable_autoformat = false
+      if args.bang then
+        -- FormatEnable! will enable formatting just for this buffer
+        vim.b.disable_autoformat = false
+      else
+        vim.g.disable_autoformat = false
+      end
     end, {
       desc = 'Re-enable autoformat-on-save',
     })

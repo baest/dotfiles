@@ -35,6 +35,14 @@ keymap('n', '<ScrollWheelDown>', '<nop>', { desc = 'Disable scrollwheel' })
 -- aerial --
 keymap('n', '<leader>a', '<cmd>AerialToggle<CR>', { desc = 'Toggle aerial' })
 
+-- spell --
+vim.keymap.set(
+  'n',
+  '<leader>us',
+  "<cmd>lua require('utils.cspell').add_word_to_c_spell_dictionary()<CR>",
+  { noremap = true, silent = true, desc = 'Add unknown word to cspell dictionary' }
+)
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

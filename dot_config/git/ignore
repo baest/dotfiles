@@ -1,6 +1,7 @@
 *.sw[mnop]
 *.agignore
 nytprof*
+.envrc
 *.autoenv*
 .venv
 .ignore
@@ -8,6 +9,7 @@ nytprof*
 .before_push_wip.sh
 .pre-commit-config.yaml
 *__pycache__*
-.envrc
 *.kml
-.jj
+src/test.go
+cspell.dig
+cspell.json
