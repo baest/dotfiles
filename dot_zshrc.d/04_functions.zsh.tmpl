@@ -150,12 +150,15 @@ function cnodesfzf() {
     if [ -n "$selected_host" ]; then
 	SSH_CMD={{ lookPath "ssh" }}
 	BUFFER="$SSH_CMD ${selected_host}"
-	print -s $BUFFER # put command in history
+	id=$(atuin history start -- "$BUFFER")
+	echo $id
 	if [[ ${ZLE_ENABLED} -eq 1 ]]; then
 	    zle accept-line
 	else
 	    eval ${BUFFER}
 	fi
+	atuin history end --exit "$?" "$id"
+	print -s $BUFFER # put command in history
     fi
     if [[ ${ZLE_ENABLED} -eq 1 ]]; then
 	zle reset-prompt
