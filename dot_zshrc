@@ -23,8 +23,6 @@ safe_source "$HOME/.profile" # Load the default .profile
 #
 #source "$HOME/.zgen_plugins_conf.zsh"
 
-safe_source "/usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh"
-
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
 	colors

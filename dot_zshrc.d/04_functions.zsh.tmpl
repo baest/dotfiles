@@ -151,7 +151,6 @@ function cnodesfzf() {
 	SSH_CMD={{ lookPath "ssh" }}
 	BUFFER="$SSH_CMD ${selected_host}"
 	id=$(atuin history start -- "$BUFFER")
-	echo $id
 	if [[ ${ZLE_ENABLED} -eq 1 ]]; then
 	    zle accept-line
 	else

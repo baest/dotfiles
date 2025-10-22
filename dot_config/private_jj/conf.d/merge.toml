@@ -1,0 +1,4 @@
+#:schema https://jj-vcs.github.io/jj/prerelease/config-schema.json
+
+[merge]
+hunk-level = "word"
