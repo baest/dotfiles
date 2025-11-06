@@ -1,5 +1,5 @@
 set-option -g status-keys vi
-bind-key R source-file ~/.tmux.conf \; display-message "Reloaded config"
+bind-key R source-file ~/.config/tmux/tmux.conf \; display-message "Reloaded config"
 
 # To move windows run this:
 # run-shell move_windows.pl
@@ -42,6 +42,9 @@ set-window-option -g alternate-screen on
 set -g terminal-overrides ',xterm-256color:Tc'
 set -g default-terminal "tmux-256color"
 set -as terminal-overrides ',xterm*:sitm=\E[3m'
+
+set -g base-index 1
+set -g pane-base-index 1
 
 {{ if eq .chezmoi.os "darwin" }}
 set -s copy-command 'pbcopy'
@@ -92,6 +95,8 @@ bind-key -n M-Left prev
 bind-key -n M-Up select-pane -t :.+
 bind-key -n M-Down select-pane -t :.-
 
+set-environment -g TMUX_PLUGIN_MANAGER_PATH '~/.local/share/tmux/plugins'
+
 # List of plugins
 # Supports `github_username/repo` or full git URLs
 set -g @plugin 'tmux-plugins/tpm'
@@ -126,6 +131,7 @@ set -g @continuum-save-interval '10'
 set -g @resurrect-strategy-nvim 'session'
 set -g @resurrect-capture-pane-contents 'on'
 set -g @resurrect-processes 'vi vim nvim emacs man less more tail top htop irssi weechat mutt ssh make perl'
+set -g @resurrect-dir '~/.local/share/tmux/resurrect'
 #https://github.com/spywhere/tmux-named-snapshot
 
 #TEST
@@ -161,8 +167,8 @@ is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?x?)(diff
 # git@bitbucket.com/user/plugin  \
 
 # initializes TMUX plugin manager
-run -b '~/.tmux/plugins/tpm/tpm'
-run-shell ~/.tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
+run -b '~/.local/share/tmux/plugins/tpm/tpm'
+run-shell ~/.local/share/tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
 
 #set -g pane-border-bg colour235
 #set -g pane-border-fg colour238
