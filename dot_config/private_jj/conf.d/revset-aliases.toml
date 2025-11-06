@@ -39,3 +39,6 @@
 # used from shell function because of the arguments (jjsm jjsa)
 'search_mutable(x)' = 'mutable() & diff_contains(x)'
 'search_all(x)' = 'diff_contains(x)'
+
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+'closest_pushable(to)' = 'heads(::to & mutable() & ~description(exact:"") & ~description.starts_with("TODO:") & (~empty() | merges()))'

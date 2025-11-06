@@ -25,7 +25,14 @@ fetch = ["git", "fetch"]
 p = ['push']
 
 # move the latest ancestor bookmark to the current change
-tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@"]
+tug = [
+  "bookmark",
+  "move",
+  "--from",
+  "closest_bookmark(@)",
+  "--to",
+  "closest_pushable(@)",
+]
 
 # check aliases for more
 # jjpm (push master/main)
