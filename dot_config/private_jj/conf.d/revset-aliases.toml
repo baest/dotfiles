@@ -41,4 +41,4 @@
 'search_all(x)' = 'diff_contains(x)'
 
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
-'closest_pushable(to)' = 'heads(::to & mutable() & ~description(exact:"") & ~description.starts_with("TODO:") & (~empty() | merges()))'
+'closest_pushable(to)' = 'heads(::to & mutable() & ~description(exact:"") & ~description(glob:"TODO:*") & (~empty() | merges()))'
