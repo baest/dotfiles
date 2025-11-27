@@ -4,8 +4,8 @@ return {
   ---@type Flash.Config
   opts = {
     modes = {
-      search = { enabled = false }, -- disable for search
-      char = { enabled = true }, -- disable for fFtT
+      search = { enabled = false }, -- enable for search
+      char = { enabled = false, jump_labels = true }, -- disable for fFtT
     },
     label = {
       rainbow = { enabled = true },

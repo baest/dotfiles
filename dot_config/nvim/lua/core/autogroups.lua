@@ -18,6 +18,26 @@ vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
   end,
 })
 
+-- disable auto format on Perl
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = { 'perl' },
+  callback = function()
+    vim.b.disable_autoformat = true
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'FocusGained' }, {
+  pattern = '*',
+  callback = function()
+    print(vim.bo.filetype)
+    if vim.bo.filetype == 'notify' then
+      vim.cmd.wincmd 'w'
+      print(vim.bo.filetype)
+      return
+    end
+  end,
+})
+
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, { command = 'checktime' })
 

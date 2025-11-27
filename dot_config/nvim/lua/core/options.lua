@@ -61,7 +61,8 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-vim.keymap.del('n', 'Y')
+--Y is by default mapped to y$, otherwise it is copy a line
+--vim.keymap.del('n', 'Y')
 
 vim.o.termguicolors = true
 

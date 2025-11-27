@@ -52,6 +52,9 @@ LSP:
   Show signature of function (on hover)
    gss
 
+  Goto next error (previous)
+   ]d ([d)
+
 Edit position (:help jumplist)
   ctrl+o to jump back after gd or similar
 
@@ -70,3 +73,8 @@ Move to next char:
 Enable/Disable auto format:
   :FormatDisable (! with bang disable only current buffer)
   :FormatEnable
+
+linting with sql
+  -- pgt-ignore-all lint/safety/runningStatementWhileHoldingAccessExclusive
+  -- pgt-ignore-all lint/safety/lockTimeoutWarning
+

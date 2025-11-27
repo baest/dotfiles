@@ -156,6 +156,7 @@ return {
           prompt_title = 'Search files',
         }
       end, { noremap = true, silent = true, desc = 'Search files' })
+      -- <Tab> also remaps Ctrl+i because reasons
       vim.keymap.set('n', '<Tab>', function()
         builtin.buffers {
           --initial_mode = "normal",
