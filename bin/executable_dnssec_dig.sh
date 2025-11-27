@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-doggo --strategy random NS DS DNSKEY "$@"
+doggo --strategy random NS DS DNSKEY NSEC3PARAM "$@"
 
 #echo "NS for $1"
 #dig +short NS "$@"

@@ -125,3 +125,5 @@ if [[ ! -z "$ITERM_SESSION_ID" ]]; then
 
     #export PS1="$PS1%{$(iterm2_prompt_mark)%}"
 fi
+
+bindkey -M viins '^U' forward_kill_line

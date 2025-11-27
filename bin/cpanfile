@@ -14,3 +14,4 @@ requires 'Term::Size';
 requires 'Plack::Test';
 requires 'Test::Most';
 requires 'IO::Async';
+requires 'Sub::Name';

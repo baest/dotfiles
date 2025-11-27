@@ -29,17 +29,18 @@ sub get-nodes () {
 	});
 	my $p_cnodes = $proc.start;
 
-	my $p_known_hosts = start {
-		my $fh = "{$*HOME}/.ssh/known_hosts".IO.open;
-		my $i = 0;
-		for ($fh.split: /\s+/, :close) {
-			if (($i++) % 3 == 0 && !/'localhost' || ^ \s *$/) {
-				@output.push($_);
-			}
-		}
-	}
+	#my $p_known_hosts = start {
+	#	my $fh = "{$*HOME}/.ssh/known_hosts".IO.open;
+	#	my $i = 0;
+	#	for ($fh.split: /\s+/, :close) {
+	#		if (($i++) % 3 == 0 && !/'localhost' || ^ \s *$/) {
+	#			@output.push($_);
+	#		}
+	#	}
+	#}
 
-	await ($p_known_hosts, $p_cnodes);
+	#await ($p_known_hosts, $p_cnodes);
+	await ($p_cnodes);
 	#say @known_hosts.sort.unique.grep({!/'localhost' || ^ \s *$/}).join("\n");
 	#say @cnodes.sort.unique.grep({!/'localhost' || ^ \s *$/}).join("\n");
 	#say .sort.unique;
