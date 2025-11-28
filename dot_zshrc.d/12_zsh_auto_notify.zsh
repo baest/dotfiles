@@ -19,3 +19,6 @@ AUTO_NOTIFY_IGNORE+=("tmux")
 
 export AUTO_NOTIFY_THRESHOLD=20
 export AUTO_NOTIFY_EXPIRE_TIME=5000
+export AUTO_NOTIFY_CANCEL_ON_SIGINT=0
+
+#run disable_auto_notify to disable notify
