@@ -96,8 +96,8 @@ jjpm() {
     if [ ${1+x} ]; then
         REV=$1
     fi
-    jj bookmark move --to $REV 'regex:^(main|master)$'
-    jj git push -b 'regex:^(main|master)$'
+    jj bookmark move --to $REV 'regex:"^(main|master)$"'
+    jj git push -b 'regex:"^(main|master)$"'
 }
 alias jjl="jj log --stat"
 function jjsm() {
