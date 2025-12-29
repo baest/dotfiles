@@ -10,6 +10,8 @@ diff-formater = ":git"
 default-command = "log"
 #conflict-marker-style = "snapshot"
 #diff-editor = "scm-diff-editor $left $right"
+# TODO: remove after 0.37
+revsets-use-glob-by-default = true
 
 [colors]
 # used in log_compact template

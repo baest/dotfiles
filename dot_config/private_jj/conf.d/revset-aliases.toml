@@ -1,7 +1,7 @@
 #:schema https://jj-vcs.github.io/jj/prerelease/config-schema.json
 [revset-aliases]
 
-'myb' = 'bookmarks(glob:"fra/*")'
+'myb' = 'bookmarks(glob:"fra/*") | bookmarks(glob:"automagic-schema-update")'
 'user(x)' = 'author(x) | committer(x)'
 'm()' = 'trunk()'
 "lagging_bookmarks" = '''::bookmarks() & mutable() & mine() ~ trunk()::'''

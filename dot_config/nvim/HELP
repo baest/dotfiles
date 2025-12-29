@@ -78,3 +78,7 @@ linting with sql
   -- pgt-ignore-all lint/safety/runningStatementWhileHoldingAccessExclusive
   -- pgt-ignore-all lint/safety/lockTimeoutWarning
 
+Move screen
+	zz - move current line to the middle of the screen (warning: ZZ is save and exit, so watch out for caps lock)
+	zt - move current line to the top of the screen
+	zb - move current line to the bottom of the screen
