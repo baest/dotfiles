@@ -44,16 +44,17 @@ separate(" ",
 draft_commit_description_alias = '''
 concat(
   description,
+  "\n",
+  "JJ: ignore-rest\n",
   surround(
-    "\nJJ: This commit contains the following changes:\n", "",
-    indent("JJ:     ", 
+    "\nThis commit contains the following changes:\n", "",
+    indent("    ", 
       concat(
         diff.summary(),
         diff.stat(72),
       ),
   )),
   "\n",
-  "JJ: ignore-rest\n",
   diff.git(),
 )
 '''
