@@ -107,3 +107,11 @@ function jjsa() {
     jj log -r "search_all(\"@$\")"
 }
 alias doggo="doggo --strategy=random"
+
+mman () {
+	man $@ | bat -l man --style=-numbers
+}
+
+help () {
+    "$@" --help 2>&1 | bat --plain --language=help
+}
