@@ -100,6 +100,7 @@ jjpm() {
     jj git push -b 'regex:"^(main|master)$"'
 }
 alias jjl="jj log --stat"
+alias jjla="jj log -r 'all()'"
 function jjsm() {
     jj log -r "search_mutable(\"@$\")"
 }
