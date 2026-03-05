@@ -79,12 +79,12 @@ alias b2o="perl -e 'printf qq|%o\n|, oct( q|0b| . shift )'"
 
 alias cm=chezmoi
 
-alias jjpull="jj git fetch && jj rebase --branch 'mutable()' -d 'trunk()'"
 #alias jjp="jj git fetch && jj rebase --branch 'all:coalesce(myb, @)' -d 'trunk()'"
-alias jjp="jj git fetch && jj rebase --branch 'mutable()' -d 'trunk()'"
+alias jjp="jj git fetch && jj rebase-all"
 alias jjs="jj status"
 alias jjpmb="jj git push -r myb"
-alias jjppmb="jj git fetch && jj rebase --branch 'mutable()' -d 'trunk()' && jj git push -r myb"
+alias jjppmb="jj git fetch && jj rebase-all && jj git push --tracked -o merge_request.create -o merge_request.remove_source_branch -o merge_request.assign=458"
+# -o merge_request.merge_when_pipeline_succeeds
 #alias jjd='LESS="-RXQ" jj diff'
 jjd() {
     LESS="-RXQ"
