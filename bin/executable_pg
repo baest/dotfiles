@@ -49,6 +49,14 @@ my ($local_sock, $remote_sock);
 
 $ENV{SSH_REAL_HOST} = $cfg->{$service}{label} // $ssh_host;
 
+if ($cfg->{$service}{prod}) {
+	$ENV{PG_IN_PROD} = 1;
+}
+
+if ($ssh_host eq 'localhost') {
+	$ENV{PG_IS_LOCALHOST} = 1;
+}
+
 if ($ENV{DEBUG}) {
 	warn $ENV{SSH_REAL_HOST};
 	use DDP; p $cfg->{$service};

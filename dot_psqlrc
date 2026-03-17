@@ -9,7 +9,6 @@
 
 \setenv PAGER 'pspg -bX --no-mouse --no-bars'
 --\setenv PAGER 'less -XF'
-\timing
 \set VERBOSITY verbose
 \set PG_COLOR always
 
@@ -20,7 +19,23 @@
 
 -- with hostname
 --\set PROMPT1 '%n %[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
-\set PROMPT1 '%R[%`echo $SSH_REAL_HOST`] (%/) %x%# '
+\getenv REAL_HOST SSH_REAL_HOST
+\getenv PROD PG_IN_PROD
+\getenv LOCALHOST PG_IS_LOCALHOST
+SELECT pg_is_in_recovery() as is_replica \gset
+\if :{?PROD}
+  \set PROMPT1 '%R %[%033[1;31m%][%:REAL_HOST:] (%/)%[%033[0m%] %x%# '
+\else
+  \if :is_replica
+    \set PROMPT1 '%R %[%033[1;34m%][%:REAL_HOST:] (%/)%[%033[0m%] %x%# '
+  \else
+    \if :{?LOCALHOST}
+      \set PROMPT1 '%R %[%033[1;32m%][%:REAL_HOST:] (%/)%[%033[0m%] %x%# '
+    \else
+      \set PROMPT1 '%R [%:REAL_HOST:] (%/) %x%# '
+    \endif
+  \endif
+\endif
 --\set PROMPT1 '%[%033[1m%]%/%[%033[0m%]%R[%`echo $SSH_REAL_HOST`]%[%033[1;31m%]%x%[%033[K%]%[%033[0m%]%# '
 
 -- set prompt2 (next line in command) to whitespace from PG13
@@ -38,11 +53,6 @@
 --\set ECHO_HIDDEN on
 
 \unset QUIET
-
---SELECT CASE WHEN pg_is_in_recovery()
---    THEN '%[%033[33;1m%]%x%[%033[0m%]%[%033[34m%]%/%[%033[0m%]%R%# '
---    ELSE '%[%033[33;1m%]%x%[%033[0m%]%[%033[31m%]%/%[%033[0m%]%R%# '
---END AS pr1 \gset
---\set PROMPT1 :pr1
+\timing
 
 -- \echo pspg is DISABLED for now

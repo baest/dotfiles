@@ -12,6 +12,7 @@
 \echo Autocommit is now :AUTOCOMMIT
 
 --\set PROMPT1 '%/%R%[%033[1;31m%]%x%[%033[K%]%[%033[0m%]%# '
+\set PROMPT1 '%R %[%033[1;32m%](test) (%/)%[%033[0m%] %x%# '
 
 \set HISTSIZE 50000
 \set HISTCONTROL ignoreboth
