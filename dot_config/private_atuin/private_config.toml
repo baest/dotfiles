@@ -178,6 +178,8 @@ enter_accept = true
 ## Alternatively, set env NO_MOTION=true
 # prefers_reduced_motion = false
 
+no_mouse = true
+
 #[stats]
 # Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
 common_subcommands = [
@@ -242,7 +244,8 @@ records = true
 
 [daemon]
 ## Enables using the daemon to sync. Requires the daemon to be running in the background. Start it with `atuin daemon`
-# enabled = false
+enabled = true
+autostart = true
 
 ## How often the daemon should sync in seconds
 # sync_frequency = 300
