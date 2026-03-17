@@ -40,5 +40,6 @@
 'search_mutable(x)' = 'mutable() & diff_contains(x)'
 'search_all(x)' = 'diff_contains(x)'
 
+# not used anymore
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 'closest_pushable(to)' = 'heads(::to & mutable() & ~description(exact:"") & ~description(glob:"TODO:*") & (~empty() | merges()))'
