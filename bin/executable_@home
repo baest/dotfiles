@@ -1,2 +1,2 @@
 #!/usr/bin/zsh
-.config/hypr/scripts/moveworkspaces_home.sh
+~/.config/hypr/scripts/moveworkspaces_home.sh

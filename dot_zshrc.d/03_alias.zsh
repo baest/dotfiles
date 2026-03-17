@@ -52,9 +52,9 @@ if `which thefuck > /dev/null 2>&1`; then
 	eval $(thefuck --alias)
 fi
 
-alias bc="figlet 'use numbat' && sleep 2 && numbat"
-alias fend="figlet 'use numbat' && sleep 2 && numbat"
-alias squiid="figlet 'use numbat' && sleep 2 && numbat"
+alias bc="figlet 'use crag' && sleep 2 && crag"
+alias fend="figlet 'use crag' && sleep 2 && crag"
+alias squiid="figlet 'use crag' && sleep 2 && crag"
 
 alias unhex="xxd -r -p"
 alias hex="xxd -p -c0 -u"

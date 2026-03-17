@@ -8,6 +8,9 @@ bind-key R source-file ~/.config/tmux/tmux.conf \; display-message "Reloaded con
 #bind-key -n C-k send-keys -R \; clear-history
 bind-key C send-keys -R \; clear-history
 bind-key -n C-L send-keys -R \; clear-history
+
+
+bind-key X send-keys y
 {{ if eq .chezmoi.os "darwin" }}
 #bind-key -tvi-copy C copy-pipe 'xclip >/dev/null' \; send-keys -R \; clear-history
 bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
@@ -15,7 +18,6 @@ bind-key -T copy-mode-vi 'C' send -X copy-selection-and-cancel
 bind-key v run "xclip -o | tmux load-buffer - ; tmux paste-buffer"
 {{ else }}
 {{ end }}
-bind-key X send-keys y
 bind-key t run "resize_2_3.sh"
 
 # switch windows alt+number
@@ -24,7 +26,7 @@ bind-key -n M-{{$i}} select-window -t {{$i}}
 {{- end }}
 bind-key -n M-0 select-window -t 10 # override 0 to select win 10
 
-#set -g default-terminal "tmux-256color"
+set-option -g default-terminal "tmux-256color"
 set -sg escape-time 10
 
 set -g history-limit 100000
@@ -103,7 +105,7 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-copycat'
-set -g @plugin 'jbnicolai/tmux-fpp'
+#set -g @plugin 'jbnicolai/tmux-fpp'
 set -g @plugin 'tmux-plugins/tmux-sidebar'
 #set -g @plugin 'git@github.com:Morantron/tmux-fingers'
 set -g @plugin 'fcsonline/tmux-thumbs'
@@ -130,7 +132,7 @@ set -g @continuum-restore 'on'
 set -g @continuum-save-interval '10'
 set -g @resurrect-strategy-nvim 'session'
 set -g @resurrect-capture-pane-contents 'on'
-set -g @resurrect-processes 'vi vim nvim emacs man less more tail top htop irssi weechat mutt ssh make perl'
+set -g @resurrect-processes 'vi vim nvim emacs man less more tail top htop irssi weechat mutt ssh make perl nv atuin'
 set -g @resurrect-dir '~/.local/share/tmux/resurrect'
 #https://github.com/spywhere/tmux-named-snapshot
 
@@ -147,6 +149,7 @@ set -g @fingers-hint-format-nocompact "#[fg=blue,bold][%s]"
 set -g @fingers-pattern-0 '(pbi[[:digit:]]+)'
 set -g @fingers-pattern-1 'git rebase --(abort|continue)'
 
+run-shell ~/.local/share/tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
 
 set -g @vim_navigator_mapping_left "C-Left C-h"  # use C-h and C-Left
 set -g @vim_navigator_mapping_right "C-Right C-l"
@@ -166,10 +169,6 @@ is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?x?)(diff
 # git@github.com/user/plugin     \
 # git@bitbucket.com/user/plugin  \
 
-# initializes TMUX plugin manager
-run -b '~/.local/share/tmux/plugins/tpm/tpm'
-run-shell ~/.local/share/tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
-
 #set -g pane-border-bg colour235
 #set -g pane-border-fg colour238
 #set -g pane-active-border-bg colour236
@@ -186,3 +185,6 @@ set -as terminal-overrides ',xterm-256color:RGB' # true-color support
 
 #\"#22T\"
 set -g status-right "#[fg=colour11,bg=colour7,nobold,nounderscore,noitalics]#[fg=colour7,bg=colour11] #{prefix_highlight} | #{continuum_status} | %H:%M %d-%b-%y "
+
+# initializes TMUX plugin manager
+run -b '~/.local/share/tmux/plugins/tpm/tpm'
