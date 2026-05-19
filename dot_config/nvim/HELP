@@ -70,6 +70,11 @@ Move to next char:
   dt (and so on to delete to next e.g. ")
   ct (will also delete and then put into insert mode)
 
+Move to next string
+ /string
+ d/string will delete until string
+ d/string/e will delete until string and also delete string
+
 Enable/Disable auto format:
   :FormatDisable (! with bang disable only current buffer)
   :FormatEnable

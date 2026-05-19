@@ -1,6 +1,8 @@
 #:schema https://jj-vcs.github.io/jj/prerelease/config-schema.json
 [ui]
 editor = "/usr/bin/nvim"
+diff-editor = ":builtin"
+
 
 pager = "delta"
 paginate = "auto"

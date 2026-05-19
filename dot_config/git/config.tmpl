@@ -135,8 +135,10 @@
 [fetch]
     writeCommitGraph = true
 
-[url "git@gitlab.group.one:"]
-    insteadOf = https://gitlab.group.one/
+[url "ssh://git@gitlab.one.com/"]
+	insteadOf = https://gitlab.one.com/
+[url "ssh://git@gitlab.group.one/"]
+	insteadOf = https://gitlab.group.one/
 
 [include]
     path = ~/.gitconfig.local
@@ -171,20 +173,5 @@
 
 [branch]
     sort = -committerdate
-
-[maintenance]
-	repo = {{ .chezmoi.homeDir }}/src/chef/repo
-	repo = {{ .chezmoi.homeDir }}/src/database-schema
-	repo = {{ .chezmoi.homeDir }}/src/systems-api
-	repo = {{ .chezmoi.homeDir }}/src/authdns
-	repo = {{ .chezmoi.homeDir }}/.local/share/znap/znap
-	repo = {{ .chezmoi.homeDir }}/.local/share/znap/atuinsh/atuin
-	repo = {{ .chezmoi.homeDir }}/.local/share/znap/junegunn/fzf
-	repo = {{ .chezmoi.homeDir }}/.local/share/znap/wfxr/forgit
-	repo = {{ .chezmoi.homeDir }}/.local/share/znap/zsh-users/zsh-autosuggestions
-	repo = {{ .chezmoi.homeDir }}/.local/share/znap/MichaelAquilina/zsh-auto-notify
-	repo = {{ .chezmoi.homeDir }}/.local/share/znap/ianthehenry/zsh-autoquoter
-	repo = {{ .chezmoi.homeDir }}/.local/share/znap/jeffreytse/zsh-vi-mode
-	repo = {{ .chezmoi.homeDir }}/.local/share/znap/waszabi/empty-enter-expander
 
 # vi:ft=gitconfig

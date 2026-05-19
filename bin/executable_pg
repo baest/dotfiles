@@ -78,6 +78,7 @@ if ($socket) {
 
 my $session_file = $session_dir->child("$ssh_host--$port");
 if ($session_file->is_file) {
+	say "session file exists at $session_file" if $ENV{DEBUG};
 	my $data = decode_json($session_file->slurp);
 	my $local_port = $data->{local_port};
 	my $local_sock = $data->{local_sock};
@@ -88,6 +89,8 @@ if ($session_file->is_file) {
 	#disconnect();
 	exit 0;
 	}
+} elsif ($ENV{DEBUG}) {
+	say "no session file exists, would be at $session_file";
 }
 
 while(1) {
