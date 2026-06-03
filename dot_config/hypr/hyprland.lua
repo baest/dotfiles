@@ -251,8 +251,8 @@ hl.bind(mainMod .. " + " .. "r", hl.dsp.exec_cmd("fuzzel --show drun"))
 hl.bind(mainMod .. " + " .. "r", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call launcher toggle"))
 hl.bind(mainMod .. " + " .. "l", hl.dsp.exec_cmd("~/.config/hypr/scripts/lockscreen.sh"))
 hl.bind(
-	mainMod .. " + " .. "V",
-	hl.dsp.exec_cmd("cliphist list|| cliphist decode| wl-copy && wtype -M ctrl -M shift v")
+	mainMod .. " + " .. "v",
+	hl.dsp.exec_cmd("cliphist list | fuzzel --dmenu | cliphist decode | wl-copy  && wtype -M ctrl -M shift v")
 )
 -- hl.bind(
 -- 	"Control_L&Shift_L" .. " + " .. "v",
