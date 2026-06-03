@@ -1,0 +1,42 @@
+#!/usr/bin/env zsh
+#set -x
+
+ec_dir=ec
+ec_dir_local=~/$ec_dir
+echo $ec_dir_local
+
+date=$(date "+%Y%m%d")
+time=$(date "+%X")
+
+if [ -n "$2" ]; then
+	date=$2
+else
+	for file in $(fd --change-older-than 5days --glob '*.mp3' --base-directory $ec_dir_local); do
+		rm $ec_dir_local/$file;
+		xmlstarlet ed -P --inplace --delete "(/rss/channel/item)[guid/@filename='$file']" $ec_dir_local/public.xml
+	done
+fi
+filename="ec_$date.mp3"
+echo $filename
+
+if [ ! -f $ec_dir_local/$filename ]; then
+	yt-dlp --paths $ec_dir_local --output "$filename" "$1"
+	chmod 644 $ec_dir_local/$filename
+	cp $ec_dir_local/public.xml $ec_dir_local/tmp.xml
+	xmlstarlet ed -P \
+		--append "(/rss/channel/item)[last()]" -t elem -n tmp \
+		--subnode //tmp -t elem -n title -v "$(date --date "$date $time" "+%a, %d %B %Y %X %z")" \
+		--subnode //tmp -t elem -n enclosure \
+		--insert //tmp/enclosure -t attr -n type -v "audio/mpeg" \
+		--insert //tmp/enclosure -t attr -n url -v "https://{{ .chezmoi.config.data.webhosting.url }}/$ec_dir/${filename}" \
+		--subnode //tmp -t elem -n guid -v "$(uuidgen)" \
+		--insert //tmp/guid -t attr -n isPermaLink -v "false" \
+		--insert //tmp/guid -t attr -n filename -v "${filename}" \
+		--subnode //tmp -t elem -n author -v "European correspondant" \
+		--rename //tmp -v item \
+		$ec_dir_local/tmp.xml \
+		| xmllint --format - > $ec_dir_local/public.xml && \
+	rm $ec_dir_local/tmp.xml;
+fi
+rsync -va --delete-after --inplace $ec_dir_local/ {{ .chezmoi.config.data.webhosting.hostname }}:/www/$ec_dir/ && \
+ssh {{ .chezmoi.config.data.webhosting.hostname }} cache-purge
