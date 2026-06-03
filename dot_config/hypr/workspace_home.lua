@@ -2,42 +2,14 @@
 -- https://github.com/yourusername/hyprconf2lua
 -- Manual review may be needed for complex directives
 
-hl.workspace_rule({
-    workspace = 1,
-    monitor = "desc:ViewSonic Corporation VP2458 VKR213640536",
-})
+for i = 1, 9 do
+	hl.workspace_rule({
+		workspace = i,
+		monitor = "desc:ViewSonic Corporation VP2458 VKR213640536",
+	})
+end
 
 hl.workspace_rule({
-    workspace = 2,
-    monitor = "desc:ViewSonic Corporation VP2458 VKR213640536",
-})
-
-hl.workspace_rule({
-    workspace = 3,
-    monitor = "desc:ViewSonic Corporation VP2458 VKR213640536",
-})
-
-hl.workspace_rule({
-    workspace = 4,
-    monitor = "desc:ViewSonic Corporation VP2458 VKR213640536",
-})
-
-hl.workspace_rule({
-    workspace = 5,
-    monitor = "desc:ViewSonic Corporation VP2458 VKR213640536",
-})
-
-hl.workspace_rule({
-    workspace = 7,
-    monitor = "desc:ViewSonic Corporation VP2458 VKR213640536",
-})
-
-hl.workspace_rule({
-    workspace = 8,
-    monitor = "desc:ViewSonic Corporation VP2458 VKR213640536",
-})
-
-hl.workspace_rule({
-    workspace = 10,
-    monitor = "eDP-1",
+	workspace = 10,
+	monitor = "eDP-1",
 })
