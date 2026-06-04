@@ -38,5 +38,6 @@ if [ ! -f $ec_dir_local/$filename ]; then
 		| xmllint --format - > $ec_dir_local/public.xml && \
 	rm $ec_dir_local/tmp.xml;
 fi
-rsync -va --delete-after --inplace $ec_dir_local/ {{ .chezmoi.config.data.webhosting.hostname }}:/www/$ec_dir/ && \
+rsync -va --delete-after $ec_dir_local/ {{ .chezmoi.config.data.webhosting.hostname }}:/www/$ec_dir/;
+rsync -va --whole-file $ec_dir_local/public.xml {{ .chezmoi.config.data.webhosting.hostname }}:/www/$ec_dir/;
 ssh {{ .chezmoi.config.data.webhosting.hostname }} cache-purge
