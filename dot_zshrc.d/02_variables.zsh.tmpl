@@ -72,3 +72,8 @@ export XCOMPOSEFILE="$XDG_CONFIG_HOME"/X11/xcompose
 export XCOMPOSECACHE="$XDG_CACHE_HOME"/X11/xcompose
 
 export TRUNK=main
+
+# one.com loki
+export LOKI_TLS_SKIP_VERIFY=1
+export LOKI_USERNAME=loki
+export LOKI_PASSWORD={{ onepasswordRead "op://Personal/one.com Loki password/password" }}
