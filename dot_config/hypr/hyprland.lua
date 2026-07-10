@@ -113,19 +113,13 @@ hl.config({
 })
 
 --master {
-
 --    # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-
 --    new_is_master = true
-
 --}
 
 -- gestures {
-
 --     # See https://wiki.hyprland.org/Configuring/Variables/ for more
-
 --     workspace_swipe = off
-
 -- }
 
 hl.config({
@@ -140,34 +134,22 @@ hl.config({
 })
 
 -- Example per-device config
-
 -- See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-
 -- device:epic-mouse-v1 {
-
 --    sensitivity = -0.5
-
 --}
-
 --
 
 -- source = /home/fra/.config/hypr/workspace.conf -> requires manual conversion
 require("workspace")
 
 -- Example windowrule v1
-
 -- windowrule = float, ^(kitty)$
-
 -- Example windowrule v2
-
 -- windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-
 -- See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-
 -- windowrulev2 = nomaximizerequest, class:.* # You'll probably like this.
-
 -- check these with hyprland clients
-
 --windowrule = workspace 1, class:org.wezfurlong.wezterm
 
 hl.window_rule({
@@ -202,36 +184,40 @@ hl.window_rule({
 	workspace = 10,
 })
 
+-- Noctalia Settings
+hl.window_rule({
+	match = { class = "dev.noctalia.Noctalia" },
+	float = true,
+	size = { 1080, 920 },
+})
+
+hl.layer_rule({
+	name = "noctalia",
+	match = {
+		namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$",
+	},
+	no_anim = true,
+	ignore_alpha = 0.5,
+	blur = true,
+	blur_popups = true,
+})
+
 --windowrule = float, fullscreen, stayfocused 1, class:hdrop
-
 -- rules for hdrop
-
 --windowrule {
-
 --  name = hdrop_rules
-
 --  match:class = hdrop
-
 --
-
 --  float = on
-
 --  size = 900, 900
-
 --  stay_focused = on
-
 --  center = on
-
 --}
 
 --windowrule = pin, class:hdrop
-
 --windowrule = move 0% 30, class:hdrop
-
 --windowrule = float, pin 1, stayfocused 1, size 700 700, center 1, class:hdrop
-
 --windowrule = float, pin, stayfocused, size 700 700, center 1, move 0 0%, class:hdrop
-
 -- See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
 local mainMod = "SUPER"
@@ -247,8 +233,15 @@ hl.bind(mainMod .. " + " .. "T", hl.dsp.exec_cmd("wezterm"))
 hl.bind(mainMod .. " + " .. "C", hl.dsp.window.close())
 hl.bind(mainMod .. " + " .. "M", hl.dsp.exit())
 --bind = $mainMod, V, togglefloating
-hl.bind(mainMod .. " + " .. "r", hl.dsp.exec_cmd("fuzzel --show drun"))
-hl.bind(mainMod .. " + " .. "r", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call launcher toggle"))
+-- hl.bind(mainMod .. " + " .. "r", hl.dsp.exec_cmd("fuzzel --show drun"))
+local ipc = "noctalia msg"
+hl.bind(mainMod .. "+Space", hl.dsp.exec_cmd(ipc .. " panel-toggle launcher"))
+hl.bind(mainMod .. "+r", hl.dsp.exec_cmd(ipc .. " panel-toggle launcher"))
+-- hl.bind(mainMod .. "+S", hl.dsp.exec_cmd(ipc .. " panel-toggle control-center"))
+hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. " settings-toggle"))
+hl.bind(mainMod .. "+Q", hl.dsp.exec_cmd(ipc .. " panel-toggle session"))
+
+-- hl.bind(mainMod .. " + " .. "r", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call launcher toggle"))
 hl.bind(mainMod .. " + " .. "l", hl.dsp.exec_cmd("~/.config/hypr/scripts/lockscreen.sh"))
 hl.bind(
 	mainMod .. " + " .. "v",
@@ -320,7 +313,7 @@ hl.config({
 
 -- Autostart
 hl.on("hyprland.start", function()
-	hl.exec_cmd("qs -c noctalia-shell --no-duplicate")
+	hl.exec_cmd("noctalia")
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	hl.exec_cmd("swaync")
