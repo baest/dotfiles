@@ -47,6 +47,7 @@ format = "$symbol [${ram}( | ${swap})]($style) "
 [git_branch]
 style = "bold yellow"
 only_attached = true
+disabled = true
 
 [git_status]
 conflicted = "⚔️ "
@@ -87,6 +88,11 @@ format = " [$symbol$status]($style) "
 disabled = false
 detect_env_vars = ['K8S']
 #detect_files = ['k8s'] # for some reason this needs to be 
+
+# [custom.jj]
+# when = "jj-starship detect"
+# shell = ["jj-starship", "--strip-bookmark-prefix", "fra/"]
+# format = "$output "
 
 [custom.jj]
 ignore_timeout = true
