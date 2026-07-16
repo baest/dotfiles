@@ -1,0 +1,21 @@
+// Rune language documentation at: https://rune-rs.github.io/
+// this is your entrypoint...
+pub fn config() {
+  // https://github.com/emilien-jegou/oyui/tree/main/docs/themes.md
+  theme::set("solarized-light");
+  // You can nest config per view with on_mode:
+  keybind("c", || {
+	global::execute_merge();
+  });
+
+  on_mode("file", || {
+    // keybind can take modifiers: "ctrl", "shift" or "alt"
+    keybind("ctrl-j", || view::file::cursor::down(5));
+    keybind("ctrl-k", || view::file::cursor::up(5));
+  });
+
+  on_mode("tree", || {
+    keybind("ctrl-j", || view::tree::cursor::down(5));
+    keybind("ctrl-k", || view::tree::cursor::up(5));
+  });
+}
