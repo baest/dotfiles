@@ -2,3 +2,7 @@
 
 [merge]
 hunk-level = "word"
+
+[merge-tools.oyui]
+program = "oyui"
+edit-args = ["diff", "$left", "$right"]
