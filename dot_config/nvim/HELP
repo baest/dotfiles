@@ -90,3 +90,7 @@ Move screen
 
 Snacks
 	When showing buffer/files use <ctrl+v> to open selection in vsplit
+
+Copy/moving with moving cursor
+	:+5,+10t. (copy from +5 to +10 to current position (. means current line could also use 0, $ or some number))
+	:+5m. (move from +5 to current position (. means current line could also use 0, $ or some number))
