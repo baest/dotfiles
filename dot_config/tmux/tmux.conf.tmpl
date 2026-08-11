@@ -32,6 +32,9 @@ set -sg escape-time 10
 set -g history-limit 100000
 set -g renumber-windows on
 
+set-option -w -g aggressive-resize on
+set-option -g window-size largest    # Use largest client's dimensions
+
 set -g display-time 4000
 set-option -g mode-keys vi
 
