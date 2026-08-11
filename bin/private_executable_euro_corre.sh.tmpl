@@ -9,6 +9,8 @@ echo $ec_dir_local
 date=$(date "+%Y%m%d")
 time=$(date "+%X")
 
+scp {{ .chezmoi.config.data.webhosting.hostname }}:/www/$ec_dir/public.xml $ec_dir_local/
+
 if [ -n "$2" ]; then
 	date=$2
 else
