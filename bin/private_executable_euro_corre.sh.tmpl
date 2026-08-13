@@ -1,15 +1,16 @@
 #!/usr/bin/env zsh
-#set -x
+# set -x
 # document.getElementsByTagName("audio")[0].src 
 
 ec_dir=ec
 ec_dir_local=~/$ec_dir
+ec_dir_remote=/webroots/www/$ec_dir
 echo $ec_dir_local
 
 date=$(date "+%Y%m%d")
 time=$(date "+%X")
 
-scp {{ .chezmoi.config.data.webhosting.hostname }}:/www/$ec_dir/public.xml $ec_dir_local/
+scp {{ .chezmoi.config.data.webhosting.hostname }}:$ec_dir_remote/public.xml $ec_dir_local/
 
 if [ -n "$2" ]; then
 	date=$2
@@ -41,6 +42,6 @@ if [ ! -f $ec_dir_local/$filename ]; then
 		| xmllint --format - > $ec_dir_local/public.xml && \
 	rm $ec_dir_local/tmp.xml;
 fi
-rsync -va --delete-after $ec_dir_local/ {{ .chezmoi.config.data.webhosting.hostname }}:/www/$ec_dir/;
-rsync -va --whole-file $ec_dir_local/public.xml {{ .chezmoi.config.data.webhosting.hostname }}:/www/$ec_dir/;
+rsync -va --delete-after $ec_dir_local/ {{ .chezmoi.config.data.webhosting.hostname }}:$ec_dir_remote/;
+rsync -va --whole-file $ec_dir_local/public.xml {{ .chezmoi.config.data.webhosting.hostname }}:$ec_dir_remote/;
 ssh {{ .chezmoi.config.data.webhosting.hostname }} cache-purge
