@@ -5,8 +5,9 @@ rebase-all = [
   'rebase',
   '--branch',
   'mutable() & mine()',
-  '--destination',
+  '--onto',
   'trunk()',
+  '--skip-emptied',
 ]
 
 # abbreviations
