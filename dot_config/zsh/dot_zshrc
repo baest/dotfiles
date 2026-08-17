@@ -5,19 +5,7 @@ done
 
 safe_source "$HOME/.profile" # Load the default .profile
 
-autoload colors zsh/terminfo
-if [[ "$terminfo[colors]" -ge 8 ]]; then
-	colors
-fi
-
-export PATH=$HOME/bin/first:$PATH
-
 #zprof
-
-# perlbrew
-safe_source "$HOME/perl5/perlbrew/etc/bashrc"
-
-export ONECOMID=fra
 
 ### zinit --> antidote
 #  source '/usr/share/zsh-antidote/antidote.zsh'
@@ -25,12 +13,5 @@ export ONECOMID=fra
 #  zstyle ':antidote:bundle' use-friendly-names 'yes'
 
 unset_sshkey_override_if_possible()
-
-if [[ ! -z "$ITERM_SESSION_ID" ]]; then
-    safe_source "$HOME/.iterm2_shell_integration.zsh"
-    #[[ ! -f ~/.zgen/.iterm2_shell_integration.zsh ]] || source ~/.zgen/.iterm2_shell_integration.zsh
-
-    #export PS1="$PS1%{$(iterm2_prompt_mark)%}"
-fi
 
 bindkey -M viins '^U' forward_kill_line

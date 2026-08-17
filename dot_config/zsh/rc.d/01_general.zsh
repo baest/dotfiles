@@ -29,9 +29,15 @@ bindkey -M menuselect '\e'  send-break			   # close menu
 
 # new stuff copied
 # setopt GLOB_COMPLETE      # Show autocompletion menu with globs
-setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
-setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
-setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
+setopt always_to_end        # Move cursor to the end of a completed word.
+setopt auto_list            # Automatically list choices on ambiguous completion.
+setopt auto_menu            # Show completion menu on a successive tab press.
+setopt auto_param_slash     # If completed parameter is a directory, add a trailing slash.
+setopt complete_in_word     # Complete from both ends of a word.
+setopt path_dirs            # Perform path search even on command names with slashes.
+setopt NO_flow_control      # Disable start/stop characters in shell editor.
+setopt NO_list_beep         # Do not beep on ambiguous completion.
+setopt NO_menu_complete     # Do not autoselect the first completion entry.
 
 # +---------+
 # | zstyles |
