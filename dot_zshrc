@@ -1,60 +1,15 @@
 #zmodload zsh/zprof
-for file in $HOME/.zshrc.d/*.zsh; do
+for file in $HOME/.config/zsh/rc.d/*.zsh; do
     source "$file"
 done
 
 safe_source "$HOME/.profile" # Load the default .profile
-
-#NOBEEP
-#[[ ! -f ~/.zkbd/$TERM ]] && zkbd
-#source ~/.zkbd/$TERM
-#
-#stty status ^T
-
-# consider moving to zplugin:
-# http://zdharma.org/zplugin/wiki/INTRODUCTION/
-# https://dev.to/misterf/awesome-terminal-upgrades-part-three-manage-zsh-plugins-using-zplugin-1fba
-#source "${HOME}/.zgen/zgen.zsh"
-#
-#if ! zgen saved; then
-#	source "$HOME/.zgen_plugins.zsh"
-#	zgen save
-#fi
-#
-#source "$HOME/.zgen_plugins_conf.zsh"
 
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
 	colors
 fi
 
-#eval `dircolors ~/ressources/dircolors-solarized/dircolors.ansi-light`
-## don't run inside tmux, tmux sets COLORFGBG
-#if [ -z "$TMUX" ]; then
-#    echo "xxxx"
-#    if [ "$COLORFGBG" = "11;15" ]; then
-#        echo "set background=light" > .vimrc.local
-#    echo "zzzz"
-#    else
-#        echo "set background=dark" > .vimrc.local
-#    echo "yyyy"
-#    fi
-#fi
-
-#  [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-#. /usr/share/autojump/autojump.sh
-
-#[ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
-
-#autoload -Uz add-zsh-hook
-#add-zsh-hook precmd  histdb-update-outcome
-
-#NPM
-PATH="$PATH:${HOME}/.npm-packages/bin"
-#TODO NPM manpath? see https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
-
-# for some reason somethims $ZPLUG_BIN doesn't get added
-#export PATH=$HOME/bin/first:$ZPLUG_BIN:$PATH
 export PATH=$HOME/bin/first:$PATH
 
 #zprof
@@ -68,54 +23,6 @@ export ONECOMID=fra
 #  source '/usr/share/zsh-antidote/antidote.zsh'
 #  antidote load
 #  zstyle ':antidote:bundle' use-friendly-names 'yes'
-
-#### Added by Zinit's installer
-#if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-#    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-#    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-#    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-#        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-#        print -P "%F{160} The clone has failed.%f%b"
-#fi
-#
-#declare -A ZINIT
-#ZINIT[NO_ALIASES]=1
-#
-#source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-#autoload -Uz _zinit
-#(( ${+_comps} )) && _comps[zinit]=_zinit
-#
-#typeset -g ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-##zinit wait lucid for \
-#zinit wait lucid for \
-# atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-#    zdharma-continuum/fast-syntax-highlighting \
-# blockf \
-#    zsh-users/zsh-completions #\
-## atload"!_zsh_autosuggest_start" \
-##    zsh-users/zsh-autosuggestions
-#
-#if [ -d /opt/homebrew/share/zsh/site-functions ]; then
-#    zinit add-fpath /opt/homebrew/share/zsh/site-functions
-#fi
-#if [ -d ~/.zsh_completions ]; then
-#    zinit add-fpath ~/.zsh_completions
-#fi
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-#zinit light-mode for \
-#    zdharma-continuum/zinit-annex-as-monitor \
-#    zdharma-continuum/zinit-annex-bin-gem-node \
-#    zdharma-continuum/zinit-annex-patch-dl \
-#    zdharma-continuum/zinit-annex-rust
-#
-#zinit ice as"program" pick"bin/git-fuzzy"
-#zinit light bigH/git-fuzzy
-
-### End of Zinit's installer chunk
-
-#safe_source "$HOME/.py-systems/bin/activate"
 
 unset_sshkey_override_if_possible()
 
