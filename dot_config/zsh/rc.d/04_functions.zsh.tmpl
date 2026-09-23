@@ -281,3 +281,83 @@ function os-dashboard(){
   local SERIAL=$(sudo osqueryi --csv --noheader 'select hardware_serial from system_info')
   xdg-open "https://grafana.one.com/d/fdjhk7tm8x9tsb/osquery-laptop-compliance?var-SERIAL=${SERIAL}"
 }
+
+# https://docs.gitlab.com/topics/git/commit/#push-options
+function jjpush() {
+    local revision="@"
+    local name=""
+    local target=""
+    local auto_merge=false
+    local draft=false
+    local debug=false
+
+    local gitlab_user_id=458
+    local bookmark_prefix="fra/"
+
+    for arg in "$@"; do
+        case "$arg" in
+	    --revision=*|-r=*)
+		revision="${arg#*=}"
+		;;
+	    --named=*|-n=*)
+		name="${arg#*=}"
+		;;
+            --auto-merge|--am)
+                auto_merge=true
+                ;;
+            --draft|-d)
+                draft=true
+                ;;
+            --debug)
+                debug=true
+                ;;
+	    --target=*)
+		target="${arg#*=}"
+		;;
+            *)
+		print -u2 "Too many arguments"
+		print -u2 "Usage: jjpush [-r|--r=revision] [-n|--named=bookmark-name] [--auto-merge|--am] [--draft|-d] [--debug] [--target=branch]"
+		return 1
+                ;;
+        esac
+    done
+
+    local -a args=(
+        git push
+        -o merge_request.create
+        -o merge_request.remove_source_branch
+        -o merge_request.assign=$gitlab_user_id
+    )
+
+    if [[ "$auto_merge" == true ]]; then
+        args+=(-o merge_request.auto_merge)
+    fi
+
+    if [[ "$draft" == true ]]; then
+        args+=(-o merge_request.draft)
+    fi
+
+    if [[ -n "$name" ]]; then
+        args+=(--named="${bookmark_prefix}${name}=${revision}")
+    else
+        args+=(-c "$revision")
+    fi
+
+    if [[ -n "$target" ]]; then
+        args+=(--target="$target")
+    fi
+
+    if [[ "$debug" == true ]]; then
+	print "revision=$revision"
+	print "name=$name"
+	print "target=$target"
+	print "auto_merge=$auto_merge"
+	print "draft=$draft"
+	print "jj ${args[@]}"
+	return 1
+    fi
+
+
+    jj "${args[@]}"
+}
+
