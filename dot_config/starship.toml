@@ -5,6 +5,12 @@ add_newline = false
 [cmd_duration]
 min_time = 1
 
+# [custom.prompt_start]
+# command = '''printf '\033]133;A\033\\''''
+# format = '$output'
+# when = true
+# unsafe_no_escape = true
+
 [character]
 #error_symbol = "[✗](bold red) "
 error_symbol = "[❯](bold red)"

@@ -2,3 +2,4 @@
 (( $+commands[jj] )) && znap fpath _jj    'jj util completion zsh'
 znap eval complete 'COMPLETE=zsh jj'
 (( $+commands[layerx] )) && znap fpath _layerx 'layerx completion zsh'
+(( $+commands[zellij] )) && znap fpath _zellij 'zellij setup --generate-completion=zsh; printf "\n"'
