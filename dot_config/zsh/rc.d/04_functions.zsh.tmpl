@@ -357,7 +357,7 @@ function jjpush() {
 	return 1
     fi
 
-
+    jj git fetch && jj rebase-all
     jj "${args[@]}"
 }
 
