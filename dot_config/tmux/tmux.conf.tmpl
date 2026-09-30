@@ -30,34 +30,34 @@ bind-key -n M-{{$i}} select-window -t {{$i}}
 bind-key -n M-0 select-window -t 10 # override 0 to select win 10
 
 set-option -g default-terminal "tmux-256color"
-set -sg escape-time 10
+set-option -sg escape-time 10
 
-set -g history-limit 100000
-set -g renumber-windows on
+set-option -g history-limit 100000
+set-option -g renumber-windows on
 
-set-option -w -g aggressive-resize on
-set-option -g window-size largest    # Use largest client's dimensions
+set-option -g aggressive-resize on
+set-option -g window-size latest # With latest, tmux uses the size of the client that had the most recent activity
 
-set -g display-time 4000
+set-option -g display-time 4000
 set-option -g mode-keys vi
 
 # allow vim to get FocusGained and FocusLost events
-set -g focus-events on
+set-option -g focus-events on
 
 # Preserve any output before running interactive commands, such as Vim.
 set-window-option -g alternate-screen on
 
-set -g terminal-overrides ',xterm-256color:Tc'
-set -g default-terminal "tmux-256color"
-set -as terminal-overrides ',xterm*:sitm=\E[3m'
+set-option -g terminal-overrides ',xterm-256color:Tc'
+set-option -g default-terminal "tmux-256color"
+set-option -as terminal-overrides ',xterm*:sitm=\E[3m'
 
-set -g base-index 1
-set -g pane-base-index 1
+set-option -g base-index 1
+set-option -g pane-base-index 1
 
 {{ if eq .chezmoi.os "darwin" }}
-set -s copy-command 'pbcopy'
+set-option -s copy-command 'pbcopy'
 {{ else }}
-set -s copy-command 'wl-copy'
+set-option -s copy-command 'wl-copy'
 {{ end }}
 
 # Set window title
@@ -67,23 +67,23 @@ set-option -g set-titles-string '#W'
 #set-window-option -g automatic-rename off
 #set-option -g automatic-rename on
 set-option -g allow-passthrough on
-#set -g default-terminal "tmux-256color"
-#set -as terminal-overrides ',xterm*:XT:sitm=\E[3m'
+#set-option -g default-terminal "tmux-256color"
+#set-option -as terminal-overrides ',xterm*:XT:sitm=\E[3m'
 
 
 # Scrolling with Shift-PageUp/Shift-PageDown.
-#set -g terminal-overrides "*rxvt*:smcup@:rmcup@"
+#set-option -g terminal-overrides "*rxvt*:smcup@:rmcup@"
 
 # Toggle mouse off with ^B m
 bind m \
-  set -g mode-mouse on \;\
+  set-option -g mode-mouse on \;\
   display 'Mouse: ON'
 # Toggle mouse off with ^B M
 bind M \
-  set -g mouse off \;\
+  set-option -g mouse off \;\
   display 'Mouse: OFF'
 
-set -g mouse off
+set-option -g mouse off
 #unbind-key WheelDown
 #unbind-key WheelUpPane
 
@@ -95,7 +95,7 @@ bind -T copy-mode-vi 'r' send -X rectangle-toggle
 #unbind-key -tvi-copy Enter
 unbind-key -T copy-mode-vi Space
 
-set -g @yank_selection "primary"
+set-option -g @yank_selection "primary"
 
 # switch between windows with alt+left/right and pane with alt+up/down
 bind-key -n M-Right next
@@ -107,61 +107,61 @@ set-environment -g TMUX_PLUGIN_MANAGER_PATH '~/.local/share/tmux/plugins'
 
 # List of plugins
 # Supports `github_username/repo` or full git URLs
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'tmux-plugins/tmux-yank'
-set -g @plugin 'tmux-plugins/tmux-copycat'
-set -g @plugin 'tmux-plugins/tmux-sidebar'
-# set -g @plugin 'fcsonline/tmux-thumbs'
-set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
-set -g @plugin 'laktak/extrakto'
-# set -g @plugin 'tmux-plugins/tmux-resurrect'
-# set -g @plugin 'tmux-plugins/tmux-continuum'
-set -g @plugin 'openjck/tmux-one'
-set -g @plugin 'christoomey/vim-tmux-navigator'
-#set -g @plugin 'seebi/tmux-colors-solarized'
-#set -g @plugin 'jtbairdsr/tmux-inactive-panes'
-#set -g @plugin 'jbnicolai/tmux-fpp'
-#set -g @plugin 'git@github.com:Morantron/tmux-fingers'
+set-option -g @plugin 'tmux-plugins/tpm'
+set-option -g @plugin 'tmux-plugins/tmux-sensible'
+set-option -g @plugin 'tmux-plugins/tmux-yank'
+set-option -g @plugin 'tmux-plugins/tmux-copycat'
+set-option -g @plugin 'tmux-plugins/tmux-sidebar'
+# set-option -g @plugin 'fcsonline/tmux-thumbs'
+set-option -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+set-option -g @plugin 'laktak/extrakto'
+# set-option -g @plugin 'tmux-plugins/tmux-resurrect'
+# set-option -g @plugin 'tmux-plugins/tmux-continuum'
+set-option -g @plugin 'openjck/tmux-one'
+set-option -g @plugin 'christoomey/vim-tmux-navigator'
+#set-option -g @plugin 'seebi/tmux-colors-solarized'
+#set-option -g @plugin 'jtbairdsr/tmux-inactive-panes'
+#set-option -g @plugin 'jbnicolai/tmux-fpp'
+#set-option -g @plugin 'git@github.com:Morantron/tmux-fingers'
 
 
 # thumbs
-set -g @thumbs-unique enabled
+set-option -g @thumbs-unique enabled
 {{- if eq .chezmoi.os "darwin" }}
-set -g @thumbs-command 'echo -n {} | pbcopy'
+set-option -g @thumbs-command 'echo -n {} | pbcopy'
 {{- else }}
-set -g @thumbs-command 'echo -n {} | wl-copy'
+set-option -g @thumbs-command 'echo -n {} | wl-copy'
 {{- end }}
 
 # resurrect continuum
-set -g @continuum-restore 'on'
-set -g @continuum-save-interval '10'
-set -g @resurrect-strategy-nvim 'session'
-set -g @resurrect-capture-pane-contents 'on'
-set -g @resurrect-processes 'vi vim nvim emacs man less more tail top htop irssi weechat mutt ssh make perl nv atuin'
-set -g @resurrect-dir '~/.local/share/tmux/resurrect'
+set-option -g @continuum-restore 'on'
+set-option -g @continuum-save-interval '10'
+set-option -g @resurrect-strategy-nvim 'session'
+set-option -g @resurrect-capture-pane-contents 'on'
+set-option -g @resurrect-processes 'vi vim nvim emacs man less more tail top htop irssi weechat mutt ssh make perl nv atuin'
+set-option -g @resurrect-dir '~/.local/share/tmux/resurrect'
 #https://github.com/spywhere/tmux-named-snapshot
 
 #TEST
-set -g @colors-solarized 'light'
+set-option -g @colors-solarized 'light'
 
 #fpp
-set -g @fpp-key 'f'
+set-option -g @fpp-key 'f'
 
 #fingers
-set -g @fingers-compact-hints 0
-set -g @fingers-hint-position-nocompact "left"
-set -g @fingers-hint-format-nocompact "#[fg=blue,bold][%s]"
-set -g @fingers-pattern-0 '(pbi[[:digit:]]+)'
-set -g @fingers-pattern-1 'git rebase --(abort|continue)'
+set-option -g @fingers-compact-hints 0
+set-option -g @fingers-hint-position-nocompact "left"
+set-option -g @fingers-hint-format-nocompact "#[fg=blue,bold][%s]"
+set-option -g @fingers-pattern-0 '(pbi[[:digit:]]+)'
+set-option -g @fingers-pattern-1 'git rebase --(abort|continue)'
 
 run-shell ~/.local/share/tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
 
-set -g @vim_navigator_mapping_left "C-Left C-h"  # use C-h and C-Left
-set -g @vim_navigator_mapping_right "C-Right C-l"
-set -g @vim_navigator_mapping_up "C-k"
-set -g @vim_navigator_mapping_down "C-j"
-set -g @vim_navigator_mapping_prev ""  # removes the C-\ binding
+set-option -g @vim_navigator_mapping_left "C-Left C-h"  # use C-h and C-Left
+set-option -g @vim_navigator_mapping_right "C-Right C-l"
+set-option -g @vim_navigator_mapping_up "C-k"
+set-option -g @vim_navigator_mapping_down "C-j"
+set-option -g @vim_navigator_mapping_prev ""  # removes the C-\ binding
 is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?x?)(diff)?$"'
 #bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"
 #bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"
@@ -175,22 +175,22 @@ is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?x?)(diff
 # git@github.com/user/plugin     \
 # git@bitbucket.com/user/plugin  \
 
-#set -g pane-border-bg colour235
-#set -g pane-border-fg colour238
-#set -g pane-active-border-bg colour236
-#set -g pane-active-border-fg colour51
+#set-option -g pane-border-bg colour235
+#set-option -g pane-border-fg colour238
+#set-option -g pane-active-border-bg colour236
+#set-option -g pane-active-border-fg colour51
 #set-option -g display-panes-colour brightred #orange
-#set -g window-style 'fg=colour247,bg=colour236'
-#set -g window-active-style 'fg=colour250,bg=black'
+#set-option -g window-style 'fg=colour247,bg=colour236'
+#set-option -g window-active-style 'fg=colour250,bg=black'
 
 # try hard to make colours work and generally ansi codes within tmux
-set -g default-terminal "xterm-256color"
-set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # colored underscores
-set -as terminal-overrides ',xterm-256color:RGB' # true-color support
-#set -ga terminal-overrides ",xterm-256color:RGB:sitm=\E[3m"
+set-option -g default-terminal "xterm-256color"
+set-option -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # colored underscores
+set-option -as terminal-overrides ',xterm-256color:RGB' # true-color support
+#set-option -ga terminal-overrides ",xterm-256color:RGB:sitm=\E[3m"
 
 #\"#22T\"
-set -g status-right "#[fg=colour11,bg=colour7,nobold,nounderscore,noitalics]#[fg=colour7,bg=colour11] #{prefix_highlight} | #{continuum_status} | %H:%M %d-%b-%y "
+set-option -g status-right "#[fg=colour11,bg=colour7,nobold,nounderscore,noitalics]#[fg=colour7,bg=colour11] #{prefix_highlight} | #{continuum_status} | %H:%M %d-%b-%y "
 
 run-shell -b 'lazy-tmux daemon --interval 3m --scrollback >/tmp/lazy-tmux.log 2>&1 || tmux display-message "lazy-tmux daemon already running"'
 run-shell -b 'lazy-tmux bootstrap --session last >/tmp/lazy-tmux-bootstrap.log 2>&1'
