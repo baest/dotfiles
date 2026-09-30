@@ -57,7 +57,7 @@ lines = 10000
 # (e.g. "claude .*" to permit the `claude --resume <id>` restore command).
 [integrations]
 # Master switch for all program integrations.
-enabled = false
+enabled = true
 
 # Claude Code: restore a `claude` pane as `claude --resume <session-id>` so the
 # conversation continues instead of starting fresh.
@@ -67,9 +67,3 @@ enabled = true
 # <home>/projects/<cwd>/<session-id>.jsonl to resolve the pane's session. A
 # leading ~ is expanded.
 home = "~/.claude"
-
-# Codex CLI: restore a `codex` pane as `codex resume <session-id>`.
-[integrations.codex]
-enabled = true
-# Codex data directory containing sessions/YYYY/MM/DD/rollout-*.jsonl files.
-home = "~/.codex"
