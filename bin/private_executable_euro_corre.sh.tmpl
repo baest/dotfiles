@@ -9,6 +9,11 @@ echo $ec_dir_local
 
 date=$(date "+%Y%m%d")
 time=$(date "+%X")
+{{ if eq .chezmoi.os "darwin" }}
+fulldate=$(date -j -f "%Y%m%d %H:%M:%S" "$date $time" "+%a, %d %B %Y %X %z")
+{{ else }}
+fulldate=$(date --date "$date $time" "+%a, %d %B %Y %X %z")
+{{ end }}
 
 scp {{ .chezmoi.config.data.webhosting.hostname }}:$ec_dir_remote/public.xml $ec_dir_local/
 
@@ -29,7 +34,7 @@ if [ ! -f $ec_dir_local/$filename ]; then
 	cp $ec_dir_local/public.xml $ec_dir_local/tmp.xml
 	xmlstarlet ed -P \
 		--append "(/rss/channel/item)[last()]" -t elem -n tmp \
-		--subnode //tmp -t elem -n title -v "$(date --date "$date $time" "+%a, %d %B %Y %X %z")" \
+		--subnode //tmp -t elem -n title -v "$fulldate" \
 		--subnode //tmp -t elem -n enclosure \
 		--insert //tmp/enclosure -t attr -n type -v "audio/mpeg" \
 		--insert //tmp/enclosure -t attr -n url -v "https://{{ .chezmoi.config.data.webhosting.url }}/$ec_dir/${filename}" \
