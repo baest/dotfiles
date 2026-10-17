@@ -15,17 +15,18 @@ autoload -U compinit; compinit -iC
 #https://github.com/Phantas0s/.dotfiles/blob/master/zsh/completion.zsh
 #_comp_options+=(globdots) # With hidden files
 
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-
-bindkey -M menuselect '^xg' clear-screen
-bindkey -M menuselect '^xi' vi-insert                      # Insert
-bindkey -M menuselect '^xh' accept-and-hold                # Hold
-bindkey -M menuselect '^xn' accept-and-infer-next-history  # Next
-bindkey -M menuselect '^xu' undo                           # Undo
-bindkey -M menuselect '\e'  send-break			   # close menu
+#antidote
+#bindkey -M menuselect 'h' vi-backward-char
+#bindkey -M menuselect 'k' vi-up-line-or-history
+#bindkey -M menuselect 'j' vi-down-line-or-history
+#bindkey -M menuselect 'l' vi-forward-char
+#
+#bindkey -M menuselect '^xg' clear-screen
+#bindkey -M menuselect '^xi' vi-insert                      # Insert
+#bindkey -M menuselect '^xh' accept-and-hold                # Hold
+#bindkey -M menuselect '^xn' accept-and-infer-next-history  # Next
+#bindkey -M menuselect '^xu' undo                           # Undo
+#bindkey -M menuselect '\e'  send-break			   # close menu
 
 # new stuff copied
 # setopt GLOB_COMPLETE      # Show autocompletion menu with globs
@@ -138,3 +139,4 @@ autoload zsh/mathfunc
 autoload -U select-word-style
 
 select-word-style bash
+bindkey '^E' autosuggest-end-of-line

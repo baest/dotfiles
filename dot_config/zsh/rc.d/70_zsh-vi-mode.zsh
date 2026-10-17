@@ -11,7 +11,7 @@ zvm_after_lazy_keybindings_commands() {
 
 
 }
-znap source jeffreytse/zsh-vi-mode
+#znap source jeffreytse/zsh-vi-mode
 zvm_bindkey viins '^R' atuin-search
 zvm_bindkey vicmd '^R' atuin-search
 bindkey -M viins '^u' zvm_forward_kill_line

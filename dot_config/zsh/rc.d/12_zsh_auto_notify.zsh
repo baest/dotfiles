@@ -1,4 +1,3 @@
-znap source MichaelAquilina/zsh-auto-notify
 
 AUTO_NOTIFY_IGNORE+=("x")
 AUTO_NOTIFY_IGNORE+=("cm edit")

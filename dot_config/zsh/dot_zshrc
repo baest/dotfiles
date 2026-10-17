@@ -1,17 +1,16 @@
-#zmodload zsh/zprof
-for file in $HOME/.config/zsh/rc.d/*.zsh; do
-    source "$file"
-done
-
-safe_source "$HOME/.profile" # Load the default .profile
+#safe_source "$HOME/.profile" # Load the default .profile
 
 #zprof
-
-### zinit --> antidote
-#  source '/usr/share/zsh-antidote/antidote.zsh'
-#  antidote load
-#  zstyle ':antidote:bundle' use-friendly-names 'yes'
 
 unset_sshkey_override_if_possible()
 
 bindkey -M viins '^U' forward_kill_line
+
+[[ -f /opt/homebrew/opt/antidote/share/antidote/antidote.zsh ]] && source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+zstyle ':antidote:bundle' file $ZDOTDIR/antidote.conf
+zstyle ':antidote:static' file $ZDOTDIR/antidote.zsh
+
+zstyle ':zephyr:plugin:confd' 'immediate' 'yes'
+
+
+antidote load

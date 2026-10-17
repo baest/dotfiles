@@ -1,7 +1,8 @@
 export ATUIN_NOBIND="true"
-znap source atuinsh/atuin
+#znap source atuinsh/atuin
 
-znap eval atuin 'atuin hex init'
+cached-eval atuin hex init
+#znap eval atuin 'atuin hex init'
 
 
 # bind to the up key, which depends on terminal mode
