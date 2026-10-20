@@ -66,4 +66,7 @@ vim.opt.scrolloff = 10
 
 vim.o.termguicolors = true
 
+-- disable vim tabs
+vim.opt.showtabline = 0
+
 -- vim: ts=2 sts=2 sw=2 et
