@@ -15,7 +15,9 @@
 \set HISTSIZE 50000
 \set HISTCONTROL ignoreboth
 --\set HISTFILE ~/.psql_history/:HOST
-\set HISTFILE ~/.psql_history/ :DBNAME
+\getenv XDG_STATE_HOME XDG_STATE_HOME
+\set HISTFILE :XDG_STATE_HOME '/pg/history/' :DBNAME
+--\set HISTFILE ~/.psql_history/ :DBNAME
 
 -- with hostname
 --\set PROMPT1 '%n %[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
