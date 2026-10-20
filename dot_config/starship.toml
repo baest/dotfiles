@@ -1,18 +1,12 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+format = "$username$hostname$localip$shlvl$singularity$kubernetes$nats$directory$vcsh$fossil_branch$fossil_metrics$vcs$docker_context$package$bun$c$cmake$cobol$cpp$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$fortran$gleam$golang$gradle$haskell$haxe$helm$java$julia$kotlin$lua$maven$mojo$nim$nodejs$ocaml$odin$opa$perl$php$pulumi$purescript$python$quarto$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$typst$vlang$vagrant$xmake$zig$buf$guix_shell$nix_shell$conda$pixi$meson$spack$memory_usage$aws$gcloud$openstack$azure$direnv$env_var$mise$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$netns$os$shell$character"
 add_newline = false
 
 [cmd_duration]
 min_time = 1
 
-# [custom.prompt_start]
-# command = '''printf '\033]133;A\033\\''''
-# format = '$output'
-# when = true
-# unsafe_no_escape = true
-
 [character]
-#error_symbol = "[✗](bold red) "
 error_symbol = "[❯](bold red)"
 success_symbol = "[❯](green)"
 
@@ -57,14 +51,6 @@ disabled = true
 
 [git_status]
 conflicted = "⚔️ "
-#diverged = "🔱 "
-#untracked = "🛤️ "
-#untracked = "[$count](green)🤷"
-#stashed = "[$count](bold red)📦 "
-#modified = "[$count](red)📝 "
-#staged = "[$count](blue)🗃️ "
-#renamed = "📛 "
-#deleted = "🗑"
 style = "black"
 ahead = "⇡${count}"
 behind = "⇣${count}"
@@ -95,33 +81,8 @@ disabled = false
 detect_env_vars = ['K8S']
 #detect_files = ['k8s'] # for some reason this needs to be 
 
-# [custom.jj]
-# when = "jj-starship detect"
-# shell = ["jj-starship", "--strip-bookmark-prefix", "fra/"]
-# format = "$output "
+[vcs]
+order = ["jj", "git"]
 
-[custom.jj]
-ignore_timeout = true
-description = "current jj status"
-detect_folders = [".jj"]
-symbol = "🥋 "
-when = true
-command = 'jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template prompt'
-
-#command = '''
-#jj log -r@ -l1 --ignore-working-copy --no-graph --color always  -T '
-#  separate(" ",
-#    branches.map(|x| x.name()).join(" "),
-#    if(conflict, "conflict"),
-#    if(divergent, "divergent"),
-#    if(hidden, "hidden"),
-#  )
-#'
-#'''
-#symbol = "jj"
-
-#[custom.jjstate]
-#detect_folders = [".jj"]
-#command = '''
-#jj log -r@ -n1 --no-graph -T "" --stat | tail -n1 | perl -pE 's/(\d+) files? changed, (\d+) insertions?\(\+\), (\d+) deletions?\(-\)/$1m $2+ $3-/'
-#'''
+[jj_metrics]
+disabled = true
