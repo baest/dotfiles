@@ -126,9 +126,9 @@ setopt HIST_IGNORE_SPACE
 setopt CHASE_LINKS
 setopt AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHDMINUS PUSHDSILENT PUSHDTOHOME
 setopt AUTO_REMOVE_SLASH
-setopt NULL_GLOB
+unsetopt NULL_GLOB
+unsetopt NOMATCH
 setopt EXTENDED_GLOB
-setopt extendedglob
 setopt GLOBSTARSHORT
 setopt no_complete_aliases
 
