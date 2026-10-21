@@ -6,6 +6,8 @@
 \pset pager on
 \pset linestyle unicode
 \pset border 3
+\pset display_true true
+\pset display_false false
 
 \setenv PAGER 'pspg -bX --no-mouse --no-bars'
 --\setenv PAGER 'less -XF'
@@ -49,8 +51,8 @@ SELECT pg_is_in_recovery() as is_replica \gset
 
 \set exp EXPLAIN (ANALYZE, VERBOSE, BUFFERS, COSTS, TIMING)
 \set expj 'EXPLAIN (ANALYZE, VERBOSE, BUFFERS, COSTS, TIMING, FORMAT JSON)'
-\set cunt 'COUNT(*)'
-\set cnt 'COUNT(*)'
+\set cunt 'to_char(COUNT(*), '''FM9,999,999,999,999,999,999''') as cunt'
+\set cnt 'to_char(COUNT(*), '''FM9,999,999,999,999,999,999''') as cnt'
 --\g (format=unaligned tuples_only=on ) xxx.json
 --\set ECHO_HIDDEN on
 
