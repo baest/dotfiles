@@ -1,2 +1,3 @@
 [revsets]
 'bookmark-advance-to' = 'heads((@ | @::) & mutable() & ~description(exact:"") & ~empty() & ~description(glob:"TODO:*"))'
+'git-sign-on-push' = "~signed() & mine()"

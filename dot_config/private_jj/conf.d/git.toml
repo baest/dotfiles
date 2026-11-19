@@ -3,5 +3,4 @@
 
 private-commits = "description(glob:'wip:*') | description(glob:'private:*')"
 colocate = true
-sign-on-push = true
 write-change-id-header = true
