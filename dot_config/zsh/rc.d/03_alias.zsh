@@ -116,3 +116,5 @@ mman () {
 help () {
     "$@" --help 2>&1 | bat --plain --language=help
 }
+
+alias claude="openshell sandbox exec --name cc -- claude"
